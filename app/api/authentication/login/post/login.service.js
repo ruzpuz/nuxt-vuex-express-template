@@ -69,7 +69,7 @@ async function checkLogin(details) {
         throw responses.LOGIN_USER_DISABLED;
       }
     } else {
-      throw responses.USERS_NOT_FOUND;
+      throw responses.LOGIN_NO_USER_FOUND;
     }
     user = users[0];
 
