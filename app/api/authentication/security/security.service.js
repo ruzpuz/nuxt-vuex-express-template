@@ -1,8 +1,6 @@
-'use strict';
-
-const stringValidation = require('app/api/common/validation/string/string-validation.service'),
-  constants = require('app/api/common/constants/constants.service').constants,
-  responses = require('app/api/common/responses/responses.service').responses;
+const stringValidation = require('app/api/common/validation/string/string-validation.service');
+const { constants } = require('app/api/common/constants/constants.service');
+const { responses } = require('app/api/common/responses/responses.service');
 
 function validate(token) {
   if(!stringValidation.isString(token)) {
@@ -14,7 +12,6 @@ function createSecurityModel(session) {
     return {
       roleId: constants.users.roles.NOT_LOGGED_IN
     };
-
   }
   return {
     id: session.user_id,

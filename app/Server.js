@@ -32,8 +32,8 @@ class Server {
     });
   }
   connectionEstablished(connection) {
-    this.connections.push(connection);
     connection.on('close', this.connectionClose);
+    this.connections.push(connection);
   }
   stopServer(callback) {
     logger.info('Stopping server');

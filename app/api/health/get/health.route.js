@@ -1,8 +1,7 @@
 const databaseService = require('app/database/database.service');
 
 async function healthRoute(req, res) {
-  const persistence = databaseService.get().persistence;
-  const memory = databaseService.get().memory;
+  const { persistence, memory } = databaseService.get();
 
   try {
     await persistence.raw('SELECT 1;');

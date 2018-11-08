@@ -1,12 +1,10 @@
-'use strict';
-
 const databaseService = require('app/database/database.service');
 
 async function getSession(id) {
 
   let session = null;
 
-  const memoryDatabase = databaseService.get().memory;
+  const { memory: database } = databaseService.get();
 
   async function transaction(t) {
 
@@ -30,7 +28,7 @@ async function getSession(id) {
 
   }
 
-  await memoryDatabase.transaction(transaction);
+  await database.transaction(transaction);
 
   return session;
 }

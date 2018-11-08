@@ -1,15 +1,10 @@
-'use strict';
-
 const apiPrefix = require('app/api/common/constants/constants.service').constants.url.API_PREFIX;
-const registrationController = require('./registration.controller');
+const controller = require('./registration.controller');
 
 async function registrationRoute(req, res) {
-
-  const response = await registrationController.handleCall(req.body);
-
+  const response = await controller.handleCall(req.body);
 
   res.status(response.code).json(response.payload);
-
 }
 
 /**

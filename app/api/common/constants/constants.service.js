@@ -23,10 +23,6 @@ const constants = {
     INTERNAL_SERVER_ERROR: 500,
     NOT_IMPLEMENTED: 501
   },
-  messenger: {
-    GULP_FINISHED: 12389,
-    RELOAD_BROWSER: 12390
-  },
   database: {
     FOREIGN_KEY_VIOLATION: 23503,
     DUPLICATE_KEY: 23505,
@@ -37,15 +33,15 @@ const constants = {
 
 async function populateRoles() {
 
-  const query = 'SELECT * FROM role;',
-    database = databaseService.get().persistence,
-    data = await database.raw(query);
+  const query = 'SELECT * FROM role;';
+  const { persistence: database } = databaseService.get();
+  const { rows } = await database.raw(query);
 
-  data.rows.forEach(function (role) {
+  rows.forEach(function (role) {
     constants.users.roles[role.name.toUpperCase()] = role.id;
   });
 
-  return data;
+  return rows;
 }
 function populate() {
   return populateRoles();

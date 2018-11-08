@@ -1,8 +1,10 @@
 const stringValidation = require('app/api/common/validation/string/string-validation.service');
 const emailValidation = require('app/api/common/validation/emails/emails-validation.service');
-const responses = require('app/api/common/responses/responses.service').responses;
+
+const { responses } = require('app/api/common/responses/responses.service');
+const { constants } = require('app/api/common/constants/constants.service');
 const databaseService = require('app/database/database.service');
-const constants = require('app/api/common/constants/constants.service').constants;
+
 const keccak = require('keccak');
 const nodemailer = require('nodemailer');
 const emailConfiguration = require('configuration/email/email-configuration.service');
@@ -11,7 +13,6 @@ const transporter = nodemailer.createTransport(emailConfiguration);
 const { baseURL } = require('app/common/environment/environment.service');
 
 function validateCall(body) {
-
   if(Object.keys(body).length !== 4) {
     return responses.REGISTRATION_INVALID_DETAILS;
   } else if(!stringValidation.isString(body.firstName) || body.firstName.length > 128 || body.firstName.length === 0) {
@@ -70,7 +71,7 @@ function sendConfirmationEmail(user) {
 }
 
 async function saveNewUser(user, autoValidate) {
-  const database = databaseService.get().persistence,
+  const { persistence: database } = databaseService.get(),
     createNewUserSQL = `
       WITH inserted_user AS (
         INSERT INTO

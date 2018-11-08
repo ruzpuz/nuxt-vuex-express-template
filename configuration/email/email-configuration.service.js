@@ -1,5 +1,3 @@
-'use strict';
-
 const defaultConfig = require('./configuration');
 
 function getConfiguration() {

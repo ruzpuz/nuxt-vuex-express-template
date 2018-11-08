@@ -1,5 +1,5 @@
-let memory,
-  persistence;
+let memory;
+let persistence;
 
 function inject(database) {
   memory = database.memory;

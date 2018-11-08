@@ -1,5 +1,5 @@
 /* eslint-disable global-require */
-const environment = require('app/common/environment/environment.service').environment;
+const { environment } = require('app/common/environment/environment.service');
 const logger = require('app/common/log/logger.service.js');
 const chokidar = require('chokidar');
 const chokidarConf = require('./chokidar.json');
@@ -9,9 +9,9 @@ const options = require('./nuxt.config.js');
 
 const nuxt = new Nuxt(options);
 
+const knex = require('knex');
 const databaseConfiguration = require('configuration/database/database-configuration.service');
 const memoryMigrations = require('app/database/memory-migrations/memory-migrations.service');
-const knex = require('knex');
 const persistence = knex(databaseConfiguration.persistence);
 const memory = knex(databaseConfiguration.memory);
 const database = {
@@ -78,7 +78,7 @@ async function serverStopped(stoppingError) {
     server.startServer();
   } catch(error) {
     logger.error('Server runtime error!');
-    logger.log({ level: 'error', message: error });
+    logger.log({ level: 'error', message: error.message });
   }
 }
 async function updateServer() {
@@ -108,7 +108,7 @@ async function updateServer() {
       server.startServer();
     } catch(error) {
       logger.error('Server runtime error!');
-      logger.log({ level: 'error', message: error });
+      logger.log({ level: 'error', message: error.message });
     }
   }
 }

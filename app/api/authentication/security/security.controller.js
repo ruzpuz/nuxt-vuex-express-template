@@ -1,22 +1,20 @@
-'use strict';
-
-const securityService = require('app/api/authentication/security/security.service'),
-  memoryService = require('app/api/authentication/authentication.memory-service');
+const service = require('./security.service');
+const memoryService = require('app/api/authentication/authentication.memory-service');
 
 async function resolve(token, request) {
 
   if(!token) {
-    request.headers.security = securityService.createSecurityModel();
+    request.headers.security = service.createSecurityModel();
     return;
   }
 
-  const validation = securityService.validate(token, request.headers['ks-security']);
+  const validation = service.validate(token, request.headers['ks-security']);
 
   if(validation) {
     return validation;
   }
 
-  request.headers.security = securityService.createSecurityModel(await memoryService.getSession(token));
+  request.headers.security = service.createSecurityModel(await memoryService.getSession(token));
 }
 
 module.exports = {

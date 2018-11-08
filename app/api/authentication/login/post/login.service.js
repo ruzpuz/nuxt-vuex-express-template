@@ -1,10 +1,8 @@
-'use strict';
-
-const responses = require('app/api/common/responses/responses.service').responses,
-  emailValidation = require('app/api/common/validation/emails/emails-validation.service'),
-  databaseService = require('app/database/database.service'),
-  logger = require('app/common/log/logger.service'),
-  keccak = require('keccak');
+const { responses } = require('app/api/common/responses/responses.service');
+const emailValidation = require('app/api/common/validation/emails/emails-validation.service');
+const databaseService = require('app/database/database.service');
+const logger = require('app/common/log/logger.service');
+const keccak = require('keccak');
 
 function validateCall(body) {
 
@@ -16,6 +14,7 @@ function validateCall(body) {
     return responses.LOGIN_NO_PASSWORD;
   }
 }
+
 function generateSessionToken(id) {
   const statement = `
     User ${id} logged in.
@@ -25,39 +24,11 @@ function generateSessionToken(id) {
 
   return keccak('keccak512').update(statement).digest('hex');
 }
-async function markLoginFailure(id) {
-  const { memory: memoryDatabase, persistence: persistenceDatabase } = databaseService.get();
 
-  async function transaction(t) {
-    const findLockdownSQL = `
-      SELECT * from lockdown WHERE user_id = ?;
-    `;
-    const updateLockdownSQL = `
-      UPDATE lockdown SET tries = ? WHERE user_id = ?;
-    `;
-    const insertLockdownSQL = `
-      INSERT INTO lockdown VALUES 
-      (?, 0 );
-    `;
-
-    const lockdown = await t.raw(findLockdownSQL, [ id ]);
-    if(lockdown.length === 0) {
-      await t.raw(insertLockdownSQL, [ id ]);
-      return;
-    } else if(lockdown[0].tries === 3) {
-      await persistenceDatabase.raw('UPDATE "public"."security" SET disabled = true WHERE user_id = ?', [ id ]);
-    }
-    await t.raw(updateLockdownSQL, [ lockdown[0].tries + 1, id ]);
-  }
-  try {
-    await memoryDatabase.transaction(transaction);
-  } catch(error) {
-    logger.log({ level: 'error', message: error });
-  }
-}
 async function checkLogin(details) {
   let user;
-  const persistenceDatabase = databaseService.get().persistence;
+
+  const { persistence: database } = databaseService.get();
   async function transaction(t) {
     const findUserSQL = `
       SELECT
@@ -98,24 +69,23 @@ async function checkLogin(details) {
         throw responses.LOGIN_USER_DISABLED;
       }
     } else {
-      await markLoginFailure(users[0].id);
       throw responses.USERS_NOT_FOUND;
     }
     user = users[0];
 
   }
-  await persistenceDatabase.transaction(transaction);
+  await database.transaction(transaction);
 
   return user;
 }
 
 async function getSessionByEmail(email) {
-  const memoryDatabase = databaseService.get().memory,
+  const { memory: database } = databaseService.get(),
     sql = `
      SELECT session_id FROM SESSION WHERE email = ?;
   `;
   try {
-    return await memoryDatabase.raw(sql, [ email ]);
+    return await database.raw(sql, [ email ]);
   } catch(error) {
     logger.error('Database operation failed');
     logger.log({ level: 'error', message: error });
@@ -124,7 +94,7 @@ async function getSessionByEmail(email) {
   }
 }
 async function createSession(user) {
-  const memoryDatabase = databaseService.get().memory,
+  const { memory: database } = databaseService.get(),
     now = new Date(),
     sql = `
       INSERT INTO
@@ -149,7 +119,7 @@ async function createSession(user) {
     const sessionId = generateSessionToken(user.id),
       nowISO = now.toISOString();
 
-    await memoryDatabase.raw(sql, [
+    await database.raw(sql, [
       sessionId,
       user.id,
       user.roleId,
@@ -170,9 +140,9 @@ async function createSession(user) {
 
 }
 async function findUserByEmail(email) {
-  const persistenceDatabase = databaseService.get().persistence;
+  const { persistence: database } = databaseService.get().persistence;
 
-  const { rows } = await persistenceDatabase.raw('SELECT * FROM "public"."user" WHERE email = ?', [ email ]);
+  const { rows } = await database.raw('SELECT * FROM "public"."user" WHERE email = ?', [ email ]);
 
   return rows[0];
 }

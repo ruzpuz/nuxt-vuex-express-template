@@ -1,9 +1,7 @@
-'use strict';
-
-function patternValidation(text, pattern) {
+function isValid(text, pattern) {
   return (new RegExp(pattern).test(text));
 }
 
 module.exports = {
-  isValid: patternValidation
+  isValid
 };

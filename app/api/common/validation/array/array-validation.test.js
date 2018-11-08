@@ -1,8 +1,6 @@
-'use strict';
-
-const arrayValidationService = require('./array-validation.service'),
-  assert = require('assert'),
-  validArrays = [
+const arrayValidationService = require('./array-validation.service');
+const assert = require('assert');
+const validArrays = [
     [], [ 1, 2, 'a', Array.prototype ]
   ],
   invalidArrays = [

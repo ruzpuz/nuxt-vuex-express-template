@@ -1,19 +1,17 @@
-'use strict';
-
-const dataTransformService = require('./transform-data.service'),
-  assert = require('assert'),
-  data = [ {
-    unprepared: {
-      one: '1',
-      one_two: '1',
-      one_two_three: '1'
-    },
-    prepared: {
-      one: '1',
-      oneTwo: '1',
-      oneTwoThree: '1'
-    }
-  } ];
+const dataTransformService = require('./transform-data.service');
+const assert = require('assert');
+const data = [ {
+  unprepared: {
+    one: '1',
+    one_two: '1',
+    one_two_three: '1'
+  },
+  prepared: {
+    one: '1',
+    oneTwo: '1',
+    oneTwoThree: '1'
+  }
+} ];
 
 function testTwoSets(set1, set2) {
   if(set1.size !== set2.size) {
