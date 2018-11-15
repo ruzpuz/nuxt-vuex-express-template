@@ -58,7 +58,7 @@ async function handleLogin(body) {
   }
 
   return responsesService.validCall({
-    "ks-security": sessionId,
+    'ks-security': sessionId,
     user
   });
 
@@ -71,7 +71,7 @@ async function handleFacebookLogin({ accessToken }) {
       await FB.apiAsync('me', { fields: [ 'id', 'name', 'email' ], access_token: accessToken });
     } catch(user) {
       if(user.error) {
-        console.log(user.error)
+        logger.log({ level: 'error', message: user.error });
         return responses.USERS_NOT_FOUND;
       }
 
@@ -97,13 +97,13 @@ async function handleFacebookLogin({ accessToken }) {
         if(existingSession.length > 0) {
           return responsesService.validCall({
             user,
-            "ks-security": existingSession[0].session_id
+            'ks-security': existingSession[0].session_id
           });
         }
         const session = await loginService.createSession(user);
         return responsesService.validCall({
           user,
-          "ks-security": session
+          'ks-security': session
         });
       }
       found.firstName = found.first_name;
@@ -115,13 +115,13 @@ async function handleFacebookLogin({ accessToken }) {
       if(existingSession.length > 0) {
         return responsesService.validCall({
           user,
-          "ks-security": existingSession[0].session_id
+          'ks-security': existingSession[0].session_id
         });
       }
       const session = loginService.createSession(user);
       return responsesService.validCall({
         user,
-        "ks-security": session
+        'ks-security': session
       });
 
 

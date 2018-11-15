@@ -1,6 +1,5 @@
 const stringValidation = require('app/api/common/validation/string/string-validation.service');
 const emailValidation = require('app/api/common/validation/emails/emails-validation.service');
-const numberValidation = require('app/api/common/validation/numbers/numbers-validation.service');
 const responses = require('app/api/common/responses/responses.service').responses;
 const databaseService = require('app/database/database.service');
 const constants = require('app/api/common/constants/constants.service').constants;
@@ -114,7 +113,8 @@ async function saveNewUser(user, autoValidate) {
     } else if(error.code === constants.database.FOREIGN_KEY_VIOLATION) {
       return responses.REGISTRATION_FAILED_NO_SUCH_ROLE;
     }
-    console.log(error);
+
+    logger.log({ level: 'error', message: error });
     return responses.UNKNOWN_SERVER_ERROR;
   }
 }

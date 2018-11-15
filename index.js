@@ -54,7 +54,7 @@ function emptyMemory() {
 async function serverStopped(stoppingError) {
   if(stoppingError) {
     logger.error('Error stopping server. Exiting with error');
-    logger.error(stoppingError);
+    logger.log({ level: 'error', message: stoppingError });
 
     process.exit(-1);
   }
@@ -78,7 +78,7 @@ async function serverStopped(stoppingError) {
     server.startServer();
   } catch(error) {
     logger.error('Server runtime error!');
-    logger.log({level: 'error', message: error});
+    logger.log({ level: 'error', message: error });
   }
 }
 async function updateServer() {
@@ -107,9 +107,8 @@ async function updateServer() {
       await server.initializeServer(nuxt);
       server.startServer();
     } catch(error) {
-      console.log(error);
       logger.error('Server runtime error!');
-      logger.error(error);
+      logger.log({ level: 'error', message: error });
     }
   }
 }
@@ -120,7 +119,8 @@ async function start() {
     watcher = chokidar.watch('app',
       chokidarConf
     ).on('ready', function () {
-      watcher.on('all', function () { console.log('update');
+      watcher.on('all', function () {
+        logger.info('Project updated');
         if(timer) {
           clearTimeout(timer);
         }
@@ -134,13 +134,12 @@ async function start() {
       await new Builder(nuxt).build();
     } catch(error) {
       logger.error('Error building front end');
-      logger.error(error);
+      logger.log({ level: 'error', message: error });
 
       process.exit(-1);
     }
 
     process.on('unhandledRejection', function (reason) {
-      console.error(reason);
       logger.error('Server Failed');
       logger.error('Unhandled Rejection at: ', reason.stack || reason);
     });

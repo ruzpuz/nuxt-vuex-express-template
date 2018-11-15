@@ -11,7 +11,7 @@ function getEnvironment() {
 }
 function getBaseUrl() {
   if(getEnvironment() === 'development') {
-    return 'http://localhost:3010'
+    return 'http://localhost:3010';
   }
 }
 

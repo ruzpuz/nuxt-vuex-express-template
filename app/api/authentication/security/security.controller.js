@@ -10,7 +10,7 @@ async function resolve(token, request) {
     return;
   }
 
-  const validation = securityService.validate(token, request.headers[ 'ks-security' ]);
+  const validation = securityService.validate(token, request.headers['ks-security']);
 
   if(validation) {
     return validation;

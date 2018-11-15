@@ -3,13 +3,14 @@
 const constants = require('app/api/common/constants/constants.service').constants,
   apiPrefix = constants.url.API_PREFIX,
   loginController = require('app/api/authentication/login/post/login.controller');
-const FB = require('fb');
+
+//const FB = require('fb');
 
 async function loginRoute(req, res) {
   if(req.headers.security.roleId !== constants.users.roles.NOT_LOGGED_IN) {
     return res.status(constants.httpStatus.OK).json({
-      "ks-security": req.headers[ 'ks-security' ],
-      "user": req.headers.security
+      'ks-security': req.headers['ks-security'],
+      user: req.headers.security
     });
   }
 

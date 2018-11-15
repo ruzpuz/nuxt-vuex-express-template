@@ -1,7 +1,7 @@
 const controller = require('./roles.controller');
 const apiPrefix = require('app/api/common/constants/constants.service').constants.url.API_PREFIX;
 async function getAllRolesRoute(req, res) {
-  let response = await controller.getRoles();
+  const response = await controller.getRoles();
 
   res.status(response.code).json(response.payload);
 }

@@ -69,7 +69,7 @@ const constants = require('app/api/common/constants/constants.service').constant
     COMMENT_CREATED_SUCCESSFULLY: { code: httpStatus.CREATED, payload: 'Comment created successfully' },
     COMMENT_UPDATED_SUCCESSFULLY: { code: httpStatus.OK, payload: 'Comment updated successfully' },
     COMMENT_NO_COMMENT_FOUND: { code: httpStatus.NOT_FOUND, payload: 'No comment found' },
-    COMMENT_REPLY_POSTED_SUCCESSFULLY: { code: httpStatus.CREATED, payload: 'Comment posted successfully' },
+    COMMENT_REPLY_POSTED_SUCCESSFULLY: { code: httpStatus.CREATED, payload: 'Comment posted successfully' }
   };
 function validCall(payload) {
   return {
