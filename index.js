@@ -78,8 +78,7 @@ async function serverStopped(stoppingError) {
     server.startServer();
   } catch(error) {
     logger.error('Server runtime error!');
-    console.log(error);
-    logger.error(error);
+    logger.log({level: 'error', message: error});
   }
 }
 async function updateServer() {
