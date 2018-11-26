@@ -10,6 +10,7 @@
     "knex": "cross-env NODE_PATH=. knex",
     "start": "cross-env NODE_PATH=. node index.js",
     "nuxt": "nuxt",
+    "pre-commit": "",
     "eslint": "eslint",
     "fix": "eslint --fix .",
     "lint": "eslint -c .eslintrc app/ && eslint -c .eslintrc index.js",
