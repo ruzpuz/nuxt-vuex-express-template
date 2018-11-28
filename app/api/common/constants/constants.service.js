@@ -41,7 +41,7 @@ async function populateRoles() {
     constants.users.roles[role.name.toUpperCase()] = role.id;
   });
 
-  return data;
+  return rows;
 }
 function populate() {
   return populateRoles();

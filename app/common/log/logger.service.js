@@ -1,6 +1,4 @@
-'use strict';
-
-const environment = require('app/common/environment/environment.service').environment;
+const { environment } = require('app/common/environment/environment.service');
 const dailyRotate = require('winston-daily-rotate-file');
 const transportsArray = [];
 
@@ -30,48 +28,48 @@ const consoleLogFormatter = printf((message) => {
 
 function createTransports() {
   const productionTransport = new transports.DailyRotateFile({
-      name: 'production-log',
-      datePattern: 'YYYY-MM-DD',
-      prepend: true,
-      level: 'warn',
-      filename: __dirname + '/logs/%DATE%.log.txt',
-      handleExceptions: true,
-      format: combine(
-        timestamp(),
-        prettyPrint(),
-        fileFormatter
-      ),
-      maxsize: 5242880
-    }),
-    testingTransport = new transports.DailyRotateFile({
-      name: 'testing-log',
-      datePattern: 'YYYY-MM-DD',
-      prepend: true,
-      level: 'info',
-      filename: __dirname + '/logs/%DATE%.log.txt',
-      handleExceptions: true,
-      timestamp: function () {
-        return new Date();
-      },
-      format: combine(
-        json(),
-        timestamp(),
-        prettyPrint(),
-        fileFormatter
-      ),
-      prettyPrint: true,
-      maxsize: 5242880,
-      colorize: false
-    }),
-    consoleTransport = new transports.Console({
-      level: 'debug',
-      handleExceptions: true,
-      format: combine(
-        colorize(),
-        timestamp(),
-        consoleLogFormatter
-      )
-    });
+    name: 'production-log',
+    datePattern: 'YYYY-MM-DD',
+    prepend: true,
+    level: 'warn',
+    filename: __dirname + '/logs/%DATE%.log.txt',
+    handleExceptions: true,
+    format: combine(
+      timestamp(),
+      prettyPrint(),
+      fileFormatter
+    ),
+    maxsize: 5242880
+  });
+  const testingTransport = new transports.DailyRotateFile({
+    name: 'testing-log',
+    datePattern: 'YYYY-MM-DD',
+    prepend: true,
+    level: 'info',
+    filename: __dirname + '/logs/%DATE%.log.txt',
+    handleExceptions: true,
+    timestamp: function () {
+      return new Date();
+    },
+    format: combine(
+      json(),
+      timestamp(),
+      prettyPrint(),
+      fileFormatter
+    ),
+    prettyPrint: true,
+    maxsize: 5242880,
+    colorize: false
+  });
+  const consoleTransport = new transports.Console({
+    level: 'debug',
+    handleExceptions: true,
+    format: combine(
+      colorize(),
+      timestamp(),
+      consoleLogFormatter
+    )
+  });
 
   if (environment === 'development') {
     transportsArray.push(testingTransport);
