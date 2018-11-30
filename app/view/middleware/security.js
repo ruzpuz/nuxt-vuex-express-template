@@ -3,7 +3,7 @@ export default async function ({ store, req, $axios }) {
   if (!process.server && !req) {
     return;
   }
-const a= 'a';
+
   const loggedUser = req.headers.security;
   const rolesObject = { NOT_LOGGED_IN: -1 };
   const { data } = await $axios.get('/api/roles');
