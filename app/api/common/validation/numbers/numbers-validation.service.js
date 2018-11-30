@@ -1,5 +1,3 @@
-'use strict';
-
 function parseStrictInt(variable) {
   if(/^(\-|\+)?([0-9]+|Infinity)$/.test(variable)) {
     return Number(variable);

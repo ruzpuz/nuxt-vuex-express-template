@@ -1,10 +1,8 @@
-'use strict';
-
 function transform(data) {
   const prepared = {};
 
   Object.keys(data).forEach(function (key) {
-    prepared[key.split('_').map(function (item, index) {
+    prepared[key.split('_').map((item, index) => {
       if(index !== 0) {
         item = item.charAt(0).toLocaleUpperCase() + item.slice(1);
       }
