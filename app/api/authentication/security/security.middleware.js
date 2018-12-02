@@ -1,6 +1,4 @@
-'use strict';
-
-const securityController = require('app/api/authentication/security/security.controller');
+const controller = require('./security.controller');
 
 function createMiddleware() {
   return async function(req, res, next) {
@@ -12,7 +10,7 @@ function createMiddleware() {
       token = req.cookies['ks-security'];
     }
 
-    const result = await securityController.resolve(token, req);
+    const result = await controller.resolve(token, req);
 
     if(!result) {
       return next();
@@ -21,4 +19,5 @@ function createMiddleware() {
     res.status(result.code).json(result.payload);
   };
 }
+
 module.exports = createMiddleware;

@@ -1,59 +1,59 @@
-const registrationService = require('./registration.service'),
-  assert = require('assert'),
-  passwords = [
-    'a',
-    'dfg325239jiovfnfk2iogdvjmjkhiru2312pofnvsds',
-    'aggfsafajifsnv riqu4kr nbivu5q  uiviuo 4uv4quifbiur8596uhbyvjnu5u sdnaaf ,.,v.,..<,w vbybayrby  giuhafv '
-  ],
-  invalidBodies = [ {
-    firstName: '',
-    lastName: '',
-    email: '',
-    roleId: ''
-  }, {
-    firstName: 'a',
-    email: 'a@aa.com',
-    roleId: 'a'
-  }, {
-    lastName: 'a',
-    email: 'a@aa.com',
-    roleId: 'a'
-  }, {
-    firstName: 'a',
-    lastName: 'a',
-    roleId: 'a'
-  }, {
-    firstName: '1',
-    lastName: '2',
-    email: 'a@aa.com'
-  }, {
-    firstName: 'vdizeuquskpdtykfnpqicmsaexxavhxwajuakumikfaurgdbfbfxkcnskyjgamaanedoiboxnkubstgvkzomedicchmktyhvuobzjjgptwtkuvtcpebnzdazebrullbmi',
-    lastName: 'a',
-    email: 'a@aa.com',
-    roleId: 'a'
-  }, {
-    firstName: 'a',
-    lastName: 'vdizeuquskpdtykfnpqicmsaexxavhxwajuakumikfaurgdbfbfxkcnskyjgamaanedoiboxnkubstgvkzomedicchmktyhvuobzjjgptwtkuvtcpebnzdazebrullbmi',
-    email: 'a@aa.com',
-    roleId: 'a'
-  }, {
-    firstName: 'a',
-    lastName: 'a',
-    email: 'dsacom',
-    roleId: 'a'
-  }, {
-    firstName: 'a',
-    lastName: 'a',
-    email: 'a@aa.com',
-    roleId: 'ftdtgjtqimmerjfqtvlqaavqhesrmjuyh'
-  }, {
-    firstName: 'a',
-    lastName: 'a',
-    email: 'a@aa.com',
-    roleId: 'ftdtgjtqimmerjfqtvlqaavqhesrm'
-  }, {
+const registrationService = require('./registration.service');
+const assert = require('assert');
+const passwords = [
+  'a',
+  'dfg325239jiovfnfk2iogdvjmjkhiru2312pofnvsds',
+  'aggfsafajifsnv riqu4kr nbivu5q  uiviuo 4uv4quifbiur8596uhbyvjnu5u sdnaaf ,.,v.,..<,w vbybayrby  giuhafv '
+];
+const invalidBodies = [ {
+  firstName: '',
+  lastName: '',
+  email: '',
+  roleId: ''
+}, {
+  firstName: 'a',
+  email: 'a@aa.com',
+  roleId: 'a'
+}, {
+  lastName: 'a',
+  email: 'a@aa.com',
+  roleId: 'a'
+}, {
+  firstName: 'a',
+  lastName: 'a',
+  roleId: 'a'
+}, {
+  firstName: '1',
+  lastName: '2',
+  email: 'a@aa.com'
+}, {
+  firstName: 'vdizeuquskpdtykfnpqicmsaexxavhxwajuakumikfaurgdbfbfxkcnskyjgamaanedoiboxnkubstgvkzomedicchmktyhvuobzjjgptwtkuvtcpebnzdazebrullbmi',
+  lastName: 'a',
+  email: 'a@aa.com',
+  roleId: 'a'
+}, {
+  firstName: 'a',
+  lastName: 'vdizeuquskpdtykfnpqicmsaexxavhxwajuakumikfaurgdbfbfxkcnskyjgamaanedoiboxnkubstgvkzomedicchmktyhvuobzjjgptwtkuvtcpebnzdazebrullbmi',
+  email: 'a@aa.com',
+  roleId: 'a'
+}, {
+  firstName: 'a',
+  lastName: 'a',
+  email: 'dsacom',
+  roleId: 'a'
+}, {
+  firstName: 'a',
+  lastName: 'a',
+  email: 'a@aa.com',
+  roleId: 'ftdtgjtqimmerjfqtvlqaavqhesrmjuyh'
+}, {
+  firstName: 'a',
+  lastName: 'a',
+  email: 'a@aa.com',
+  roleId: 'ftdtgjtqimmerjfqtvlqaavqhesrm'
+}, {
 
-  } ];
+} ];
 
 
 function validationServiceNoToken() {
