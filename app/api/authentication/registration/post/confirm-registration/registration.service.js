@@ -1,6 +1,5 @@
-const responses = require('app/api/common/responses/responses.service').responses;
+const { responses } = require('app/api/common/responses/responses.service');
 const databaseService = require('app/database/database.service');
-
 
 function validateCall(body) {
   if(!body.confirmationToken) {
@@ -9,7 +8,7 @@ function validateCall(body) {
 }
 
 function confirmRegistration({ confirmationToken: token }) {
-  const database = databaseService.get().persistence;
+  const { persistence: database } = databaseService.get();
 
   async function transaction(t) {
     const findUserSQL = `

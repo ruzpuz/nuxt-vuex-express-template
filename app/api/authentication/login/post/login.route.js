@@ -1,8 +1,6 @@
-'use strict';
-
-const constants = require('app/api/common/constants/constants.service').constants,
-  apiPrefix = constants.url.API_PREFIX,
-  loginController = require('app/api/authentication/login/post/login.controller');
+const { constants } = require('app/api/common/constants/constants.service');
+const apiPrefix = constants.url.API_PREFIX;
+const controller = require('app/api/authentication/login/post/login.controller');
 
 //const FB = require('fb');
 
@@ -14,14 +12,14 @@ async function loginRoute(req, res) {
     });
   }
 
-  const response = await loginController.handleLogin(req.body);
+  const response = await controller.handleLogin(req.body);
 
   res.status(response.code).json(response.payload);
 
 }
 async function loginFacebookRoute(req, res) {
 
-  const response = await loginController.handleFacebookLogin(req.body);
+  const response = await controller.handleFacebookLogin(req.body);
 
   res.status(response.code).json(response.payload);
 

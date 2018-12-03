@@ -1,14 +1,14 @@
-const registrationService = require('./registration.service'),
-  responses = require('app/api/common/responses/responses.service').responses,
-  logger = require('app/common/log/logger.service');
+const service = require('./registration.service');
+const { responses } = require('app/api/common/responses/responses.service');
+const logger = require('app/common/log/logger.service');
 
 async function handleCall(body) {
-  const validation = registrationService.validateCall(body);
+  const validation = service.validateCall(body);
   if(validation) {
     return validation;
   }
   try {
-    await registrationService.confirmRegistration(body);
+    await service.confirmRegistration(body);
 
     return responses.CONFIRMATION_USER_CONFIRMED;
   } catch(error) {

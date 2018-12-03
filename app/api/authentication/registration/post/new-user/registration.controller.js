@@ -1,12 +1,12 @@
-const registrationService = require('./registration.service');
+const service = require('./registration.service');
 
 async function handleCall(body, autoValidate) {
-  const validation = registrationService.validateCall(body);
+  const validation = service.validateCall(body);
   if(validation) {
     return validation;
   }
-  body.password = registrationService.createHashedPassword(body.password);
-  return await registrationService.saveNewUser(body, autoValidate);
+  body.password = service.createHashedPassword(body.password);
+  return await service.saveNewUser(body, autoValidate);
 }
 
 module.exports = {
