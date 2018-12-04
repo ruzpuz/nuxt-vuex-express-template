@@ -1,7 +1,7 @@
 'use strict';
 
 const environment = require('app/common/environment/environment.service').environment;
-const  dailyRotate = require('winston-daily-rotate-file');
+const dailyRotate = require('winston-daily-rotate-file');
 const transportsArray = [];
 
 
@@ -21,7 +21,7 @@ const fileFormatter = printf(message => {
 ${message.level.toUpperCase()} \t ${message.message}`;
 });
 
-const consoleLogFormatter = printf((message, a) => {
+const consoleLogFormatter = printf((message) => {
   if(typeof message.message === 'object') {
     message.message = JSON.stringify(message.message);
   }
@@ -41,7 +41,7 @@ function createTransports() {
         prettyPrint(),
         fileFormatter
       ),
-      maxsize: 5242880,
+      maxsize: 5242880
     }),
     testingTransport = new transports.DailyRotateFile({
       name: 'testing-log',

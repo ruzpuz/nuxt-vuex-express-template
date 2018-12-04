@@ -52,7 +52,7 @@ async function markLoginFailure(id) {
   try {
     await memoryDatabase.transaction(transaction);
   } catch(error) {
-    logger.error(error);
+    logger.log({ level: 'error', message: error });
   }
 }
 async function checkLogin(details) {
@@ -118,8 +118,7 @@ async function getSessionByEmail(email) {
     return await memoryDatabase.raw(sql, [ email ]);
   } catch(error) {
     logger.error('Database operation failed');
-    logger.error(error);
-    console.log(error);
+    logger.log({ level: 'error', message: error });
 
     throw responses.UNKNOWN_SERVER_ERROR;
   }
@@ -163,9 +162,9 @@ async function createSession(user) {
 
     return sessionId;
   } catch(error) {
-    console.log(error);
     logger.error('Database operation failed');
-    logger.error(error);
+    logger.log({ level: 'error', message: error });
+
     throw responses.UNKNOWN_SERVER_ERROR;
   }
 

@@ -6,10 +6,10 @@ function createMiddleware() {
   return async function(req, res, next) {
     let token;
 
-    if(req.headers[ 'ks-security' ]) {
-      token = req.headers[ 'ks-security' ];
+    if(req.headers['ks-security']) {
+      token = req.headers['ks-security'];
     } else {
-      token = req.cookies[ 'ks-security' ];
+      token = req.cookies['ks-security'];
     }
 
     const result = await securityController.resolve(token, req);

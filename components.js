@@ -1,6 +1,6 @@
 //This is a hack that will trick Webstorm to autocomplete vuetify components. Has no project value.
 
-import Vue from 'vue'
+import Vue from 'vue';
 
 // noinspection JSUnresolvedFunction
 Vue.component('v-app', {
@@ -9,7 +9,7 @@ Vue.component('v-app', {
     id: String,
     light: Boolean
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-alert', {
   props: {
@@ -23,7 +23,7 @@ Vue.component('v-alert', {
     type: String,
     value: null
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-autocomplete', {
   props: {
@@ -43,34 +43,34 @@ Vue.component('v-autocomplete', {
     clearIconCb: Function,
     clearable: Boolean,
     color: String,
-    counter: [Boolean,Number,String],
+    counter: [ Boolean, Number, String ],
     dark: Boolean,
     deletableChips: Boolean,
     dense: Boolean,
     disabled: Boolean,
     dontFillMaskBlanks: Boolean,
     error: Boolean,
-    errorCount: [Number,String],
-    errorMessages: [String,Array],
+    errorCount: [ Number, String ],
+    errorMessages: [ String, Array ],
     filter: Function,
     flat: Boolean,
     fullWidth: Boolean,
-    height: [Number,String],
+    height: [ Number, String ],
     hideDetails: Boolean,
     hideNoData: Boolean,
     hideSelected: Boolean,
     hint: String,
-    itemAvatar: [String,Array,Function],
-    itemDisabled: [String,Array,Function],
-    itemText: [String,Array,Function],
-    itemValue: [String,Array,Function],
+    itemAvatar: [ String, Array, Function ],
+    itemDisabled: [ String, Array, Function ],
+    itemText: [ String, Array, Function ],
+    itemValue: [ String, Array, Function ],
     items: Array,
     label: String,
     light: Boolean,
-    loading: [Boolean,String],
-    mask: [Object,String],
-    menuProps: [String,Array,Object],
-    messages: [String,Array],
+    loading: [ Boolean, String ],
+    mask: [ Object, String ],
+    menuProps: [ String, Array, Object ],
+    messages: [ String, Array ],
     multiple: Boolean,
     noDataText: String,
     noFilter: Boolean,
@@ -94,7 +94,7 @@ Vue.component('v-autocomplete', {
     solo: Boolean,
     soloInverted: Boolean,
     success: Boolean,
-    successMessages: [String,Array],
+    successMessages: [ String, Array ],
     suffix: String,
     textarea: Boolean,
     type: String,
@@ -102,15 +102,15 @@ Vue.component('v-autocomplete', {
     value: null,
     valueComparator: Function
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-avatar', {
   props: {
     color: String,
-    size: [Number,String],
+    size: [ Number, String ],
     tile: Boolean
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-badge', {
   props: {
@@ -123,21 +123,21 @@ Vue.component('v-badge', {
     transition: String,
     value: null
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-bottom-nav', {
   props: {
     absolute: Boolean,
-    active: [Number,String],
+    active: [ Number, String ],
     app: Boolean,
     color: String,
     fixed: Boolean,
-    height: [Number,String],
+    height: [ Number, String ],
     mandatory: Boolean,
     shift: Boolean,
     value: null
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-bottom-sheet', {
   props: {
@@ -146,11 +146,11 @@ Vue.component('v-bottom-sheet', {
     hideOverlay: Boolean,
     inset: Boolean,
     lazy: Boolean,
-    maxWidth: [String,Number],
+    maxWidth: [ String, Number ],
     persistent: Boolean,
     value: null
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-breadcrumbs', {
   props: {
@@ -161,7 +161,7 @@ Vue.component('v-breadcrumbs', {
     large: Boolean,
     light: Boolean
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-breadcrumbs-item', {
   props: {
@@ -170,15 +170,15 @@ Vue.component('v-breadcrumbs-item', {
     disabled: Boolean,
     exact: Boolean,
     exactActiveClass: String,
-    href: [String,Object],
+    href: [ String, Object ],
     nuxt: Boolean,
     replace: Boolean,
-    ripple: [Boolean,Object],
+    ripple: [ Boolean, Object ],
     tag: String,
     target: String,
-    to: [String,Object]
+    to: [ String, Object ]
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-btn', {
   props: {
@@ -196,7 +196,7 @@ Vue.component('v-btn', {
     fab: Boolean,
     fixed: Boolean,
     flat: Boolean,
-    href: [String,Object],
+    href: [ String, Object ],
     icon: Boolean,
     inputValue: null,
     large: Boolean,
@@ -207,17 +207,17 @@ Vue.component('v-btn', {
     outline: Boolean,
     replace: Boolean,
     right: Boolean,
-    ripple: [Boolean,Object],
+    ripple: [ Boolean, Object ],
     round: Boolean,
     small: Boolean,
     tag: String,
     target: String,
-    to: [String,Object],
+    to: [ String, Object ],
     top: Boolean,
     type: String,
     value: null
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-btn-toggle', {
   props: {
@@ -227,7 +227,7 @@ Vue.component('v-btn-toggle', {
     mandatory: Boolean,
     multiple: Boolean
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-card', {
   props: {
@@ -239,53 +239,53 @@ Vue.component('v-card', {
     exact: Boolean,
     exactActiveClass: String,
     flat: Boolean,
-    height: [Number,String],
+    height: [ Number, String ],
     hover: Boolean,
-    href: [String,Object],
+    href: [ String, Object ],
     img: String,
     light: Boolean,
-    maxHeight: [Number,String],
-    maxWidth: [Number,String],
+    maxHeight: [ Number, String ],
+    maxWidth: [ Number, String ],
     nuxt: Boolean,
     raised: Boolean,
     replace: Boolean,
-    ripple: [Boolean,Object],
+    ripple: [ Boolean, Object ],
     tag: String,
     target: String,
     tile: Boolean,
-    to: [String,Object],
-    width: [Number,String]
+    to: [ String, Object ],
+    width: [ Number, String ]
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-card-media', {
   props: {
     alt: String,
-    aspectRatio: [String,Number],
+    aspectRatio: [ String, Number ],
     contain: Boolean,
     gradient: String,
-    height: [Number,String],
+    height: [ Number, String ],
     lazySrc: String,
-    maxHeight: [Number,String],
-    maxWidth: [Number,String],
+    maxHeight: [ Number, String ],
+    maxWidth: [ Number, String ],
     position: String,
     sizes: String,
-    src: [String,Object],
+    src: [ String, Object ],
     srcset: String,
-    transition: [Boolean,String],
-    width: [Number,String]
+    transition: [ Boolean, String ],
+    width: [ Number, String ]
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-card-title', {
   props: {
     primaryTitle: Boolean
   }
-})
+});
 // noinspection JSUnresolvedFunction
-Vue.component('v-card-actions', {})
+Vue.component('v-card-actions', {});
 // noinspection JSUnresolvedFunction
-Vue.component('v-card-text', {})
+Vue.component('v-card-text', {});
 // noinspection JSUnresolvedFunction
 Vue.component('v-carousel', {
   props: {
@@ -294,20 +294,20 @@ Vue.component('v-carousel', {
     delimiterIcon: String,
     hideControls: Boolean,
     hideDelimiters: Boolean,
-    interval: [Number,String],
+    interval: [ Number, String ],
     light: Boolean,
-    nextIcon: [Boolean,String],
-    prevIcon: [Boolean,String],
+    nextIcon: [ Boolean, String ],
+    prevIcon: [ Boolean, String ],
     value: Number
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-carousel-item', {
   props: {
     reverseTransition: String,
     transition: String
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-checkbox', {
   props: {
@@ -318,10 +318,10 @@ Vue.component('v-checkbox', {
     dark: Boolean,
     disabled: Boolean,
     error: Boolean,
-    errorCount: [Number,String],
-    errorMessages: [String,Array],
+    errorCount: [ Number, String ],
+    errorMessages: [ String, Array ],
     falseValue: null,
-    height: [Number,String],
+    height: [ Number, String ],
     hideDetails: Boolean,
     hint: String,
     id: String,
@@ -330,8 +330,8 @@ Vue.component('v-checkbox', {
     inputValue: null,
     label: String,
     light: Boolean,
-    loading: [Boolean,String],
-    messages: [String,Array],
+    loading: [ Boolean, String ],
+    messages: [ String, Array ],
     multiple: Boolean,
     offIcon: String,
     onIcon: String,
@@ -339,16 +339,16 @@ Vue.component('v-checkbox', {
     prependIcon: String,
     prependIconCb: Function,
     readonly: Boolean,
-    ripple: [Boolean,Object],
+    ripple: [ Boolean, Object ],
     rules: Array,
     success: Boolean,
-    successMessages: [String,Array],
+    successMessages: [ String, Array ],
     trueValue: null,
     validateOnBlur: Boolean,
     value: null,
     valueComparator: Function
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-chip', {
   props: {
@@ -364,7 +364,7 @@ Vue.component('v-chip', {
     textColor: String,
     value: Boolean
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-combobox', {
   props: {
@@ -384,7 +384,7 @@ Vue.component('v-combobox', {
     clearIconCb: Function,
     clearable: Boolean,
     color: String,
-    counter: [Boolean,Number,String],
+    counter: [ Boolean, Number, String ],
     dark: Boolean,
     deletableChips: Boolean,
     delimiters: Array,
@@ -392,27 +392,27 @@ Vue.component('v-combobox', {
     disabled: Boolean,
     dontFillMaskBlanks: Boolean,
     error: Boolean,
-    errorCount: [Number,String],
-    errorMessages: [String,Array],
+    errorCount: [ Number, String ],
+    errorMessages: [ String, Array ],
     filter: Function,
     flat: Boolean,
     fullWidth: Boolean,
-    height: [Number,String],
+    height: [ Number, String ],
     hideDetails: Boolean,
     hideNoData: Boolean,
     hideSelected: Boolean,
     hint: String,
-    itemAvatar: [String,Array,Function],
-    itemDisabled: [String,Array,Function],
-    itemText: [String,Array,Function],
-    itemValue: [String,Array,Function],
+    itemAvatar: [ String, Array, Function ],
+    itemDisabled: [ String, Array, Function ],
+    itemText: [ String, Array, Function ],
+    itemValue: [ String, Array, Function ],
     items: Array,
     label: String,
     light: Boolean,
-    loading: [Boolean,String],
-    mask: [Object,String],
-    menuProps: [String,Array,Object],
-    messages: [String,Array],
+    loading: [ Boolean, String ],
+    mask: [ Object, String ],
+    menuProps: [ String, Array, Object ],
+    messages: [ String, Array ],
     multiple: Boolean,
     noDataText: String,
     noFilter: Boolean,
@@ -436,7 +436,7 @@ Vue.component('v-combobox', {
     solo: Boolean,
     soloInverted: Boolean,
     success: Boolean,
-    successMessages: [String,Array],
+    successMessages: [ String, Array ],
     suffix: String,
     textarea: Boolean,
     type: String,
@@ -444,16 +444,16 @@ Vue.component('v-combobox', {
     value: null,
     valueComparator: Function
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-counter', {
   props: {
     dark: Boolean,
     light: Boolean,
-    max: [Number,String],
-    value: [Number,String]
+    max: [ Number, String ],
+    value: [ Number, String ]
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-data-iterator', {
   props: {
@@ -470,7 +470,7 @@ Vue.component('v-data-iterator', {
     itemKey: String,
     items: Array,
     light: Boolean,
-    loading: [Boolean,String],
+    loading: [ Boolean, String ],
     mustSort: Boolean,
     nextIcon: String,
     noDataText: String,
@@ -480,11 +480,11 @@ Vue.component('v-data-iterator', {
     rowsPerPageItems: Array,
     rowsPerPageText: String,
     search: null,
-    selectAll: [Boolean,String],
+    selectAll: [ Boolean, String ],
     totalItems: Number,
     value: Array
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-data-table', {
   props: {
@@ -503,7 +503,7 @@ Vue.component('v-data-table', {
     itemKey: String,
     items: Array,
     light: Boolean,
-    loading: [Boolean,String],
+    loading: [ Boolean, String ],
     mustSort: Boolean,
     nextIcon: String,
     noDataText: String,
@@ -513,12 +513,12 @@ Vue.component('v-data-table', {
     rowsPerPageItems: Array,
     rowsPerPageText: String,
     search: null,
-    selectAll: [Boolean,String],
+    selectAll: [ Boolean, String ],
     sortIcon: String,
     totalItems: Number,
     value: Array
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-edit-dialog', {
   props: {
@@ -532,9 +532,9 @@ Vue.component('v-edit-dialog', {
     saveText: null,
     transition: String
   }
-})
+});
 // noinspection JSUnresolvedFunction
-Vue.component('v-table-overflow', {})
+Vue.component('v-table-overflow', {});
 // noinspection JSUnresolvedFunction
 Vue.component('v-date-picker', {
   props: {
@@ -542,9 +542,9 @@ Vue.component('v-date-picker', {
     color: String,
     dark: Boolean,
     dayFormat: Function,
-    eventColor: [String,Function,Object],
-    events: [Array,Object,Function],
-    firstDayOfWeek: [String,Number],
+    eventColor: [ String, Function, Object ],
+    events: [ Array, Object, Function ],
+    firstDayOfWeek: [ String, Number ],
     fullWidth: Boolean,
     headerColor: String,
     headerDateFormat: Function,
@@ -562,25 +562,25 @@ Vue.component('v-date-picker', {
     reactive: Boolean,
     readonly: Boolean,
     scrollable: Boolean,
-    showCurrent: [Boolean,String],
+    showCurrent: [ Boolean, String ],
     titleDateFormat: Function,
     type: String,
-    value: [Array,String],
-    width: [Number,String],
+    value: [ Array, String ],
+    width: [ Number, String ],
     yearFormat: Function,
     yearIcon: String
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-date-picker-title', {
   props: {
     date: String,
     selectingYear: Boolean,
     value: String,
-    year: [Number,String],
+    year: [ Number, String ],
     yearIcon: String
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-date-picker-header', {
   props: {
@@ -594,9 +594,9 @@ Vue.component('v-date-picker-header', {
     min: String,
     nextIcon: String,
     prevIcon: String,
-    value: [Number,String]
+    value: [ Number, String ]
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-date-picker-date-table', {
   props: {
@@ -605,9 +605,9 @@ Vue.component('v-date-picker-date-table', {
     current: String,
     dark: Boolean,
     disabled: Boolean,
-    eventColor: [String,Function,Object],
-    events: [Array,Object,Function],
-    firstDayOfWeek: [String,Number],
+    eventColor: [ String, Function, Object ],
+    events: [ Array, Object, Function ],
+    firstDayOfWeek: [ String, Number ],
     format: Function,
     light: Boolean,
     locale: String,
@@ -615,10 +615,10 @@ Vue.component('v-date-picker-date-table', {
     min: String,
     scrollable: Boolean,
     tableDate: String,
-    value: [String,Array],
+    value: [ String, Array ],
     weekdayFormat: Function
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-date-picker-month-table', {
   props: {
@@ -634,20 +634,20 @@ Vue.component('v-date-picker-month-table', {
     min: String,
     scrollable: Boolean,
     tableDate: String,
-    value: [String,Array]
+    value: [ String, Array ]
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-date-picker-years', {
   props: {
     color: String,
     format: Function,
     locale: String,
-    max: [Number,String],
-    min: [Number,String],
-    value: [Number,String]
+    max: [ Number, String ],
+    min: [ Number, String ],
+    value: [ Number, String ]
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-dialog', {
   props: {
@@ -658,17 +658,17 @@ Vue.component('v-dialog', {
     fullscreen: Boolean,
     hideOverlay: Boolean,
     lazy: Boolean,
-    maxWidth: [String,Number],
+    maxWidth: [ String, Number ],
     noClickAnimation: Boolean,
     origin: String,
     persistent: Boolean,
     returnValue: null,
     scrollable: Boolean,
-    transition: [String,Boolean],
+    transition: [ String, Boolean ],
     value: null,
-    width: [String,Number]
+    width: [ String, Number ]
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-divider', {
   props: {
@@ -677,7 +677,7 @@ Vue.component('v-divider', {
     light: Boolean,
     vertical: Boolean
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-expansion-panel', {
   props: {
@@ -689,9 +689,9 @@ Vue.component('v-expansion-panel', {
     light: Boolean,
     popout: Boolean,
     readonly: Boolean,
-    value: [Number,Array]
+    value: [ Number, Array ]
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-expansion-panel-content', {
   props: {
@@ -700,10 +700,10 @@ Vue.component('v-expansion-panel-content', {
     hideActions: Boolean,
     lazy: Boolean,
     readonly: Boolean,
-    ripple: [Boolean,Object],
+    ripple: [ Boolean, Object ],
     value: null
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-footer', {
   props: {
@@ -712,18 +712,18 @@ Vue.component('v-footer', {
     color: String,
     dark: Boolean,
     fixed: Boolean,
-    height: [Number,String],
+    height: [ Number, String ],
     inset: Boolean,
     light: Boolean
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-form', {
   props: {
     lazyValidation: Boolean,
     value: Boolean
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-container', {
   props: {
@@ -750,13 +750,13 @@ Vue.component('v-container', {
     tag: String,
     wrap: Boolean
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-content', {
   props: {
     tag: String
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-flex', {
   props: {
@@ -784,7 +784,7 @@ Vue.component('v-flex', {
     tag: String,
     wrap: Boolean
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-layout', {
   props: {
@@ -811,18 +811,18 @@ Vue.component('v-layout', {
     tag: String,
     wrap: Boolean
   }
-})
+});
 // noinspection JSUnresolvedFunction
-Vue.component('v-spacer', {})
+Vue.component('v-spacer', {});
 // noinspection JSUnresolvedFunction
 Vue.component('v-hover', {
   props: {
-    closeDelay: [Number,String],
+    closeDelay: [ Number, String ],
     disabled: Boolean,
-    openDelay: [Number,String],
+    openDelay: [ Number, String ],
     value: Boolean
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-icon', {
   props: {
@@ -834,30 +834,30 @@ Vue.component('v-icon', {
     light: Boolean,
     medium: Boolean,
     right: Boolean,
-    size: [Number,String],
+    size: [ Number, String ],
     small: Boolean,
     xLarge: Boolean
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-img', {
   props: {
     alt: String,
-    aspectRatio: [String,Number],
+    aspectRatio: [ String, Number ],
     contain: Boolean,
     gradient: String,
-    height: [Number,String],
+    height: [ Number, String ],
     lazySrc: String,
-    maxHeight: [Number,String],
-    maxWidth: [Number,String],
+    maxHeight: [ Number, String ],
+    maxWidth: [ Number, String ],
     position: String,
     sizes: String,
-    src: [String,Object],
+    src: [ String, Object ],
     srcset: String,
-    transition: [Boolean,String],
-    width: [Number,String]
+    transition: [ Boolean, String ],
+    width: [ Number, String ]
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-input', {
   props: {
@@ -868,26 +868,26 @@ Vue.component('v-input', {
     dark: Boolean,
     disabled: Boolean,
     error: Boolean,
-    errorCount: [Number,String],
-    errorMessages: [String,Array],
-    height: [Number,String],
+    errorCount: [ Number, String ],
+    errorMessages: [ String, Array ],
+    height: [ Number, String ],
     hideDetails: Boolean,
     hint: String,
     label: String,
     light: Boolean,
-    loading: [Boolean,String],
-    messages: [String,Array],
+    loading: [ Boolean, String ],
+    messages: [ String, Array ],
     persistentHint: Boolean,
     prependIcon: String,
     prependIconCb: Function,
     readonly: Boolean,
     rules: Array,
     success: Boolean,
-    successMessages: [String,Array],
+    successMessages: [ String, Array ],
     validateOnBlur: Boolean,
     value: null
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-jumbotron', {
   props: {
@@ -899,33 +899,33 @@ Vue.component('v-jumbotron', {
     exact: Boolean,
     exactActiveClass: String,
     gradient: String,
-    height: [Number,String],
-    href: [String,Object],
+    height: [ Number, String ],
+    href: [ String, Object ],
     light: Boolean,
     nuxt: Boolean,
     replace: Boolean,
-    ripple: [Boolean,Object],
+    ripple: [ Boolean, Object ],
     src: String,
     tag: String,
     target: String,
-    to: [String,Object]
+    to: [ String, Object ]
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-label', {
   props: {
     absolute: Boolean,
-    color: [Boolean,String],
+    color: [ Boolean, String ],
     dark: Boolean,
     disabled: Boolean,
     focused: Boolean,
     for: String,
-    left: [Number,String],
+    left: [ Number, String ],
     light: Boolean,
-    right: [Number,String],
+    right: [ Number, String ],
     value: Boolean
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-list', {
   props: {
@@ -937,7 +937,7 @@ Vue.component('v-list', {
     threeLine: Boolean,
     twoLine: Boolean
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-list-group', {
   props: {
@@ -951,7 +951,7 @@ Vue.component('v-list-group', {
     subGroup: Boolean,
     value: null
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-list-tile', {
   props: {
@@ -963,36 +963,36 @@ Vue.component('v-list-tile', {
     disabled: Boolean,
     exact: Boolean,
     exactActiveClass: String,
-    href: [String,Object],
+    href: [ String, Object ],
     inactive: Boolean,
     light: Boolean,
     nuxt: Boolean,
     replace: Boolean,
-    ripple: [Boolean,Object],
+    ripple: [ Boolean, Object ],
     tag: String,
     target: String,
-    to: [String,Object],
+    to: [ String, Object ],
     value: null
   }
-})
+});
 // noinspection JSUnresolvedFunction
-Vue.component('v-list-tile-action', {})
+Vue.component('v-list-tile-action', {});
 // noinspection JSUnresolvedFunction
-Vue.component('v-list-tile-action-text', {})
+Vue.component('v-list-tile-action-text', {});
 // noinspection JSUnresolvedFunction
 Vue.component('v-list-tile-avatar', {
   props: {
     color: String,
-    size: [Number,String],
+    size: [ Number, String ],
     tile: Boolean
   }
-})
+});
 // noinspection JSUnresolvedFunction
-Vue.component('v-list-tile-content', {})
+Vue.component('v-list-tile-content', {});
 // noinspection JSUnresolvedFunction
-Vue.component('v-list-tile-sub-title', {})
+Vue.component('v-list-tile-sub-title', {});
 // noinspection JSUnresolvedFunction
-Vue.component('v-list-tile-title', {})
+Vue.component('v-list-tile-title', {});
 // noinspection JSUnresolvedFunction
 Vue.component('v-menu', {
   props: {
@@ -1002,7 +1002,7 @@ Vue.component('v-menu', {
     attach: null,
     auto: Boolean,
     bottom: Boolean,
-    closeDelay: [Number,String],
+    closeDelay: [ Number, String ],
     closeOnClick: Boolean,
     closeOnContentClick: Boolean,
     contentClass: null,
@@ -1015,17 +1015,17 @@ Vue.component('v-menu', {
     left: Boolean,
     light: Boolean,
     maxHeight: null,
-    maxWidth: [Number,String],
-    minWidth: [Number,String],
-    nudgeBottom: [Number,String],
-    nudgeLeft: [Number,String],
-    nudgeRight: [Number,String],
-    nudgeTop: [Number,String],
-    nudgeWidth: [Number,String],
+    maxWidth: [ Number, String ],
+    minWidth: [ Number, String ],
+    nudgeBottom: [ Number, String ],
+    nudgeLeft: [ Number, String ],
+    nudgeRight: [ Number, String ],
+    nudgeTop: [ Number, String ],
+    nudgeWidth: [ Number, String ],
     offsetOverflow: Boolean,
     offsetX: Boolean,
     offsetY: Boolean,
-    openDelay: [Number,String],
+    openDelay: [ Number, String ],
     openOnClick: Boolean,
     openOnHover: Boolean,
     origin: String,
@@ -1034,11 +1034,11 @@ Vue.component('v-menu', {
     returnValue: null,
     right: Boolean,
     top: Boolean,
-    transition: [Boolean,String],
+    transition: [ Boolean, String ],
     value: null,
-    zIndex: [Number,String]
+    zIndex: [ Number, String ]
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-messages', {
   props: {
@@ -1047,7 +1047,7 @@ Vue.component('v-messages', {
     light: Boolean,
     value: Array
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-navigation-drawer', {
   props: {
@@ -1059,21 +1059,21 @@ Vue.component('v-navigation-drawer', {
     disableRouteWatcher: Boolean,
     fixed: Boolean,
     floating: Boolean,
-    height: [Number,String],
+    height: [ Number, String ],
     hideOverlay: Boolean,
     light: Boolean,
     miniVariant: Boolean,
-    miniVariantWidth: [Number,String],
-    mobileBreakPoint: [Number,String],
+    miniVariantWidth: [ Number, String ],
+    mobileBreakPoint: [ Number, String ],
     permanent: Boolean,
     right: Boolean,
     stateless: Boolean,
     temporary: Boolean,
     touchless: Boolean,
     value: null,
-    width: [Number,String]
+    width: [ Number, String ]
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-overflow-btn', {
   props: {
@@ -1093,7 +1093,7 @@ Vue.component('v-overflow-btn', {
     clearIconCb: Function,
     clearable: Boolean,
     color: String,
-    counter: [Boolean,Number,String],
+    counter: [ Boolean, Number, String ],
     dark: Boolean,
     deletableChips: Boolean,
     dense: Boolean,
@@ -1101,27 +1101,27 @@ Vue.component('v-overflow-btn', {
     dontFillMaskBlanks: Boolean,
     editable: Boolean,
     error: Boolean,
-    errorCount: [Number,String],
-    errorMessages: [String,Array],
+    errorCount: [ Number, String ],
+    errorMessages: [ String, Array ],
     filter: Function,
     flat: Boolean,
     fullWidth: Boolean,
-    height: [Number,String],
+    height: [ Number, String ],
     hideDetails: Boolean,
     hideNoData: Boolean,
     hideSelected: Boolean,
     hint: String,
-    itemAvatar: [String,Array,Function],
-    itemDisabled: [String,Array,Function],
-    itemText: [String,Array,Function],
-    itemValue: [String,Array,Function],
+    itemAvatar: [ String, Array, Function ],
+    itemDisabled: [ String, Array, Function ],
+    itemText: [ String, Array, Function ],
+    itemValue: [ String, Array, Function ],
     items: Array,
     label: String,
     light: Boolean,
-    loading: [Boolean,String],
-    mask: [Object,String],
-    menuProps: [String,Array,Object],
-    messages: [String,Array],
+    loading: [ Boolean, String ],
+    mask: [ Object, String ],
+    menuProps: [ String, Array, Object ],
+    messages: [ String, Array ],
     multiple: Boolean,
     noDataText: String,
     noFilter: Boolean,
@@ -1146,7 +1146,7 @@ Vue.component('v-overflow-btn', {
     solo: Boolean,
     soloInverted: Boolean,
     success: Boolean,
-    successMessages: [String,Array],
+    successMessages: [ String, Array ],
     suffix: String,
     textarea: Boolean,
     transition: null,
@@ -1155,7 +1155,7 @@ Vue.component('v-overflow-btn', {
     value: null,
     valueComparator: Function
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-pagination', {
   props: {
@@ -1167,18 +1167,18 @@ Vue.component('v-pagination', {
     light: Boolean,
     nextIcon: String,
     prevIcon: String,
-    totalVisible: [Number,String],
+    totalVisible: [ Number, String ],
     value: Number
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-parallax', {
   props: {
     alt: String,
-    height: [String,Number],
+    height: [ String, Number ],
     src: String
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-picker', {
   props: {
@@ -1188,9 +1188,9 @@ Vue.component('v-picker', {
     landscape: Boolean,
     light: Boolean,
     transition: String,
-    width: [Number,String]
+    width: [ Number, String ]
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-progress-circular', {
   props: {
@@ -1198,25 +1198,25 @@ Vue.component('v-progress-circular', {
     color: String,
     indeterminate: Boolean,
     rotate: Number,
-    size: [Number,String],
+    size: [ Number, String ],
     value: Number,
     width: Number
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-progress-linear', {
   props: {
     active: Boolean,
     backgroundColor: String,
-    backgroundOpacity: [Number,String],
-    bufferValue: [Number,String],
+    backgroundOpacity: [ Number, String ],
+    bufferValue: [ Number, String ],
     color: String,
-    height: [Number,String],
+    height: [ Number, String ],
     indeterminate: Boolean,
     query: Boolean,
-    value: [Number,String]
+    value: [ Number, String ]
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-radio-group', {
   props: {
@@ -1228,16 +1228,16 @@ Vue.component('v-radio-group', {
     dark: Boolean,
     disabled: Boolean,
     error: Boolean,
-    errorCount: [Number,String],
-    errorMessages: [String,Array],
-    height: [Number,String],
+    errorCount: [ Number, String ],
+    errorMessages: [ String, Array ],
+    height: [ Number, String ],
     hideDetails: Boolean,
     hint: String,
     label: String,
     light: Boolean,
-    loading: [Boolean,String],
+    loading: [ Boolean, String ],
     mandatory: Boolean,
-    messages: [String,Array],
+    messages: [ String, Array ],
     name: String,
     persistentHint: Boolean,
     prependIcon: String,
@@ -1246,12 +1246,12 @@ Vue.component('v-radio-group', {
     row: Boolean,
     rules: Array,
     success: Boolean,
-    successMessages: [String,Array],
+    successMessages: [ String, Array ],
     validateOnBlur: Boolean,
     value: null,
     valueComparator: Function
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-radio', {
   props: {
@@ -1263,10 +1263,10 @@ Vue.component('v-radio', {
     offIcon: String,
     onIcon: String,
     readonly: Boolean,
-    ripple: [Boolean,Object],
+    ripple: [ Boolean, Object ],
     value: null
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-range-slider', {
   props: {
@@ -1278,44 +1278,44 @@ Vue.component('v-range-slider', {
     dark: Boolean,
     disabled: Boolean,
     error: Boolean,
-    errorCount: [Number,String],
-    errorMessages: [String,Array],
-    height: [Number,String],
+    errorCount: [ Number, String ],
+    errorMessages: [ String, Array ],
+    height: [ Number, String ],
     hideDetails: Boolean,
     hint: String,
     inverseLabel: Boolean,
     label: String,
     light: Boolean,
-    loading: [Boolean,String],
-    max: [Number,String],
-    messages: [String,Array],
-    min: [Number,String],
+    loading: [ Boolean, String ],
+    max: [ Number, String ],
+    messages: [ String, Array ],
+    min: [ Number, String ],
     persistentHint: Boolean,
     prependIcon: String,
     prependIconCb: Function,
     range: Boolean,
     readonly: Boolean,
     rules: Array,
-    step: [Number,String],
+    step: [ Number, String ],
     success: Boolean,
-    successMessages: [String,Array],
+    successMessages: [ String, Array ],
     thumbColor: String,
-    thumbLabel: [Boolean,String],
-    thumbSize: [Number,String],
+    thumbLabel: [ Boolean, String ],
+    thumbSize: [ Number, String ],
     tickLabels: Array,
-    tickSize: [Number,String],
-    ticks: [Boolean,String],
+    tickSize: [ Number, String ],
+    ticks: [ Boolean, String ],
     trackColor: String,
     validateOnBlur: Boolean,
     value: Array
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-rating', {
   props: {
     backgroundColor: String,
     clearable: Boolean,
-    closeDelay: [Number,String],
+    closeDelay: [ Number, String ],
     color: String,
     dark: Boolean,
     dense: Boolean,
@@ -1325,28 +1325,28 @@ Vue.component('v-rating', {
     halfIncrements: Boolean,
     hover: Boolean,
     large: Boolean,
-    length: [Number,String],
+    length: [ Number, String ],
     light: Boolean,
     medium: Boolean,
-    openDelay: [Number,String],
+    openDelay: [ Number, String ],
     readonly: Boolean,
-    ripple: [Boolean,Object],
-    size: [Number,String],
+    ripple: [ Boolean, Object ],
+    size: [ Number, String ],
     small: Boolean,
     value: Number,
     xLarge: Boolean
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-responsive', {
   props: {
-    aspectRatio: [String,Number],
-    height: [Number,String],
-    maxHeight: [Number,String],
-    maxWidth: [Number,String],
-    width: [Number,String]
+    aspectRatio: [ String, Number ],
+    height: [ Number, String ],
+    maxHeight: [ Number, String ],
+    maxWidth: [ Number, String ],
+    width: [ Number, String ]
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-select', {
   props: {
@@ -1365,33 +1365,33 @@ Vue.component('v-select', {
     clearIconCb: Function,
     clearable: Boolean,
     color: String,
-    counter: [Boolean,Number,String],
+    counter: [ Boolean, Number, String ],
     dark: Boolean,
     deletableChips: Boolean,
     dense: Boolean,
     disabled: Boolean,
     dontFillMaskBlanks: Boolean,
     error: Boolean,
-    errorCount: [Number,String],
-    errorMessages: [String,Array],
+    errorCount: [ Number, String ],
+    errorMessages: [ String, Array ],
     filter: null,
     flat: Boolean,
     fullWidth: Boolean,
-    height: [Number,String],
+    height: [ Number, String ],
     hideDetails: Boolean,
     hideSelected: Boolean,
     hint: String,
-    itemAvatar: [String,Array,Function],
-    itemDisabled: [String,Array,Function],
-    itemText: [String,Array,Function],
-    itemValue: [String,Array,Function],
+    itemAvatar: [ String, Array, Function ],
+    itemDisabled: [ String, Array, Function ],
+    itemText: [ String, Array, Function ],
+    itemValue: [ String, Array, Function ],
     items: Array,
     label: String,
     light: Boolean,
-    loading: [Boolean,String],
-    mask: [Object,String],
-    menuProps: [String,Array,Object],
-    messages: [String,Array],
+    loading: [ Boolean, String ],
+    mask: [ Object, String ],
+    menuProps: [ String, Array, Object ],
+    messages: [ String, Array ],
     multiple: Boolean,
     noDataText: String,
     openOnClear: Boolean,
@@ -1414,7 +1414,7 @@ Vue.component('v-select', {
     solo: Boolean,
     soloInverted: Boolean,
     success: Boolean,
-    successMessages: [String,Array],
+    successMessages: [ String, Array ],
     suffix: String,
     textarea: Boolean,
     type: String,
@@ -1422,7 +1422,7 @@ Vue.component('v-select', {
     value: null,
     valueComparator: Function
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-slider', {
   props: {
@@ -1434,38 +1434,38 @@ Vue.component('v-slider', {
     dark: Boolean,
     disabled: Boolean,
     error: Boolean,
-    errorCount: [Number,String],
-    errorMessages: [String,Array],
-    height: [Number,String],
+    errorCount: [ Number, String ],
+    errorMessages: [ String, Array ],
+    height: [ Number, String ],
     hideDetails: Boolean,
     hint: String,
     inverseLabel: Boolean,
     label: String,
     light: Boolean,
-    loading: [Boolean,String],
-    max: [Number,String],
-    messages: [String,Array],
-    min: [Number,String],
+    loading: [ Boolean, String ],
+    max: [ Number, String ],
+    messages: [ String, Array ],
+    min: [ Number, String ],
     persistentHint: Boolean,
     prependIcon: String,
     prependIconCb: Function,
     range: Boolean,
     readonly: Boolean,
     rules: Array,
-    step: [Number,String],
+    step: [ Number, String ],
     success: Boolean,
-    successMessages: [String,Array],
+    successMessages: [ String, Array ],
     thumbColor: String,
-    thumbLabel: [Boolean,String],
-    thumbSize: [Number,String],
+    thumbLabel: [ Boolean, String ],
+    thumbSize: [ Number, String ],
     tickLabels: Array,
-    tickSize: [Number,String],
-    ticks: [Boolean,String],
+    tickSize: [ Number, String ],
+    ticks: [ Boolean, String ],
     trackColor: String,
     validateOnBlur: Boolean,
-    value: [Number,String]
+    value: [ Number, String ]
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-snackbar', {
   props: {
@@ -1481,7 +1481,7 @@ Vue.component('v-snackbar', {
     value: null,
     vertical: Boolean
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-speed-dial', {
   props: {
@@ -1498,7 +1498,7 @@ Vue.component('v-speed-dial', {
     transition: String,
     value: null
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-stepper', {
   props: {
@@ -1506,16 +1506,16 @@ Vue.component('v-stepper', {
     dark: Boolean,
     light: Boolean,
     nonLinear: Boolean,
-    value: [Number,String],
+    value: [ Number, String ],
     vertical: Boolean
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-stepper-content', {
   props: {
-    step: [Number,String]
+    step: [ Number, String ]
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-stepper-step', {
   props: {
@@ -1526,13 +1526,13 @@ Vue.component('v-stepper-step', {
     editable: Boolean,
     errorIcon: String,
     rules: Array,
-    step: [Number,String]
+    step: [ Number, String ]
   }
-})
+});
 // noinspection JSUnresolvedFunction
-Vue.component('v-stepper-header', {})
+Vue.component('v-stepper-header', {});
 // noinspection JSUnresolvedFunction
-Vue.component('v-stepper-items', {})
+Vue.component('v-stepper-items', {});
 // noinspection JSUnresolvedFunction
 Vue.component('v-subheader', {
   props: {
@@ -1540,7 +1540,7 @@ Vue.component('v-subheader', {
     inset: Boolean,
     light: Boolean
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-switch', {
   props: {
@@ -1551,33 +1551,33 @@ Vue.component('v-switch', {
     dark: Boolean,
     disabled: Boolean,
     error: Boolean,
-    errorCount: [Number,String],
-    errorMessages: [String,Array],
+    errorCount: [ Number, String ],
+    errorMessages: [ String, Array ],
     falseValue: null,
-    height: [Number,String],
+    height: [ Number, String ],
     hideDetails: Boolean,
     hint: String,
     id: String,
     inputValue: null,
     label: String,
     light: Boolean,
-    loading: [Boolean,String],
-    messages: [String,Array],
+    loading: [ Boolean, String ],
+    messages: [ String, Array ],
     multiple: Boolean,
     persistentHint: Boolean,
     prependIcon: String,
     prependIconCb: Function,
     readonly: Boolean,
-    ripple: [Boolean,Object],
+    ripple: [ Boolean, Object ],
     rules: Array,
     success: Boolean,
-    successMessages: [String,Array],
+    successMessages: [ String, Array ],
     trueValue: null,
     validateOnBlur: Boolean,
     value: null,
     valueComparator: Function
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-system-bar', {
   props: {
@@ -1586,13 +1586,13 @@ Vue.component('v-system-bar', {
     color: String,
     dark: Boolean,
     fixed: Boolean,
-    height: [Number,String],
+    height: [ Number, String ],
     light: Boolean,
     lightsOut: Boolean,
     status: Boolean,
     window: Boolean
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-tabs', {
   props: {
@@ -1602,19 +1602,19 @@ Vue.component('v-tabs', {
     dark: Boolean,
     fixedTabs: Boolean,
     grow: Boolean,
-    height: [Number,String],
+    height: [ Number, String ],
     hideSlider: Boolean,
     iconsAndText: Boolean,
     light: Boolean,
-    mobileBreakPoint: [Number,String],
+    mobileBreakPoint: [ Number, String ],
     nextIcon: String,
     prevIcon: String,
     right: Boolean,
     showArrows: Boolean,
     sliderColor: String,
-    value: [Number,String]
+    value: [ Number, String ]
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-tab', {
   props: {
@@ -1624,39 +1624,39 @@ Vue.component('v-tab', {
     disabled: Boolean,
     exact: Boolean,
     exactActiveClass: String,
-    href: [String,Object],
+    href: [ String, Object ],
     light: Boolean,
     nuxt: Boolean,
     replace: Boolean,
-    ripple: [Boolean,Object],
+    ripple: [ Boolean, Object ],
     tag: String,
     target: String,
-    to: [String,Object]
+    to: [ String, Object ]
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-tabs-items', {
   props: {
     cycle: Boolean,
     touchless: Boolean,
-    value: [Number,String]
+    value: [ Number, String ]
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-tab-item', {
   props: {
     id: String,
     lazy: Boolean,
-    reverseTransition: [Boolean,String],
-    transition: [Boolean,String]
+    reverseTransition: [ Boolean, String ],
+    transition: [ Boolean, String ]
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-tabs-slider', {
   props: {
     color: String
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-textarea', {
   props: {
@@ -1673,23 +1673,23 @@ Vue.component('v-textarea', {
     clearIconCb: Function,
     clearable: Boolean,
     color: String,
-    counter: [Boolean,Number,String],
+    counter: [ Boolean, Number, String ],
     dark: Boolean,
     disabled: Boolean,
     dontFillMaskBlanks: Boolean,
     error: Boolean,
-    errorCount: [Number,String],
-    errorMessages: [String,Array],
+    errorCount: [ Number, String ],
+    errorMessages: [ String, Array ],
     flat: Boolean,
     fullWidth: Boolean,
-    height: [Number,String],
+    height: [ Number, String ],
     hideDetails: Boolean,
     hint: String,
     label: String,
     light: Boolean,
-    loading: [Boolean,String],
-    mask: [Object,String],
-    messages: [String,Array],
+    loading: [ Boolean, String ],
+    mask: [ Object, String ],
+    messages: [ String, Array ],
     noResize: Boolean,
     outline: Boolean,
     persistentHint: Boolean,
@@ -1702,21 +1702,21 @@ Vue.component('v-textarea', {
     readonly: Boolean,
     returnMaskedValue: Boolean,
     reverse: Boolean,
-    rowHeight: [Number,String],
-    rows: [Number,String],
+    rowHeight: [ Number, String ],
+    rows: [ Number, String ],
     rules: Array,
     singleLine: Boolean,
     solo: Boolean,
     soloInverted: Boolean,
     success: Boolean,
-    successMessages: [String,Array],
+    successMessages: [ String, Array ],
     suffix: String,
     textarea: Boolean,
     type: String,
     validateOnBlur: Boolean,
     value: null
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-text-field', {
   props: {
@@ -1732,23 +1732,23 @@ Vue.component('v-text-field', {
     clearIconCb: Function,
     clearable: Boolean,
     color: String,
-    counter: [Boolean,Number,String],
+    counter: [ Boolean, Number, String ],
     dark: Boolean,
     disabled: Boolean,
     dontFillMaskBlanks: Boolean,
     error: Boolean,
-    errorCount: [Number,String],
-    errorMessages: [String,Array],
+    errorCount: [ Number, String ],
+    errorMessages: [ String, Array ],
     flat: Boolean,
     fullWidth: Boolean,
-    height: [Number,String],
+    height: [ Number, String ],
     hideDetails: Boolean,
     hint: String,
     label: String,
     light: Boolean,
-    loading: [Boolean,String],
-    mask: [Object,String],
-    messages: [String,Array],
+    loading: [ Boolean, String ],
+    mask: [ Object, String ],
+    messages: [ String, Array ],
     outline: Boolean,
     persistentHint: Boolean,
     placeholder: String,
@@ -1765,14 +1765,14 @@ Vue.component('v-text-field', {
     solo: Boolean,
     soloInverted: Boolean,
     success: Boolean,
-    successMessages: [String,Array],
+    successMessages: [ String, Array ],
     suffix: String,
     textarea: Boolean,
     type: String,
     validateOnBlur: Boolean,
     value: null
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-time-picker', {
   props: {
@@ -1791,9 +1791,9 @@ Vue.component('v-time-picker', {
     readonly: Boolean,
     scrollable: Boolean,
     value: null,
-    width: [Number,String]
+    width: [ Number, String ]
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-time-picker-clock', {
   props: {
@@ -1808,11 +1808,11 @@ Vue.component('v-time-picker-clock', {
     readonly: Boolean,
     rotate: Number,
     scrollable: Boolean,
-    size: [Number,String],
+    size: [ Number, String ],
     step: Number,
     value: Number
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-time-picker-title', {
   props: {
@@ -1823,7 +1823,7 @@ Vue.component('v-time-picker-title', {
     readonly: Boolean,
     selectingHour: Boolean
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-toolbar', {
   props: {
@@ -1836,11 +1836,11 @@ Vue.component('v-toolbar', {
     dark: Boolean,
     dense: Boolean,
     extended: Boolean,
-    extensionHeight: [Number,String],
+    extensionHeight: [ Number, String ],
     fixed: Boolean,
     flat: Boolean,
     floating: Boolean,
-    height: [Number,String],
+    height: [ Number, String ],
     invertedScroll: Boolean,
     light: Boolean,
     manualScroll: Boolean,
@@ -1851,13 +1851,13 @@ Vue.component('v-toolbar', {
     scrollToolbarOffScreen: Boolean,
     tabs: Boolean
   }
-})
+});
 // noinspection JSUnresolvedFunction
-Vue.component('v-toolbar-items', {})
+Vue.component('v-toolbar-items', {});
 // noinspection JSUnresolvedFunction
-Vue.component('v-toolbar-title', {})
+Vue.component('v-toolbar-title', {});
 // noinspection JSUnresolvedFunction
-Vue.component('v-toolbar-side-icon', {})
+Vue.component('v-toolbar-side-icon', {});
 // noinspection JSUnresolvedFunction
 Vue.component('v-tooltip', {
   props: {
@@ -1866,26 +1866,26 @@ Vue.component('v-tooltip', {
     allowOverflow: Boolean,
     attach: null,
     bottom: Boolean,
-    closeDelay: [Number,String],
+    closeDelay: [ Number, String ],
     color: String,
     contentClass: null,
     dark: Boolean,
-    debounce: [Number,String],
+    debounce: [ Number, String ],
     disabled: Boolean,
     fixed: Boolean,
     inputActivator: Boolean,
     lazy: Boolean,
     left: Boolean,
     light: Boolean,
-    maxWidth: [Number,String],
-    minWidth: [Number,String],
-    nudgeBottom: [Number,String],
-    nudgeLeft: [Number,String],
-    nudgeRight: [Number,String],
-    nudgeTop: [Number,String],
-    nudgeWidth: [Number,String],
+    maxWidth: [ Number, String ],
+    minWidth: [ Number, String ],
+    nudgeBottom: [ Number, String ],
+    nudgeLeft: [ Number, String ],
+    nudgeRight: [ Number, String ],
+    nudgeTop: [ Number, String ],
+    nudgeWidth: [ Number, String ],
     offsetOverflow: Boolean,
-    openDelay: [Number,String],
+    openDelay: [ Number, String ],
     positionX: Number,
     positionY: Number,
     right: Boolean,
@@ -1895,7 +1895,7 @@ Vue.component('v-tooltip', {
     value: null,
     zIndex: null
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-bottom-sheet-transition', {
   props: {
@@ -1905,7 +1905,7 @@ Vue.component('v-bottom-sheet-transition', {
     mode: String,
     origin: String
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-carousel-transition', {
   props: {
@@ -1915,7 +1915,7 @@ Vue.component('v-carousel-transition', {
     mode: String,
     origin: String
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-carousel-reverse-transition', {
   props: {
@@ -1925,7 +1925,7 @@ Vue.component('v-carousel-reverse-transition', {
     mode: String,
     origin: String
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-dialog-transition', {
   props: {
@@ -1935,7 +1935,7 @@ Vue.component('v-dialog-transition', {
     mode: String,
     origin: String
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-dialog-bottom-transition', {
   props: {
@@ -1945,7 +1945,7 @@ Vue.component('v-dialog-bottom-transition', {
     mode: String,
     origin: String
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-fab-transition', {
   props: {
@@ -1955,7 +1955,7 @@ Vue.component('v-fab-transition', {
     mode: String,
     origin: String
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-fade-transition', {
   props: {
@@ -1965,7 +1965,7 @@ Vue.component('v-fade-transition', {
     mode: String,
     origin: String
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-menu-transition', {
   props: {
@@ -1975,7 +1975,7 @@ Vue.component('v-menu-transition', {
     mode: String,
     origin: String
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-scale-transition', {
   props: {
@@ -1985,7 +1985,7 @@ Vue.component('v-scale-transition', {
     mode: String,
     origin: String
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-scroll-x-transition', {
   props: {
@@ -1995,7 +1995,7 @@ Vue.component('v-scroll-x-transition', {
     mode: String,
     origin: String
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-scroll-x-reverse-transition', {
   props: {
@@ -2005,7 +2005,7 @@ Vue.component('v-scroll-x-reverse-transition', {
     mode: String,
     origin: String
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-scroll-y-transition', {
   props: {
@@ -2015,7 +2015,7 @@ Vue.component('v-scroll-y-transition', {
     mode: String,
     origin: String
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-scroll-y-reverse-transition', {
   props: {
@@ -2025,7 +2025,7 @@ Vue.component('v-scroll-y-reverse-transition', {
     mode: String,
     origin: String
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-slide-x-transition', {
   props: {
@@ -2035,7 +2035,7 @@ Vue.component('v-slide-x-transition', {
     mode: String,
     origin: String
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-slide-x-reverse-transition', {
   props: {
@@ -2045,7 +2045,7 @@ Vue.component('v-slide-x-reverse-transition', {
     mode: String,
     origin: String
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-slide-y-transition', {
   props: {
@@ -2055,7 +2055,7 @@ Vue.component('v-slide-y-transition', {
     mode: String,
     origin: String
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-slide-y-reverse-transition', {
   props: {
@@ -2065,7 +2065,7 @@ Vue.component('v-slide-y-reverse-transition', {
     mode: String,
     origin: String
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-tab-reverse-transition', {
   props: {
@@ -2075,7 +2075,7 @@ Vue.component('v-tab-reverse-transition', {
     mode: String,
     origin: String
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-tab-transition', {
   props: {
@@ -2085,16 +2085,16 @@ Vue.component('v-tab-transition', {
     mode: String,
     origin: String
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-expand-transition', {
   props: {
     mode: String
   }
-})
+});
 // noinspection JSUnresolvedFunction
 Vue.component('v-row-expand-transition', {
   props: {
     mode: String
   }
-})
+});

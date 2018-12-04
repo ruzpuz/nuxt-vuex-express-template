@@ -1,4 +1,4 @@
-const databaseService = require('app/database/database.service')
+const databaseService = require('app/database/database.service');
 async function getCategories() {
   const database = databaseService.get().persistence;
 
@@ -9,4 +9,4 @@ async function getCategories() {
 }
 module.exports = {
   getCategories
-}
+};

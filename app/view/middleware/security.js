@@ -1,5 +1,4 @@
-
-export default async function ({ isServer, store, route, req, redirect, $axios }) {
+export default async function ({ store, req, $axios }) {
 
   if (!process.server && !req) {
     return;

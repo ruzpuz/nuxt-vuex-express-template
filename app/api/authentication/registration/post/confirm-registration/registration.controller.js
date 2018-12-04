@@ -16,8 +16,8 @@ async function handleCall(body) {
     if(error.code) {
       return error;
     }
-    console.log(error);
-    logger.error(error);
+    logger.log({ level: 'error', message: error });
+
     return responses.UNKNOWN_SERVER_ERROR;
   }
 }
