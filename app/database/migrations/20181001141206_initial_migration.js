@@ -17,6 +17,9 @@ exports.up = function(knex) {
         "email" varchar(128) COLLATE "pg_catalog"."default" NOT NULL,
         "first_name" varchar(128) COLLATE "pg_catalog"."default",
         "last_name" varchar(128) COLLATE "pg_catalog"."default",
+        "created_at" timestamp DEFAULT now(), 
+        "updated_at" timestamp DEFAULT now(),
+        "deleted_at" timestamp, 
         PRIMARY KEY("id"),
         CONSTRAINT "user_email" UNIQUE ("email")
       );
