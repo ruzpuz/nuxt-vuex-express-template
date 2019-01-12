@@ -16,7 +16,7 @@
     "unit-test": "npm test -- -u",
     "test": "sh test.sh"
   },
-  "pre-commit": [ "lint-test", "unit-test"],
+  "pre-commit": { "run": [ "lint-test", "unit-test" ] },
   "repository": {
     "type": "git"
   },
