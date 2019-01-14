@@ -3,9 +3,9 @@ const http = require('axios');
 const { constants } = require('app/api/common/constants/constants.service');
 const { httpStatus } = constants;
 
-async function getHealth() {
+async function getRoles() {
   try{
-    const { status } = await http.get('http://localhost:3010/api/health');
+    const { status } = await http.get('http://localhost:3010/api/roles');
 
     assert.strictEqual(status, httpStatus.OK);
   } catch(error) {
@@ -17,9 +17,9 @@ async function getHealth() {
 }
 
 async function scenario() {
-
-  it('Checking health', getHealth);
-
+  describe('Testing roles scenario', function rolesScenario() {
+    it('Fetching roles', getRoles);
+  });
 }
 
 module.exports = { scenario };

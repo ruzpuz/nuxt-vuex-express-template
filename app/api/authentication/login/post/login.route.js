@@ -2,8 +2,6 @@ const { constants } = require('app/api/common/constants/constants.service');
 const apiPrefix = constants.url.API_PREFIX;
 const controller = require('app/api/authentication/login/post/login.controller');
 
-//const FB = require('fb');
-
 async function loginRoute(req, res) {
   if(req.headers.security.roleId !== constants.users.roles.NOT_LOGGED_IN) {
     return res.status(constants.httpStatus.OK).json({

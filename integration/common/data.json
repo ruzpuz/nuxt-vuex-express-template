@@ -1,0 +1,17 @@
+{
+  "USER": {
+    "firstName": "Test first name",
+    "lastName": "Test last name",
+    "email": "puz@mailinator.com",
+    "password": "a"
+  },
+  "LOGIN_DETAILS": {
+    "email": "puz@mailinator.com",
+    "password": "a"
+  },
+  "INVALID_LOGIN_DETAILS": {
+    "email": "puz@gmail.com",
+    "password": "a"
+  },
+  "DUMMY_TOKEN": "dummy token"
+}

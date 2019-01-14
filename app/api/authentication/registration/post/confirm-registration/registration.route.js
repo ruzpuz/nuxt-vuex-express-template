@@ -1,5 +1,3 @@
-'use strict';
-
 const apiPrefix = require('app/api/common/constants/constants.service').constants.url.API_PREFIX;
 const controller = require('./registration.controller');
 

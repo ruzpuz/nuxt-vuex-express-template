@@ -4,26 +4,16 @@ const databaseService = require('app/database/database.service');
 const { constants } = require('app/api/common/constants/constants.service');
 const { httpStatus } = constants;
 
-const user = {
-  firstName: 'Test first name',
-  lastName: 'Test last name',
-  email: 'puz@mailinator.com',
-  password: 'a'
-};
-const loginDetails = {
-  email: 'puz@mailinator.com',
-  password: 'a'
-};
-const dummyToken = 'a';
+const { USER, LOGIN_DETAILS, DUMMY_TOKEN } = require('integration/common/data');
 
 async function registerUser() {
-  const { status } = await http.post('http://localhost:3010/api/registration', user);
+  const { status } = await http.post('http://localhost:3010/api/registration', USER);
 
   assert.strictEqual(status, httpStatus.CREATED);
 }
 async function registerUserAgain() {
   try {
-    const { status } = await http.post('http://localhost:3010/api/registration', user);
+    const { status } = await http.post('http://localhost:3010/api/registration', USER);
     assert.notStrictEqual(status, httpStatus.CREATED);
   } catch({ code, response }) {
     if(code === 'ECONNREFUSED') {
@@ -35,7 +25,7 @@ async function registerUserAgain() {
 
 async function loginFailedUnconfirmed() {
   try {
-    const { status } = await http.post('http://localhost:3010/api/login', loginDetails);
+    const { status } = await http.post('http://localhost:3010/api/login', LOGIN_DETAILS);
     assert.notStrictEqual(status, httpStatus.OK);
   } catch({ code, response }) {
     if(code === 'ECONNREFUSED') {
@@ -57,7 +47,7 @@ async function confirmationFailsNoToken() {
 }
 async function confirmationFailsNoUser() {
   try {
-    const { status } = await http.post('http://localhost:3010/api/confirm', { confirmationToken: dummyToken });
+    const { status } = await http.post('http://localhost:3010/api/confirm', { confirmationToken: DUMMY_TOKEN });
 
     assert.notStrictEqual(status, httpStatus.OK);
   } catch(error) {
@@ -80,7 +70,7 @@ async function confirmUser() {
       SELECT id FROM "public"."user" WHERE email = ?
     );
   `;
-  const { rows } = await database.raw(sql, user.email);
+  const { rows } = await database.raw(sql, USER.email);
   const confirmationToken = rows[0].confirmation_token;
 
   try {
