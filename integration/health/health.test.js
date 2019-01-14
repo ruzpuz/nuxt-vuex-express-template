@@ -1,9 +1,14 @@
-const { scenario } = require('./get-health/health.test')
+const { scenario: healthScenario } = require('./get-health/health.test');
 
-describe('Testing health scenarios', function healthScenario() {
+function scenario() {
+  describe('Testing health od the application', function healthScenarios() {
 
-  this.timeout(0);
+    this.timeout(0);
 
-  scenario();
+    healthScenario();
 
-})
+  });
+}
+module.exports = {
+  scenario
+};

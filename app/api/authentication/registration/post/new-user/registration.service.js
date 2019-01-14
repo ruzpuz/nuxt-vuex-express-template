@@ -11,6 +11,7 @@ const emailConfiguration = require('configuration/email/email-configuration.serv
 const transporter = nodemailer.createTransport(emailConfiguration);
 
 const { baseURL } = require('app/common/environment/environment.service');
+const logger = require('app/common/log/logger.service');
 
 function validateCall(body) {
   if(Object.keys(body).length !== 4) {

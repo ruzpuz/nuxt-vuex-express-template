@@ -1,9 +1,16 @@
-const { scenario } = require('./registration/registration.test')
+const { scenario: registrationScenario } = require('./registration/registration.test');
 
-describe('Testing authorization scenarios', function authorizationScenario() {
 
-  this.timeout(0);
+function scenario() {
+  describe('Testing authorization scenarios', function authorizationScenario() {
 
-  scenario();
+    this.timeout(0);
 
-})
+    registrationScenario();
+
+  });
+}
+
+module.exports = {
+  scenario
+};

@@ -23,4 +23,4 @@ async function scenario() {
 
 }
 
-module.exports = { scenario }
+module.exports = { scenario };

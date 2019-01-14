@@ -9,7 +9,7 @@ const responses = {
   LOGIN_INVALID_EMAIL: { code: httpStatus.BAD_REQUEST, payload: 'Invalid email provided' },
   LOGIN_NO_PASSWORD: { code: httpStatus.BAD_REQUEST, payload: 'No password provided' },
   LOGIN_NO_USER_FOUND: { code: httpStatus.NOT_FOUND, payload: 'No user found' },
-  LOGIN_USER_NOT_CONFIRMED: { code: httpStatus.BAD_REQUEST, payload: 'User not confirmed' },
+  LOGIN_USER_NOT_CONFIRMED: { code: httpStatus.FORBIDDEN, payload: 'User not confirmed' },
   LOGIN_USER_DISABLED: { code: httpStatus.BAD_REQUEST, payload: 'User is disabled, contact administrator' },
   CONFIRMATION_USER_NOT_FOUND: { code: httpStatus.NOT_FOUND, payload: 'User not confirmed' },
   CONFIRMATION_USER_ALREADY_CONFIRMED: { code: httpStatus.OK, payload: 'User already confirmed' },

@@ -12,9 +12,11 @@
     "nuxt": "nuxt",
     "eslint": "eslint",
     "fix": "eslint --fix .",
-    "lint-test": "npm test -- -l",
-    "unit-test": "npm test -- -u",
-    "test": "sh test.sh"
+    "mocha": "mocha",
+    "lint-test": "sh test.sh -l",
+    "unit-test": "sh test.sh -u",
+    "integration-test": "sh test.sh -i",
+    "test": "sh test.sh -u && sh test.sh -l"
   },
   "pre-commit": { "run": [ "lint-test", "unit-test" ] },
   "repository": {
