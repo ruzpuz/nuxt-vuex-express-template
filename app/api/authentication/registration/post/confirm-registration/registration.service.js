@@ -30,7 +30,7 @@ function confirmRegistration({ confirmationToken: token }) {
 
     const { rows: found } = await t.raw(findUserSQL, [ token ]);
 
-    if(found[0].count === 0) {
+    if(Number(found[0].count) === 0) {
       throw responses.CONFIRMATION_USER_NOT_FOUND;
     }
 

@@ -1,5 +1,6 @@
 const controller = require('./categories.controller');
 const apiPrefix = require('app/api/common/constants/constants.service').constants.url.API_PREFIX;
+
 async function getAllCategoriesRoute(req, res) {
   const response = await controller.getCategories();
 

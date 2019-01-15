@@ -1,9 +1,26 @@
 #!/usr/bin/env bash
 
-docker-compose up -d --no-recreate
+type=${BASH_ARGV[0]}
 
-npm run generate-documentation
-npm run knex migrate:latest
-npm run seed initial
+case "$type" in
+    "--production" | "-p")
+        echo "Not yet implemented"
+        ;;
+    "--testing" | "-t")
+        echo "Not yet impmlemented"
+        ;;
+    "--development" | "-d")
 
-NODE_PATH=. node index.js
+        docker-compose up -d --no-recreate
+
+        npm run generate-documentation
+        npm run knex migrate:latest
+        npm run seed initial
+
+        NODE_PATH=. node index.js
+
+        ;;
+    *)
+       echo "error"
+        ;;
+esac

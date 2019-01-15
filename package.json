@@ -12,11 +12,13 @@
     "nuxt": "nuxt",
     "eslint": "eslint",
     "fix": "eslint --fix .",
-    "lint": "eslint -c .eslintrc app/ && eslint -c .eslintrc index.js",
-    "unit-test": "find ./app/api -name '*\\.test.js' |  cross-env NODE_PATH=. xargs mocha -R spec",
-    "test": "npm run lint && npm run unit-test"
+    "mocha": "mocha",
+    "lint-test": "sh test.sh -l",
+    "unit-test": "sh test.sh -u",
+    "integration-test": "sh test.sh -i",
+    "test": "sh test.sh -u && sh test.sh -l"
   },
-  "pre=commit": "",
+  "pre-commit": { "run": [ "lint-test", "unit-test" ] },
   "repository": {
     "type": "git"
   },
