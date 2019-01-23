@@ -22,7 +22,7 @@
         this.loading = true;
 
         try {
-          const response = await this.$axios.post('/api/registration', {
+          await this.$store.dispatch('DO_REGISTER', {
             firstName: this.firstName,
             lastName: this.lastName,
             email: this.email,

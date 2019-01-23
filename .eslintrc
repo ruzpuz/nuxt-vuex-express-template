@@ -62,7 +62,7 @@
     ],
     "semi-spacing": 2,
     "mocha/no-exclusive-tests": 2,
-    "semi": 2,
+    "semi": [2, "always"],
     "no-undef": 0,
     "accessor-pairs": 0,
     "complexity": 1,

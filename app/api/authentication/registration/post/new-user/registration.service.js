@@ -14,7 +14,7 @@ const { baseURL } = require('app/common/environment/environment.service');
 const logger = require('app/common/log/logger.service');
 
 function validateCall(body) {
-  if(Object.keys(body).length !== 4) {
+  if(Object.keys(body).length !== 5) {
     return responses.REGISTRATION_INVALID_DETAILS;
   } else if(!stringValidation.isString(body.firstName) || body.firstName.length > 128 || body.firstName.length === 0) {
     return responses.REGISTRATION_INVALID_FIRST_NAME;

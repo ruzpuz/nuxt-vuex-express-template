@@ -22,26 +22,16 @@ export default {
   },
   actions: {
     async DO_LOGIN({ commit }, { secret }) {
-      try {
-        const { data } = await post('/api/login', secret);
-
-        commit('LOGIN', data.user);
-
-        return data;
-      } catch(error) {
-        throw error;
-      }
+      const { data } = await post('/api/login', secret);
+      commit('LOGIN', data.user);
+      return data;
     },
     async DO_FACEBOOK_LOGIN({ commit }, { secret }) {
-      try {
-        const { data } = await post('/api/login/facebook', secret);
+      const { data } = await post('/api/login/facebook', secret);
 
-        commit('LOGIN', data.user);
+      commit('LOGIN', data.user);
 
-        return data;
-      } catch(error) {
-        throw error;
-      }
+      return data;
     }
   }
 };
