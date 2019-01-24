@@ -6,6 +6,7 @@
   import Navigation from '../components/navigation';
 
   export default {
+    name: 'Default',
     components: {
       Navigation
     },
@@ -13,14 +14,13 @@
       user() {
         return this.$store.getters.getUser;
       }
-    },
-    name: "default"
-  }
+    }
+  };
 </script>
 
 <template>
-    <v-app>
-        <Navigation :user="user"/>
-        <nuxt/>
-    </v-app>
+  <v-app>
+    <Navigation :user="user" />
+    <nuxt />
+  </v-app>
 </template>

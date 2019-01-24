@@ -1,6 +1,10 @@
 {
+  "extends": [
+    "plugin:vue/recommended"
+  ],
   "plugins": [
-    "mocha"
+    "mocha",
+    "vue"
   ],
   "env": {
     "node": true,
@@ -13,7 +17,23 @@
       "impliedStrict": true
     }
   },
+  "overrides": [
+    {
+      "files": ["*.vue"],
+      "rules": {
+        "indent": "off"
+      }
+    }
+  ],
   "rules": {
+    "vue/html-closing-bracket-newline": ["error", {
+      "multiline": "never"
+    }],
+    "vue/script-indent": ["error", 2, {
+      "baseIndent": 1,
+      "switchCase": 0,
+      "ignores": []
+    }],
     "no-unused-vars": ["error", { "vars": "all", "args": "after-used" }],
     "indent": [
       2,

@@ -4,10 +4,21 @@
 <script>
 
   export default {
-    name: "index",
+    name: 'Index',
+    data() {
+      return {
+        user: {}
+      };
+    },
+    computed: {
+      fullName() {
+
+        return this.user.firstName + ' ' + this.user.lastName;
+      }
+    },
     methods: {
       navigateToLogin() {
-        if(this.user.id) {
+        if (this.user.id) {
           this.$router.push({ name: 'portal-list' });
 
         } else {
@@ -16,32 +27,29 @@
       }
     },
     asyncData(context) {
-      return { user: context.store.getters.getUser }
-    },
-    data() {
-      return {
-        user: {}
-      }
-    },
-    computed: {
-      fullName() {
-
-        return this.user.firstName + ' ' + this.user.lastName;
-      }
+      return { user: context.store.getters.getUser };
     }
-  }
+  };
 </script>
 
 <template>
-    <div>
-        <h1> Hello world </h1>
+  <div>
+    <h1> Hello world </h1>
 
-        <p v-if="user.id"> Hello {{ fullName }} The party is in the </p>
-        <p v-else> Nothing to see here, party is in the </p>
-        <p>
-            <v-btn flat outline v-on:click="navigateToLogin"> secured area </v-btn>
-        </p>
-
-    </div>
+    <p v-if="user.id">
+      Hello {{ fullName }} The party is in the
+    </p>
+    <p v-else>
+      Nothing to see here, party is in the
+    </p>
+    <p>
+      <v-btn
+        flat
+        outline
+        @click="navigateToLogin">
+        secured area
+      </v-btn>
+    </p>
+  </div>
 </template>
 
