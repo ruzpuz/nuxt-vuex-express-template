@@ -17,7 +17,8 @@ module.exports = {
   srcDir: 'app/view/',
   modules: [
     '@nuxtjs/axios',
-    '@nuxtjs/proxy'
+    '@nuxtjs/proxy',
+    'nuxt-material-design-icons'
   ],
   head: {
     script: [

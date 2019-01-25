@@ -38,6 +38,15 @@
       };
     },
     computed: {
+      USER() {
+        return {
+          firstName: this.firstName,
+          lastName: this.lastName,
+          email: this.email,
+          password: this.password,
+          roleId: this.selectedRole
+        };
+      },
       preventSubmission() {
         return !(
           this.firstName &&
@@ -66,13 +75,7 @@
         this.loading = true;
 
         try {
-          await this.$store.dispatch('DO_REGISTER', {
-            firstName: this.firstName,
-            lastName: this.lastName,
-            email: this.email,
-            password: this.password,
-            roleId: this.selectedRole
-          });
+          await this.$store.dispatch('DO_REGISTER', this.USER);
 
           this.loading = false;
           this.$router.push({ name: 'login' });
