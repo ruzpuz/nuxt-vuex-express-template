@@ -8,7 +8,6 @@
     "generate-documentation": "apidoc -i app/ -o documentation/",
     "seed": "cross-env NODE_PATH=. node app/database/seeding/seeding.service.js",
     "knex": "cross-env NODE_PATH=. knex",
-    "start": "cross-env NODE_PATH=. node index.js",
     "nuxt": "nuxt",
     "eslint": "eslint",
     "fix": "eslint --fix .",

@@ -7,7 +7,7 @@
     name: "Navigation",
     props: [ 'user' ],
     mounted() {
-      console.log(this.user)
+
     },
     methods: {
       navigate(where) {

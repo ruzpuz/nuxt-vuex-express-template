@@ -5,6 +5,7 @@
   import Cookies from 'js-cookie';
 
   const emailRegex = new RegExp('^([A-Za-z0-9._%+-]|"|”|“|\\\\| |“.*”){0,64}([A-Za-z0-9_%+-]|"|”|“|\\\\| |“.*”)@[A-Za-z0-9][A-Za-z0-9.-]*\\.[A-Za-z]{2,}$');
+
   export default {
     name: 'login',
     layout: 'access',
@@ -20,7 +21,6 @@
       async fbLoginCallback({ authResponse }) {
         try {
           const data = await this.$store.dispatch('DO_FACEBOOK_LOGIN', {
-            post: this.$axios.post,
             secret: {
               accessToken: authResponse.accessToken,
             }
@@ -36,15 +36,14 @@
           setTimeout(this.reset, 1500);
         }
       },
-      fbLoginStatusCallback(authResponse) {
-        if(!authResponse) {
-          FB.login(this.fbLoginCallback, { scope: 'public_profile,email' });
-        } else {
-          this.fbLoginCallback(authResponse);
-        }
-      },
       facebookLogin() {
-        FB.getLoginStatus(this.fbLoginStatusCallback)
+        FB.getLoginStatus((authResponse) => {
+          if(!authResponse) {
+            FB.login(this.fbLoginCallback, { scope: 'public_profile,email' });
+          } else {
+            this.fbLoginCallback(authResponse);
+          }
+        })
       },
       async login() {
         if(this.preventSubmission) {
@@ -53,14 +52,13 @@
         this.loading = true;
         try {
           const data = await this.$store.dispatch('DO_LOGIN', {
-            post: this.$axios.post,
             secret: {
               email: this.email,
               password: this.password
             }
           });
 
-          Cookies.set('ks-security', data[ 'ks-secutiry' ], { path: '/' });
+          Cookies.set('ks-security', data[ 'ks-security' ], { path: '/' });
           this.loading = false;
 
           this.$router.push({ name: 'dashboard' });
