@@ -17,7 +17,12 @@
     "integration-test": "sh test.sh -i",
     "test": "sh test.sh -u && sh test.sh -l"
   },
-  "pre-commit": { "run": [ "lint-test", "unit-test" ] },
+  "pre-commit": {
+    "run": [
+      "lint-test",
+      "unit-test"
+    ]
+  },
   "repository": {
     "type": "git"
   },
@@ -34,6 +39,7 @@
     "chokidar": "^2.0.4",
     "cookie-parser": "^1.4.3",
     "cross-env": "^5.2.0",
+    "deepmerge": "^3.1.0",
     "eslint": "^5.9.0",
     "eslint-plugin-mocha": "^5.2.0",
     "express": "^4.16.4",
