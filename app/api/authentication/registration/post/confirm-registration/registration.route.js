@@ -9,8 +9,8 @@ async function confirmRegistrationRoute(req, res) {
 }
 
 /**
- * @api {post} /api/confirm 02 - Registration
- * @apiName Registration
+ * @api {post} /api/confirm 02 - Confirm registration
+ * @apiName Confirm registration
  * @apiGroup Authentication
  * @apiDescription Api endpoint that confirms registration of the new user
  *

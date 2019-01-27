@@ -7,12 +7,30 @@ const { httpStatus } = constants;
 const { USER, LOGIN_DETAILS, DUMMY_TOKEN } = require('integration/common/data');
 
 async function registerUser() {
-  const { status } = await http.post('http://localhost:3010/api/registration', USER);
+  try {
+    const { persistence: database } = databaseService.get();
+    const { rows } = await database.raw('SELECT id AS "roleId" FROM "public"."role" WHERE "name" = \'user\';');
 
-  assert.strictEqual(status, httpStatus.CREATED);
+    USER.roleId = rows[0].roleId;
+
+    const { status } = await http.post('http://localhost:3010/api/registration', USER);
+
+    assert.strictEqual(status, httpStatus.CREATED);
+  } catch(error) {
+    if(error.code === 'ECONNREFUSED') {
+      throw new Error('The application is not running. Cannot continue with tests');
+    }
+    throw error;
+  }
+
 }
 async function registerUserAgain() {
   try {
+    const { persistence: database } = databaseService.get();
+    const { rows } = await database.raw('SELECT id AS "roleId" FROM "public"."role" WHERE "name" = \'user\';');
+
+    USER.roleId = rows[0].roleId;
+
     const { status } = await http.post('http://localhost:3010/api/registration', USER);
     assert.notStrictEqual(status, httpStatus.CREATED);
   } catch({ code, response }) {

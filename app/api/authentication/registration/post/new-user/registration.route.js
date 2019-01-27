@@ -15,9 +15,10 @@ async function registrationRoute(req, res) {
  *
  * @apiVersion 0.0.1
  *
- * @apiParam (Body) {String{128}} firstName firstname
- * @apiParam (Body) {String{128}} lastName lastname
+ * @apiParam (Body) {String{128}} firstName First name
+ * @apiParam (Body) {String{128}} lastName Last name
  * @apiParam (Body) {String{32}} email Email
+ * @apiParam (Body) {UUID} roleId Role id
  * @apiParam (Body) {String} password Password
  *
  * @apiSuccess {String} message A success message

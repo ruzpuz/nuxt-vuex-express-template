@@ -15,7 +15,6 @@ export default async function ({ store, req, $axios }) {
   await store.commit('SET_ROLES', data.roles);
   await store.commit('SET_ROLES_OBJECT', rolesObject);
 
-
   if(loggedUser.roleId === store.state.rolesObject.NOT_LOGGED_IN) {
     store.commit('LOGOUT');
   } else {
