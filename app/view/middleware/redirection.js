@@ -1,24 +1,26 @@
-export default async function ({ store, route, redirect }) {
-  if (!process.server) {
+export default async function ({ store, route, req, redirect, app }) {
+  if (!process.server && !req) {
     return;
   }
 
   function resolveRoute(user) {
-
-    if(route.name === 'login' ||
-      route.name === 'confirm-id'||
-      route.name === 'registration'||
-      route.name === 'index') {
+    if(route.fullPath === '/') {
+      return redirect(app.localePath({ name: 'index' }));
+    }
+    if(route.name.startsWith('login') ||
+      route.name.startsWith('confirm-id') ||
+      route.name.startsWith('registration') ||
+      route.name.startsWith('index')) {
       if(store.getters.isLoggedIn) {
-        return redirect({ name: 'dashboard' });
+        return redirect(app.localePath({ name: 'dashboard' }));
       }
     } else {
       if(!store.getters.isLoggedIn) {
-        return redirect({ name: 'login' });
+        return redirect(app.localePath({ name: 'login' }));
       }
 
-      if(route.name === 'portal-users' && user.roleId !== store.getters.getRolesObject.ADMINISTRATOR) {
-        return redirect({ name: 'not-found' });
+      if(route.name.startsWith('portal-users') && user.roleId !== store.getters.getRolesObject.ADMINISTRATOR) {
+        return redirect(app.localePath({ name: 'not-found' }));
       }
 
     }

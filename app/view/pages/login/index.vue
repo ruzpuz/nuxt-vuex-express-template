@@ -8,6 +8,12 @@
 
   export default {
     name: 'Login',
+    nuxtI18n: {
+      paths: {
+        en: '/login',
+        fr: '/uloguj-se' // -> accessible at /rs/uloguj-se
+      }
+    },
     layout: 'access',
     data: function() {
       return {
@@ -32,7 +38,7 @@
     },
     methods: {
       navigateToRegistration() {
-        this.$router.push({ name: 'registration' });
+        this.$router.push(this.localePath({ name: 'registration' }));
       },
       reset() {
         this.loading = false;
@@ -49,7 +55,7 @@
           Cookies.set('ks-security', data['ks-security'], { path: '/' });
           this.loading = false;
 
-          this.$router.push({ name: 'dashboard' });
+          this.$router.push(this.localePath({ name: 'dashboard' }));
         } catch(error) {
           this.loading = false;
           this.message = error.response.data;
@@ -81,7 +87,7 @@
           Cookies.set('ks-security', data['ks-security'], { path: '/' });
           this.loading = false;
 
-          this.$router.push({ name: 'dashboard' });
+          this.$router.push(this.localePath({ name: 'dashboard' }));
         } catch(error) {
           this.loading = false;
           this.message = error.response.data;

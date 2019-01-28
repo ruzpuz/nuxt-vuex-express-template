@@ -49,6 +49,7 @@
     "mocha": "^5.2.0",
     "nodemailer": "^4.7.0",
     "nuxt": "^2.2.0",
+    "nuxt-i18n": "^5.8.0",
     "nuxt-material-design-icons": "^1.0.4",
     "pg": "^7.6.1",
     "pre-commit": "^1.2.2",

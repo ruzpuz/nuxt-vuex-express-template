@@ -62,7 +62,7 @@
     },
     methods: {
       navigateToLogin() {
-        this.$router.push({ name: 'login' });
+        this.$router.push(this.localePath({ name: 'login' }));
       },
       reset() {
         this.loading = false;
@@ -78,7 +78,7 @@
           await this.$store.dispatch('DO_REGISTER', this.USER);
 
           this.loading = false;
-          this.$router.push({ name: 'login' });
+          this.$router.push(this.localePath({ name: 'login' }));
 
         } catch(error) {
           this.loading = false;

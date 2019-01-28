@@ -5,6 +5,12 @@
 
   export default {
     name: 'Index',
+    nuxtI18n: {
+      paths: {
+        en: '/',
+        fr: '/' // -> accessible at /rs/uloguj-se
+      }
+    },
     data() {
       return {
         user: {}
@@ -22,7 +28,7 @@
           this.$router.push({ name: 'portal-list' });
 
         } else {
-          this.$router.push({ name: 'login' });
+          this.$router.push({ name: 'login___fr' });
         }
       }
     },
