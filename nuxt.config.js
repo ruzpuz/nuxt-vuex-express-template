@@ -22,7 +22,7 @@ module.exports = {
       'nuxt-i18n', {
         locales: [
           { code: 'en', iso: 'en-US' },
-          { code: 'fr', iso: 'fr-FR' }
+          { code: 'rs', iso: 'rs-RS' }
         ],
         strategy: 'prefix',
         defaultLocale: 'en'

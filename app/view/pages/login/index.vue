@@ -11,7 +11,7 @@
     nuxtI18n: {
       paths: {
         en: '/login',
-        fr: '/uloguj-se' // -> accessible at /rs/uloguj-se
+        rs: '/uloguj-se' // -> accessible at /rs/uloguj-se
       }
     },
     layout: 'access',

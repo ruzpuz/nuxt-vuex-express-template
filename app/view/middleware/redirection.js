@@ -2,31 +2,38 @@ export default async function ({ store, route, req, redirect, app }) {
   if (!process.server && !req) {
     return;
   }
+  function isAccessRoute(route) {
+    return (
+      route.name && (
+        route.name.startsWith('login') ||
+        route.name.startsWith('confirm-id') ||
+        route.name.startsWith('registration')
+      )
+    );
+  }
+  function isRouteSecure(route) {
+    return (
+      route.name && (
+        route.name.startsWith('dashboard')
+      )
+    );
+  }
 
-  function resolveRoute(user) {
+  function resolveRoute() {
+
     if(route.fullPath === '/') {
       return redirect(app.localePath({ name: 'index' }));
     }
-    if(route.name.startsWith('login') ||
-      route.name.startsWith('confirm-id') ||
-      route.name.startsWith('registration') ||
-      route.name.startsWith('index')) {
-      if(store.getters.isLoggedIn) {
-        return redirect(app.localePath({ name: 'dashboard' }));
-      }
-    } else {
-      if(!store.getters.isLoggedIn) {
-        return redirect(app.localePath({ name: 'login' }));
-      }
-
-      if(route.name.startsWith('portal-users') && user.roleId !== store.getters.getRolesObject.ADMINISTRATOR) {
-        return redirect(app.localePath({ name: 'not-found' }));
-      }
-
+    if(isAccessRoute(route) && store.getters.isLoggedIn) {
+      return redirect(app.localePath({ name: 'dashboard' }));
     }
+    if(isRouteSecure(route) && !store.getters.isLoggedIn) {
+      return redirect(app.localePath({ name: 'login' }));
+    }
+
   }
 
-  resolveRoute(store.getters.getUser);
+  resolveRoute();
 
 
 }

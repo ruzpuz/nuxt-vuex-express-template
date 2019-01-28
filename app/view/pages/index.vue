@@ -8,7 +8,7 @@
     nuxtI18n: {
       paths: {
         en: '/',
-        fr: '/' // -> accessible at /rs/uloguj-se
+        fr: '/'
       }
     },
     data() {
