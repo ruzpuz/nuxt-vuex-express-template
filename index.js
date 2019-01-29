@@ -5,11 +5,9 @@ const chokidar = require('chokidar');
 const chokidarConf = require('./chokidar.json');
 
 const { Nuxt, Builder } = require('nuxt');
-const options = require('./nuxt.config.js');
-
-const nuxt = new Nuxt(options);
 
 const knex = require('knex');
+
 const databaseConfiguration = require('configuration/database/database-configuration.service');
 const memoryMigrations = require('app/database/memory-migrations/memory-migrations.service');
 const persistence = knex(databaseConfiguration.persistence);
@@ -18,14 +16,15 @@ const database = {
   persistence,
   memory
 };
-
 let Server;
 
-let firstRun = true;
 let timer = null;
 let server;
-let watcher;
 let databaseService;
+
+let nuxt;
+let nuxtOptions;
+
 
 function emptyMemory() {
   Object.keys(require.cache).forEach(function (key) {
@@ -51,7 +50,16 @@ function emptyMemory() {
   });
 }
 
-async function serverStopped(stoppingError) {
+async function buildFrontEnd() {
+  logger.info('Building front end');
+
+  nuxtOptions = require('./app/view/nuxt.config.js');
+
+  nuxt = new Nuxt(nuxtOptions);
+
+  await new Builder(nuxt).build();
+}
+async function startServer(stoppingError, firstRun, buildNuxt) {
   if(stoppingError) {
     logger.error('Error stopping server. Exiting with error');
     logger.log({ level: 'error', message: stoppingError });
@@ -67,6 +75,14 @@ async function serverStopped(stoppingError) {
 
   Server = require('app/Server');
   server = new Server();
+  if(firstRun) {
+    logger.info('First time starting');
+
+    logger.info('Setting up memory database');
+    for(let i = 0; i < memoryMigrations.migrations.length; i += 1) {
+      await memoryMigrations.migrations[i](memory);
+    }
+  }
 
   logger.info('Injecting the database connections');
   databaseService = require('app/database/database.service');
@@ -74,6 +90,9 @@ async function serverStopped(stoppingError) {
 
   try {
     timer = null;
+    if(buildNuxt) {
+      await buildFrontEnd();
+    }
     await server.initializeServer(nuxt);
     server.startServer();
   } catch(error) {
@@ -81,72 +100,34 @@ async function serverStopped(stoppingError) {
     logger.log({ level: 'error', message: error.message });
   }
 }
-async function updateServer() {
-
+async function stopServer(buildNuxt) {
   if(server) {
-    server.stopServer(serverStopped);
-  } else if(firstRun) {
-    firstRun = false;
-
-    logger.info('First time starting');
-
-    logger.info('Setting up memory database');
-    for(let i = 0; i < memoryMigrations.migrations.length; i += 1) {
-      await memoryMigrations.migrations[i](memory);
-    }
-
-    logger.info('Injecting the database connections');
-
-    databaseService = require('app/database/database.service');
-    databaseService.inject(database);
-
-    Server = require('app/Server');
-    server = new Server();
-
-    try {
-      await server.initializeServer(nuxt);
-      server.startServer();
-    } catch(error) {
-      logger.error('Server runtime error!');
-      logger.log({ level: 'error', message: error.message });
-    }
+    server.stopServer((error) => {
+      logger.info('Server stopped. Restarting');
+      startServer(error, false, buildNuxt);
+    });
   }
 }
+function restartServer(buildNuxt) {
+  logger.info('Project updated');
+  if(timer) {
+    clearTimeout(timer);
+  }
+  timer = setTimeout(stopServer, 100, buildNuxt);
+}
 
-async function start() {
+(function start() {
 
   if(environment === 'development') {
-    watcher = chokidar.watch('app',
-      chokidarConf
-    ).on('ready', function () {
-      watcher.on('all', function () {
-        logger.info('Project updated');
-        if(timer) {
-          clearTimeout(timer);
-        }
-        timer = setTimeout(updateServer, 100);
-      });
-    });
-
-    logger.info('Building front end');
-
-    try {
-      await new Builder(nuxt).build();
-    } catch(error) {
-      logger.error('Error building front end');
-      logger.log({ level: 'error', message: error });
-
-      process.exit(-1);
-    }
+    chokidar.watch('app', chokidarConf).on('ready', function() { this.on('all', () => restartServer()); });
+    chokidar.watch('app/view/nuxt.config.js' ).on('ready', function() { this.on('all', () => restartServer(true) ); });
 
     process.on('unhandledRejection', function (reason) {
       logger.error('Server Failed');
       logger.error('Unhandled Rejection at: ', reason.stack || reason);
     });
-    updateServer();
 
+    startServer(false, true, true);
   }
 
-}
-
-start();
+})();

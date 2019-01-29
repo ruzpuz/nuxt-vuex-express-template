@@ -24,12 +24,7 @@
     },
     methods: {
       navigateToLogin() {
-        if (this.user.id) {
-          this.$router.push({ name: 'portal-list' });
-
-        } else {
-          this.$router.push({ name: 'login___fr' });
-        }
+        this.$router.push(this.localePath({ name: 'login' }));
       }
     },
     asyncData(context) {

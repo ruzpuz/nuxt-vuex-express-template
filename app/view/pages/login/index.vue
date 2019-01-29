@@ -15,7 +15,10 @@
       }
     },
     layout: 'access',
-    data: function() {
+    head() {
+      return { title: this.$t('login.TITLE') };
+    },
+    data() {
       return {
         email: '',
         password: '',
@@ -103,7 +106,7 @@
     <v-card-title primary-title>
       <div>
         <h3 class="headline mb-0">
-          Login
+          {{ $t('login.HEAD') }}
         </h3>
       </div>
     </v-card-title>

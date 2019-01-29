@@ -15,15 +15,18 @@ module.exports = {
     }
   },
   srcDir: 'app/view/',
+  ignore: [ 'app/view/nuxt.config.js' ],
   modules: [
     '@nuxtjs/axios',
     '@nuxtjs/proxy',
     'nuxt-material-design-icons', [
       'nuxt-i18n', {
         locales: [
-          { code: 'en', iso: 'en-US' },
-          { code: 'rs', iso: 'rs-RS' }
+          { code: 'en', iso: 'en-US', file: 'en-US.js' },
+          { code: 'rs', iso: 'rs-RS', file: 'rs-RS.js' }
         ],
+        lazy: true,
+        langDir: 'languages/',
         strategy: 'prefix',
         defaultLocale: 'en'
       }
