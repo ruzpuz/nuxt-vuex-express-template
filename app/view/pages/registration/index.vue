@@ -8,7 +8,7 @@
     name: 'Registration',
     layout: 'access',
     data() {
-      const roles = this.$store.getters.getRoles.filter(item => item.name !== 'administrator');
+      const roles = this.$store.getters['common/getRoles'].filter(item => item.name !== 'administrator');
 
       return {
         email: '',
@@ -75,7 +75,7 @@
         this.loading = true;
 
         try {
-          await this.$store.dispatch('DO_REGISTER', this.USER);
+          await this.$store.dispatch('registration/DO_REGISTER', this.USER);
 
           this.loading = false;
           this.$router.push(this.localePath({ name: 'login' }));

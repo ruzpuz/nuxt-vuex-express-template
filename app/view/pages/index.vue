@@ -8,7 +8,7 @@
     nuxtI18n: {
       paths: {
         en: '/',
-        fr: '/'
+        rs: '/'
       }
     },
     data() {
@@ -18,7 +18,6 @@
     },
     computed: {
       fullName() {
-
         return this.user.firstName + ' ' + this.user.lastName;
       }
     },
@@ -28,7 +27,7 @@
       }
     },
     asyncData(context) {
-      return { user: context.store.getters.getUser };
+      return { user: context.store.getters['login/getUser'] };
     }
   };
 </script>

@@ -36,7 +36,7 @@
 
     async asyncData({ params }) {
       try {
-        await this.$store.dispatch('DO_CONFIRM_REGISTRATION', { confirmationToken: params.id });
+        await this.$store.dispatch('registration/DO_CONFIRM_REGISTRATION', { confirmationToken: params.id });
         return { success: true };
       } catch(error) {
         return { success: false };

@@ -123,8 +123,8 @@ function restartServer(buildNuxt) {
     chokidar.watch('app/view/nuxt.config.js' ).on('ready', function() { this.on('all', () => restartServer(true) ); });
 
     process.on('unhandledRejection', function (reason) {
-      logger.error('Server Failed');
-      logger.error('Unhandled Rejection at: ', reason.stack || reason);
+      logger.log({ level: 'error', message: 'Server Failed' });
+      logger.log({ level: 'error', message: 'Unhandled Rejection at: ' + reason.stack || reason });
     });
 
     startServer(false, true, true);

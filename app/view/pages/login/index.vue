@@ -2,7 +2,7 @@
 
 </style>
 <script>
-  import Cookies from 'js-cookie';
+  import LanguagePicker from '../../components/language-picker';
 
   const emailRegex = new RegExp('^([A-Za-z0-9._%+-]|"|”|“|\\\\| |“.*”){0,64}([A-Za-z0-9_%+-]|"|”|“|\\\\| |“.*”)@[A-Za-z0-9][A-Za-z0-9.-]*\\.[A-Za-z]{2,}$');
 
@@ -15,6 +15,7 @@
       }
     },
     layout: 'access',
+    components: { LanguagePicker },
     head() {
       return { title: this.$t('login.TITLE') };
     },
@@ -49,13 +50,12 @@
       },
       async fbLoginCallback({ authResponse }) {
         try {
-          const data = await this.$store.dispatch('DO_FACEBOOK_LOGIN', {
+          await this.$store.dispatch('login/DO_FACEBOOK_LOGIN', {
             secret: {
               accessToken: authResponse.accessToken
             }
           });
 
-          Cookies.set('ks-security', data['ks-security'], { path: '/' });
           this.loading = false;
 
           this.$router.push(this.localePath({ name: 'dashboard' }));
@@ -80,14 +80,13 @@
         }
         this.loading = true;
         try {
-          const data = await this.$store.dispatch('DO_LOGIN', {
+          await this.$store.dispatch('login/DO_LOGIN', {
             secret: {
               email: this.email,
               password: this.password
             }
           });
 
-          Cookies.set('ks-security', data['ks-security'], { path: '/' });
           this.loading = false;
 
           this.$router.push(this.localePath({ name: 'dashboard' }));
@@ -109,17 +108,21 @@
           {{ $t('login.HEAD') }}
         </h3>
       </div>
+      <v-spacer />
+      <div>
+        <language-picker />
+      </div>
     </v-card-title>
     <v-card-text>
       <v-form @keyup.enter.native="login">
         <v-text-field
           v-model="email"
           :rules="emailRules"
-          label="E-mail"
+          :label="$t('login.EMAIL_LABEL')"
           required />
         <v-text-field
           v-model="password"
-          label="Password"
+          :label="$t('login.PASSWORD_LABEL')"
           type="password"
           required />
         <div
@@ -140,13 +143,13 @@
         color="blue"
         flat
         @click="navigateToRegistration">
-        register
+        {{ $t('login.REGISTRATION_BUTTON') }}
       </v-btn>
       <v-btn
         color="info"
         :disabled="preventSubmission"
         @click="login">
-        login
+        {{ $t('login.LOGIN_BUTTON') }}
       </v-btn>
     </v-card-actions>
   </v-card>

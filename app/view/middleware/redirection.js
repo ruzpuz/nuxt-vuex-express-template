@@ -15,7 +15,6 @@ function isRouteSecure(route) {
   );
 }
 
-
 export default async function ({ store, route, req, redirect, app }) {
   if (!process.server && !req) {
     return;
@@ -24,10 +23,10 @@ export default async function ({ store, route, req, redirect, app }) {
   if(route.fullPath === '/') {
     return redirect(app.localePath({ name: 'index' }));
   }
-  if(isAccessRoute(route) && store.getters.isLoggedIn) {
+  if(isAccessRoute(route) && store.getters['login/isLoggedIn']) {
     return redirect(app.localePath({ name: 'dashboard' }));
   }
-  if(isRouteSecure(route) && !store.getters.isLoggedIn) {
+  if(isRouteSecure(route) && !store.getters['login/isLoggedIn']) {
     return redirect(app.localePath({ name: 'login' }));
   }
 

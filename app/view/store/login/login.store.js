@@ -1,6 +1,8 @@
 import { post } from 'axios';
+import Cookies from 'js-cookie';
 
 export default {
+  namespaced: true,
   state: {
     user: {}
   },
@@ -23,15 +25,15 @@ export default {
   actions: {
     async DO_LOGIN({ commit }, { secret }) {
       const { data } = await post('/api/login', secret);
-      commit('LOGIN', data.user);
-      return data;
+      Cookies.set('ks-security', data['ks-security'], { path: '/' });
+
+      commit('login/LOGIN', data.user);
     },
     async DO_FACEBOOK_LOGIN({ commit }, { secret }) {
       const { data } = await post('/api/login/facebook', secret);
+      Cookies.set('ks-security', data['ks-security'], { path: '/' });
 
-      commit('LOGIN', data.user);
-
-      return data;
+      commit('login/LOGIN', data.user);
     }
   }
 };

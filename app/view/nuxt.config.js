@@ -1,19 +1,4 @@
 module.exports = {
-  build: {
-    html: {
-      minify: {
-        collapseBooleanAttributes: true,
-        decodeEntities: true,
-        minifyCSS: true,
-        minifyJS: true,
-        processConditionalComments: true,
-        removeEmptyAttributes: true,
-        removeRedundantAttributes: true,
-        trimCustomFragments: true,
-        useShortDoctype: true
-      }
-    }
-  },
   srcDir: 'app/view/',
   ignore: [ 'app/view/nuxt.config.js' ],
   modules: [
@@ -22,13 +7,19 @@ module.exports = {
     'nuxt-material-design-icons', [
       'nuxt-i18n', {
         locales: [
-          { code: 'en', iso: 'en-US', file: 'en-US.js' },
+          { code: 'us', iso: 'en-US', file: 'en-US.js' },
           { code: 'rs', iso: 'rs-RS', file: 'rs-RS.js' }
         ],
         lazy: true,
         langDir: 'languages/',
         strategy: 'prefix',
-        defaultLocale: 'en'
+        defaultLocale: 'us',
+        detectBrowserLanguage: {
+          useCookie: true,
+          cookieKey: 'language',
+          alwaysRedirect: true,
+          fallbackLocale: 'em'
+        }
       }
     ]
   ],
