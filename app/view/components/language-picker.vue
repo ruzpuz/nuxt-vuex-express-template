@@ -1,10 +1,12 @@
 <template>
   <v-select
+    :key="selected"
     v-model="selected"
     :flat="true"
     :items="languages"
     class="dense-input"
-    label="Standard">
+    label="Standard"
+    @change="languageChange">
     <template
       slot="selection"
       slot-scope="data">
@@ -17,7 +19,8 @@
     <template
       slot="item"
       slot-scope="data">
-      <v-list-tile-avatar>
+      <v-list-tile-avatar
+        :key="reload">
         <img
           :src="getImageUrl(data.item)"
           :alt="data.item">
@@ -36,16 +39,13 @@
     name: 'LanguagePicker',
     data() {
       return {
-        languages: this.$i18n.locales.map(item => item.code),
-        selected: (() => {
-          const cookie = Cookies.get('language');
-          if(cookie) {
-            return cookie;
-          }
-          Cookies.set('language', this.$i18n.defaultLocale, { path: '/' });
-          return this.$i18n.defaultLocale;
-        })()
+        languages: this.$store.getters['languages/getAvailable'],
+        selected: this.$store.getters['languages/getSelected'],
+        reload: Math.random()
       };
+    },
+    mounted() {
+      Cookies.set('language', this.selected, { path: '/' });
     },
     methods: {
       getSelectedUrl(image) {
@@ -53,11 +53,12 @@
       },
       getImageUrl(image) {
         return `/flags/1x1/${image}.svg`;
+      },
+      languageChange(language) {
+
+        this.$store.dispatch('languages/DO_SELECT_LANGUAGE', { language });
+        this.$router.push(this.switchLocalePath(language));
       }
-    },
-    created() {
-      /*console.log(this.selected);
-      console.log(Object.keys(this.$i18n));*/
     }
   };
 </script>

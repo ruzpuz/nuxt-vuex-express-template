@@ -17,11 +17,14 @@ module.exports = {
         detectBrowserLanguage: {
           useCookie: true,
           cookieKey: 'language',
-          alwaysRedirect: true,
+          alwaysRedirect: false,
           fallbackLocale: 'em'
         }
       }
     ]
+  ],
+  plugins: [
+    { src: '~plugins/i18n.js' }
   ],
   head: {
     script: [
