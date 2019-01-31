@@ -41,6 +41,29 @@ async function registerUserAgain() {
   }
 }
 
+async function registerUserAgainRandomCapitalCharacters() {
+  try {
+    const { persistence: database } = databaseService.get();
+    const { rows } = await database.raw('SELECT id AS "roleId" FROM "public"."role" WHERE "name" = \'user\';');
+
+    USER.roleId = rows[0].roleId;
+    USER.email = USER.email.split('').map(char => {
+      if(Math.random() > 0.5) {
+        return char.toLocaleUpperCase();
+      }
+      return char;
+    }).join('');
+
+    const { status } = await http.post('http://localhost:3010/api/registration', USER);
+    assert.notStrictEqual(status, httpStatus.CREATED);
+  } catch({ code, response }) {
+    if(code === 'ECONNREFUSED') {
+      throw new Error('The application is not running. Cannot continue with tests');
+    }
+    assert.strictEqual(response.status, httpStatus.CONFLICT);
+  }
+}
+
 async function loginFailedUnconfirmed() {
   try {
     const { status } = await http.post('http://localhost:3010/api/login', LOGIN_DETAILS);
@@ -79,6 +102,8 @@ async function confirmationFailsNoUser() {
 async function confirmUser() {
   const { persistence: database } = databaseService.get();
 
+  USER.email = USER.email.toLocaleLowerCase();
+
   const sql = `
     SELECT
       confirmation_token 
@@ -109,6 +134,7 @@ async function scenario() {
 
     it('Successful registration', registerUser);
     it('Duplicate user registration failure', registerUserAgain);
+    it('Duplicate user registration failure - random capital characters', registerUserAgainRandomCapitalCharacters);
     it('Unconfirmed user login failure', loginFailedUnconfirmed);
     it('Bad confirmation request', confirmationFailsNoToken);
     it('Confirmation of non existent token', confirmationFailsNoUser);

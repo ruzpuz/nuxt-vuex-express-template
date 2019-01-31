@@ -5,6 +5,7 @@ async function handleCall(body, autoValidate) {
   if(validation) {
     return validation;
   }
+  body.email = body.email.toLocaleLowerCase();
   body.password = service.createHashedPassword(body.password);
   return await service.saveNewUser(body, autoValidate);
 }
