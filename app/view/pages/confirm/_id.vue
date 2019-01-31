@@ -2,7 +2,7 @@
   <div>
     <v-card v-if="success">
       <v-card-title>
-        SUCCESS
+        {{ $t('confirmationPage.SUCCESS_HEAD') }}
         <v-spacer />
         <i class="material-icons icon-success">
           check
@@ -10,12 +10,12 @@
       </v-card-title>
       <v-divider />
       <v-card-text>
-        Successfully confirmed registration. Proceed to login
+        {{ $t('confirmationPage.SUCCESS_MESSAGE') }}
       </v-card-text>
     </v-card>
     <v-card v-else>
       <v-card-title>
-        NO USER FOUND
+        {{ $t('confirmationPage.FAILURE_HEAD') }}
         <v-spacer />
         <i class="material-icons icon-error">
           close
@@ -23,7 +23,7 @@
       </v-card-title>
       <v-divider />
       <v-card-text>
-        There is no user to be confirmed in the database
+        {{ $t('confirmationPage.FAILURE_MESSAGE') }}
       </v-card-text>
     </v-card>
   </div>
@@ -36,7 +36,7 @@
 
     async asyncData({ params }) {
       try {
-        await this.$store.dispatch('DO_CONFIRM_REGISTRATION', { confirmationToken: params.id });
+        await this.$store.dispatch('registration/DO_CONFIRM_REGISTRATION', { confirmationToken: params.id });
         return { success: true };
       } catch(error) {
         return { success: false };
@@ -49,7 +49,7 @@
     },
     created() {
       setTimeout(() => {
-        this.$router.push({ name: 'login' });
+        this.$router.push(this.localePath({ name: 'login' }));
       }, 1000);
     }
   };

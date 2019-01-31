@@ -5,6 +5,12 @@
 
   export default {
     name: 'Index',
+    nuxtI18n: {
+      paths: {
+        en: '/',
+        rs: '/'
+      }
+    },
     data() {
       return {
         user: {}
@@ -12,22 +18,16 @@
     },
     computed: {
       fullName() {
-
         return this.user.firstName + ' ' + this.user.lastName;
       }
     },
     methods: {
       navigateToLogin() {
-        if (this.user.id) {
-          this.$router.push({ name: 'portal-list' });
-
-        } else {
-          this.$router.push({ name: 'login' });
-        }
+        this.$router.push(this.localePath({ name: 'login' }));
       }
     },
     asyncData(context) {
-      return { user: context.store.getters.getUser };
+      return { user: context.store.getters['login/getUser'] };
     }
   };
 </script>

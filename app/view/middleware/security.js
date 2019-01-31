@@ -5,20 +5,12 @@ export default async function ({ store, req, $axios }) {
   }
 
   const loggedUser = req.headers.security;
-  const rolesObject = { NOT_LOGGED_IN: -1 };
-  const { data } = await $axios.get('/api/roles');
+  await store.commit('common/SET_ROLES', $axios.get);
 
-  data.roles.forEach(function (role) {
-    rolesObject[role.name.toUpperCase()] = role.id;
-  });
-
-  await store.commit('SET_ROLES', data.roles);
-  await store.commit('SET_ROLES_OBJECT', rolesObject);
-
-  if(loggedUser.roleId === store.state.rolesObject.NOT_LOGGED_IN) {
-    store.commit('LOGOUT');
+  if(loggedUser.roleId === store.getters['common/getRolesObject'].NOT_LOGGED_IN) {
+    store.commit('login/LOGOUT');
   } else {
-    store.commit('LOGIN', loggedUser);
+    store.commit('login/LOGIN', loggedUser);
   }
 
 }

@@ -1,6 +1,7 @@
 import { post } from 'axios';
 
 export default {
+  namespaced: true,
   actions: {
     /* eslint-disable-next-line no-unused-vars */
     DO_REGISTER({ commit }, user) {

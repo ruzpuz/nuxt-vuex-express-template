@@ -2,14 +2,24 @@
 
 </style>
 <script>
-  import Cookies from 'js-cookie';
+  import LanguagePicker from '../../components/language-picker';
 
   const emailRegex = new RegExp('^([A-Za-z0-9._%+-]|"|”|“|\\\\| |“.*”){0,64}([A-Za-z0-9_%+-]|"|”|“|\\\\| |“.*”)@[A-Za-z0-9][A-Za-z0-9.-]*\\.[A-Za-z]{2,}$');
 
   export default {
     name: 'Login',
     layout: 'access',
-    data: function() {
+    nuxtI18n: {
+      paths: {
+        en: '/login',
+        rs: '/uloguj-se'
+      }
+    },
+    components: { LanguagePicker },
+    head() {
+      return { title: this.$t('login.TITLE') };
+    },
+    data() {
       return {
         email: '',
         password: '',
@@ -32,7 +42,7 @@
     },
     methods: {
       navigateToRegistration() {
-        this.$router.push({ name: 'registration' });
+        this.$router.push(this.localePath({ name: 'registration' }));
       },
       reset() {
         this.loading = false;
@@ -40,16 +50,15 @@
       },
       async fbLoginCallback({ authResponse }) {
         try {
-          const data = await this.$store.dispatch('DO_FACEBOOK_LOGIN', {
+          await this.$store.dispatch('login/DO_FACEBOOK_LOGIN', {
             secret: {
               accessToken: authResponse.accessToken
             }
           });
 
-          Cookies.set('ks-security', data['ks-security'], { path: '/' });
           this.loading = false;
 
-          this.$router.push({ name: 'dashboard' });
+          this.$router.push(this.localePath({ name: 'dashboard' }));
         } catch(error) {
           this.loading = false;
           this.message = error.response.data;
@@ -71,17 +80,16 @@
         }
         this.loading = true;
         try {
-          const data = await this.$store.dispatch('DO_LOGIN', {
+          await this.$store.dispatch('login/DO_LOGIN', {
             secret: {
               email: this.email,
               password: this.password
             }
           });
 
-          Cookies.set('ks-security', data['ks-security'], { path: '/' });
           this.loading = false;
 
-          this.$router.push({ name: 'dashboard' });
+          this.$router.push(this.localePath({ name: 'dashboard' }));
         } catch(error) {
           this.loading = false;
           this.message = error.response.data;
@@ -95,22 +103,22 @@
 <template>
   <v-card>
     <v-card-title primary-title>
-      <div>
-        <h3 class="headline mb-0">
-          Login
-        </h3>
-      </div>
+      <h3 class="headline mb-0">
+        {{ $t('login.HEAD') }}
+      </h3>
+      <v-spacer />
+      <language-picker />
     </v-card-title>
     <v-card-text>
       <v-form @keyup.enter.native="login">
         <v-text-field
           v-model="email"
           :rules="emailRules"
-          label="E-mail"
+          :label="$t('login.EMAIL_LABEL')"
           required />
         <v-text-field
           v-model="password"
-          label="Password"
+          :label="$t('login.PASSWORD_LABEL')"
           type="password"
           required />
         <div
@@ -131,13 +139,13 @@
         color="blue"
         flat
         @click="navigateToRegistration">
-        register
+        {{ $t('login.REGISTRATION_BUTTON') }}
       </v-btn>
       <v-btn
         color="info"
         :disabled="preventSubmission"
         @click="login">
-        login
+        {{ $t('login.LOGIN_BUTTON') }}
       </v-btn>
     </v-card-actions>
   </v-card>

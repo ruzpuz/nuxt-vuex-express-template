@@ -3,12 +3,23 @@
 </style>
 <script>
   const emailRegex = new RegExp('^([A-Za-z0-9._%+-]|"|”|“|\\\\| |“.*”){0,64}([A-Za-z0-9_%+-]|"|”|“|\\\\| |“.*”)@[A-Za-z0-9][A-Za-z0-9.-]*\\.[A-Za-z]{2,}$');
+  import LanguagePicker from '~/components/language-picker';
 
   export default {
     name: 'Registration',
     layout: 'access',
+    nuxtI18n: {
+      paths: {
+        en: '/registration',
+        rs: '/registracija'
+      }
+    },
+    components: { LanguagePicker },
+    head() {
+      return { title: this.$t('registration.TITLE') };
+    },
     data() {
-      const roles = this.$store.getters.getRoles.filter(item => item.name !== 'administrator');
+      const roles = this.$store.getters['common/getRoles'].filter(item => item.name !== 'administrator');
 
       return {
         email: '',
@@ -62,7 +73,7 @@
     },
     methods: {
       navigateToLogin() {
-        this.$router.push({ name: 'login' });
+        this.$router.push(this.localePath({ name: 'login' }));
       },
       reset() {
         this.loading = false;
@@ -75,10 +86,10 @@
         this.loading = true;
 
         try {
-          await this.$store.dispatch('DO_REGISTER', this.USER);
+          await this.$store.dispatch('registration/DO_REGISTER', this.USER);
 
           this.loading = false;
-          this.$router.push({ name: 'login' });
+          this.$router.push(this.localePath({ name: 'login' }));
 
         } catch(error) {
           this.loading = false;
@@ -92,39 +103,39 @@
 <template>
   <v-card>
     <v-card-title primary-title>
-      <div>
-        <h3 class="headline mb-0">
-          Registration
-        </h3>
-      </div>
+      <h3 class="headline mb-0">
+        {{ $t('registration.HEAD') }}
+      </h3>
+      <v-spacer />
+      <language-picker />
     </v-card-title>
     <v-card-text>
       <v-form @keyup.enter.native="register">
         <v-text-field
           v-model="firstName"
           :rules="firstNameRules"
-          label="First name"
+          :label="$t('registration.FIRST_NAME_LABEL')"
           required />
         <v-text-field
           v-model="lastName"
           :rules="lastNameRules"
-          label="Last name"
+          :label="$t('registration.LAST_NAME_LABEL')"
           required />
         <v-text-field
           v-model="email"
           :rules="emailRules"
-          label="E-mail"
+          :label="$t('registration.EMAIL_LABEL')"
           required />
         <v-text-field
           v-model="password"
           type="password"
-          label="Password"
+          :label="$t('registration.PASSWORD_LABEL')"
           required />
         <v-text-field
           v-model="repeatPassword"
           type="password"
           :rules="repeatPasswordRules"
-          label="Repeat Password"
+          :label="$t('registration.REPEAT_PASSWORD_LABEL')"
           required />
         <v-select
           v-model="selectedRole"
@@ -150,13 +161,13 @@
         color="blue"
         flat
         @click="navigateToLogin">
-        login
+        {{ $t('registration.LOGIN_BUTTON') }}
       </v-btn>
       <v-btn
         :disabled="preventSubmission"
         color="info"
         @click="register">
-        register
+        {{ $t('registration.REGISTRATION_BUTTON') }}
       </v-btn>
     </v-card-actions>
   </v-card>

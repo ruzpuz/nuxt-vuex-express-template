@@ -13,7 +13,9 @@
 </script>
 
 <style scoped>
-
+  .fade-enter-active, .fade-leave-active { transition-property: opacity; transition-duration: 1s; }
+  .fade-enter-active { transition-delay: .1s; }
+  .fade-enter, .fade-leave-active { opacity: 0; }
 </style>
 
 <template>
@@ -27,7 +29,9 @@
         <v-flex
           xs12
           sm6>
-          <nuxt />
+          <transition name="fade">
+            <nuxt />
+          </transition>
         </v-flex>
       </v-layout>
     </v-container>

@@ -12,7 +12,7 @@
     },
     computed: {
       user() {
-        return this.$store.getters.getUser;
+        return this.$store.getters['login/getUser'];
       }
     }
   };
