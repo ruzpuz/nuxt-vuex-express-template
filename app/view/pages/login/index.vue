@@ -8,13 +8,13 @@
 
   export default {
     name: 'Login',
+    layout: 'access',
     nuxtI18n: {
       paths: {
         en: '/login',
-        rs: '/uloguj-se' // -> accessible at /rs/uloguj-se
+        rs: '/uloguj-se'
       }
     },
-    layout: 'access',
     components: { LanguagePicker },
     head() {
       return { title: this.$t('login.TITLE') };
@@ -103,15 +103,11 @@
 <template>
   <v-card>
     <v-card-title primary-title>
-      <div>
-        <h3 class="headline mb-0">
-          {{ $t('login.HEAD') }}
-        </h3>
-      </div>
+      <h3 class="headline mb-0">
+        {{ $t('login.HEAD') }}
+      </h3>
       <v-spacer />
-      <div>
-        <language-picker />
-      </div>
+      <language-picker />
     </v-card-title>
     <v-card-text>
       <v-form @keyup.enter.native="login">

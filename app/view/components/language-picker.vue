@@ -1,35 +1,37 @@
 <template>
-  <v-select
-    :key="selected"
-    v-model="selected"
-    :flat="true"
-    :items="languages"
-    class="dense-input"
-    label="Standard"
-    @change="languageChange">
-    <template
-      slot="selection"
-      slot-scope="data">
-      <v-flex xs12>
-        <img
-          :src="getSelectedUrl(data.item)"
-          :alt="data.item">
-      </v-flex>
-    </template>
-    <template
-      slot="item"
-      slot-scope="data">
-      <v-list-tile-avatar
-        :key="reload">
-        <img
-          :src="getImageUrl(data.item)"
-          :alt="data.item">
-      </v-list-tile-avatar>
-      <v-list-tile-content>
-        <v-list-tile-title> {{ data.item }} </v-list-tile-title>
-      </v-list-tile-content>
-    </template>
-  </v-select>
+  <div>
+    <v-select
+      :key="selected"
+      v-model="selected"
+      :flat="true"
+      :items="languages"
+      class="dense-input"
+      label="Standard"
+      @change="languageChange">
+      <template
+        slot="selection"
+        slot-scope="data">
+        <v-flex xs12>
+          <img
+            :src="getSelectedUrl(data.item)"
+            :alt="data.item">
+        </v-flex>
+      </template>
+      <template
+        slot="item"
+        slot-scope="data">
+        <v-list-tile-avatar
+          :key="reload">
+          <img
+            :src="getImageUrl(data.item)"
+            :alt="data.item">
+        </v-list-tile-avatar>
+        <v-list-tile-content>
+          <v-list-tile-title> {{ data.item }} </v-list-tile-title>
+        </v-list-tile-content>
+      </template>
+    </v-select>
+  </div>
 </template>
 
 <script>
