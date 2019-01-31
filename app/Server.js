@@ -40,7 +40,6 @@ class Server {
 
     if(this.server) {
       this.server.close(callback);
-
     }
     this.connections.forEach(function (connection) {
       connection.end();

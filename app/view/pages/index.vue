@@ -8,7 +8,7 @@
     nuxtI18n: {
       paths: {
         en: '/',
-        fr: '/'
+        rs: '/'
       }
     },
     data() {
@@ -18,22 +18,16 @@
     },
     computed: {
       fullName() {
-
         return this.user.firstName + ' ' + this.user.lastName;
       }
     },
     methods: {
       navigateToLogin() {
-        if (this.user.id) {
-          this.$router.push({ name: 'portal-list' });
-
-        } else {
-          this.$router.push({ name: 'login___fr' });
-        }
+        this.$router.push(this.localePath({ name: 'login' }));
       }
     },
     asyncData(context) {
-      return { user: context.store.getters.getUser };
+      return { user: context.store.getters['login/getUser'] };
     }
   };
 </script>
