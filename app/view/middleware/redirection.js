@@ -29,13 +29,16 @@ export default function({ store, route, req, redirect, app }) {
   }
   function languageSwitchRedirection() {
 
+    if(!route.name) {
+      return;
+    }
     const { i18n } = app;
     const selected = store.getters['languages/getSelected'];
     const originalName = route.name.split(i18n.routesNameSeparator)[0];
     const newName = originalName + i18n.routesNameSeparator + selected;
 
     if(route.name !== newName) {
-      redirect({ name: newName });
+      redirect({ name: newName, params: route.params });
     }
   }
 
