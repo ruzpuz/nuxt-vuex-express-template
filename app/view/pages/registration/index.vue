@@ -138,6 +138,7 @@
           :label="$t('registration.REPEAT_PASSWORD_LABEL')"
           required />
         <v-select
+          v-show="roles.length > 1"
           v-model="selectedRole"
           :items="roles"
           item-text="name"
