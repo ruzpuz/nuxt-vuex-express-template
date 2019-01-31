@@ -38,7 +38,12 @@ export default function({ store, route, req, redirect, app }) {
     const newName = originalName + i18n.routesNameSeparator + selected;
 
     if(route.name !== newName) {
-      redirect({ name: newName, params: route.params });
+      redirect({
+        name: newName,
+        params: route.params,
+        query: route.query,
+        meta: route.meta
+      });
     }
   }
 
