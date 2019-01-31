@@ -19,12 +19,19 @@ module.exports = {
           cookieKey: 'language',
           alwaysRedirect: false,
           fallbackLocale: 'em'
+        },
+        vuex: {
+          moduleName: 'i18n',
+
+          mutations: {
+            setLocale: 'I18N_SET_LOCALE',
+            setMessages: 'I18N_SET_MESSAGES'
+          },
+
+          preserveState: false
         }
       }
     ]
-  ],
-  plugins: [
-    { src: '~plugins/i18n.js' }
   ],
   head: {
     script: [
