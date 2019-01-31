@@ -6,7 +6,7 @@
       :flat="true"
       :items="languages"
       class="dense-input"
-      label="Standard"
+      :label="$t('languagePicker.LANGUAGE_PICKER_LABEL')"
       @change="languageChange">
       <template
         slot="selection"
