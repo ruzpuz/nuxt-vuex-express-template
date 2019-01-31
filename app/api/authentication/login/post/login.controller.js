@@ -33,6 +33,7 @@ async function handleLogin(body) {
   let sessionId;
 
   body.password = createHashedPassword(body.password);
+  body.email = body.email.toLocaleLowerCase();
 
   try {
     user = dataTransformService.transform(await getUser(body));
