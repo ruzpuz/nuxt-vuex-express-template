@@ -97,7 +97,6 @@ async function startServer(stoppingError, firstRun, buildNuxt) {
     server.startServer();
   } catch(error) {
     logger.error('Server runtime error!');
-    console.log(error);
     logger.log({ level: 'error', message: error.message });
   }
 }
