@@ -4,14 +4,14 @@ const databaseService = require('app/database/database.service');
 const logger = require('app/common/log/logger.service');
 const keccak = require('keccak');
 
-function validateCall(body) {
+function validateCall(body, language) {
 
   if(Object.keys(body).length !== 2) {
-    return responses.LOGIN_INVALID_DETAILS;
+    return responses[language].LOGIN_INVALID_DETAILS;
   } else if(!emailValidation.isValid(body.email)) {
-    return responses.LOGIN_INVALID_EMAIL;
+    return responses[language].LOGIN_INVALID_EMAIL;
   } else if(!body.password) {
-    return responses.LOGIN_NO_PASSWORD;
+    return responses[language].LOGIN_NO_PASSWORD;
   }
 }
 
@@ -25,7 +25,7 @@ function generateSessionToken(id) {
   return keccak('keccak512').update(statement).digest('hex');
 }
 
-async function checkLogin(details) {
+async function checkLogin(details, language) {
   let user;
 
   const { persistence: database } = databaseService.get();
@@ -58,18 +58,18 @@ async function checkLogin(details) {
     const { rows: users, rowCount: count } = await t.raw(findUserSQL, details.email);
 
     if(count !== 1) {
-      throw responses.LOGIN_NO_USER_FOUND;
+      throw responses[language].LOGIN_NO_USER_FOUND;
     }
     const { rows: security } = await t.raw(findUserSecurity, users[0].id);
 
     if(details.password === security[0].security) {
       if(!security[0].confirmed) {
-        throw responses.LOGIN_USER_NOT_CONFIRMED;
+        throw responses[language].LOGIN_USER_NOT_CONFIRMED;
       } else if(security[0].disabled) {
-        throw responses.LOGIN_USER_DISABLED;
+        throw responses[language].LOGIN_USER_DISABLED;
       }
     } else {
-      throw responses.LOGIN_NO_USER_FOUND;
+      throw responses[language].LOGIN_NO_USER_FOUND;
     }
     user = users[0];
 
@@ -79,7 +79,7 @@ async function checkLogin(details) {
   return user;
 }
 
-async function getSessionByEmail(email) {
+async function getSessionByEmail(email, language) {
   const { memory: database } = databaseService.get(),
     sql = `
      SELECT session_id FROM SESSION WHERE email = ?;
@@ -90,10 +90,10 @@ async function getSessionByEmail(email) {
     logger.error('Database operation failed');
     logger.log({ level: 'error', message: error });
 
-    throw responses.UNKNOWN_SERVER_ERROR;
+    throw responses[language].UNKNOWN_SERVER_ERROR;
   }
 }
-async function createSession(user) {
+async function createSession(user, language) {
   const { memory: database } = databaseService.get(),
     now = new Date(),
     sql = `
@@ -135,12 +135,12 @@ async function createSession(user) {
     logger.error('Database operation failed');
     logger.log({ level: 'error', message: error });
 
-    throw responses.UNKNOWN_SERVER_ERROR;
+    throw responses[language].UNKNOWN_SERVER_ERROR;
   }
 
 }
 async function findUserByEmail(email) {
-  const { persistence: database } = databaseService.get().persistence;
+  const { persistence: database } = databaseService.get();
 
   const { rows } = await database.raw('SELECT * FROM "public"."user" WHERE email = ?', [ email ]);
 

@@ -10,14 +10,14 @@ async function loginRoute(req, res) {
     });
   }
 
-  const response = await controller.handleLogin(req.body);
+  const response = await controller.handleLogin(req.body, req.headers.language);
 
   res.status(response.code).json(response.payload);
 
 }
 async function loginFacebookRoute(req, res) {
 
-  const response = await controller.handleFacebookLogin(req.body);
+  const response = await controller.handleFacebookLogin(req.body, req.headers.language);
 
   res.status(response.code).json(response.payload);
 

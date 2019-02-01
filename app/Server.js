@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const bluebird = require('bluebird');
 const security = require('app/api/authentication/security/security.middleware');
+const responses = require('app/api/common/responses/responses.middleware');
 
 const constantsService = require('app/api/common/constants/constants.service');
 
@@ -74,6 +75,7 @@ class Server {
     this.app.use('/api/*', bodyParser.json({ limit: '20kb' }));
 
     this.app.use(cookieParser());
+    this.app.use('/api/*', responses);
     this.app.use('*', security());
   }
   includeViewRoutes(nuxt) {

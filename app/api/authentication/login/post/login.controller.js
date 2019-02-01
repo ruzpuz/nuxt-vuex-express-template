@@ -10,20 +10,20 @@ const registrationService = require('../../registration/post/new-user/registrati
 function createHashedPassword(password) {
   return keccak('keccak512').update(password).digest('hex');
 }
-function getUser(details) {
-  return service.checkLogin(details);
+function getUser(details, language) {
+  return service.checkLogin(details, language);
 }
-async function getSession(user) {
-  const result = await service.getSessionByEmail(user.email);
+async function getSession(user, language) {
+  const result = await service.getSessionByEmail(user.email, language);
 
   if(result.length === 1) {
     return result[0];
   }
 }
 
-async function handleLogin(body) {
+async function handleLogin(body, language) {
 
-  const validation = service.validateCall(body);
+  const validation = service.validateCall(body, language);
 
   if(validation) {
     return validation;
@@ -36,15 +36,15 @@ async function handleLogin(body) {
   body.email = body.email.toLocaleLowerCase();
 
   try {
-    user = dataTransformService.transform(await getUser(body));
+    user = dataTransformService.transform(await getUser(body, language));
   } catch(error) {
     if(error.code) {
       return error;
     }
-    return responses.UNKNOWN_SERVER_ERROR;
+    return responses[language].UNKNOWN_SERVER_ERROR;
   }
   try {
-    const session = await getSession(user);
+    const session = await getSession(user, language);
     if(!session) {
       sessionId = await service.createSession(user);
     } else {
@@ -61,7 +61,7 @@ async function handleLogin(body) {
   });
 
 }
-async function handleFacebookLogin({ accessToken }) {
+async function handleFacebookLogin({ accessToken }, language) {
   Promise.promisifyAll(FB);
   if(accessToken) {
 
@@ -70,7 +70,7 @@ async function handleFacebookLogin({ accessToken }) {
     } catch(user) {
       if(user.error) {
         logger.log({ level: 'error', message: user.error });
-        return responses.USERS_NOT_FOUND;
+        return responses[language].USERS_NOT_FOUND;
       }
 
       const email = user.email;
@@ -83,14 +83,14 @@ async function handleFacebookLogin({ accessToken }) {
       user.password = registrationService.createHashedPassword(Math.random().toString());
       user.confirmationToken = registrationService.createHashedPassword(Math.random().toString());
 
-      const found = await service.findUserByEmail(email);
+      const found = await service.findUserByEmail(email, language);
       if(!found) {
         try {
-          await registrationService.saveNewUser(user, true);
+          await registrationService.saveNewUser(user, language, true);
         } catch(e) {
-          return responses.UNKNOWN_SERVER_ERROR;
+          return responses[language].UNKNOWN_SERVER_ERROR;
         }
-        const existingSession = await service.getSessionByEmail(user.email);
+        const existingSession = await service.getSessionByEmail(user.email, language);
 
         if(existingSession.length > 0) {
           return validCall({
@@ -109,7 +109,7 @@ async function handleFacebookLogin({ accessToken }) {
       found.roleId = user.roleId;
       found.roleName = user.roleName;
 
-      const existingSession = await service.getSessionByEmail(user.email);
+      const existingSession = await service.getSessionByEmail(user.email, language);
       if(existingSession.length > 0) {
         return validCall({
           user,
@@ -121,12 +121,9 @@ async function handleFacebookLogin({ accessToken }) {
         user,
         'ks-security': session
       });
-
-
     }
-    return validCall('soon');
   }
-  return responses.USERS_NO_TOKEN_PROVIDEDD;
+  return responses[language].USERS_NO_TOKEN_PROVIDEDD;
 
 }
 

@@ -7,7 +7,7 @@ function isValidLanguage(language) {
   });
 }
 
-module.exports = async function(req, res, next) {
+module.exports = function(req, res, next) {
   let language;
 
   if(req.headers.language) {
@@ -16,7 +16,7 @@ module.exports = async function(req, res, next) {
     language = req.cookies.language;
   }
 
-  if(!language || !isValidLanguage(language)) {
+  if(!language || !(validLanguages.some(item => item === language))) {
     language = constants.DEFAULT_LANGUAGE;
   }
 
