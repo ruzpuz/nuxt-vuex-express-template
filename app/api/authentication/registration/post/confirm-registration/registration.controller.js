@@ -2,15 +2,15 @@ const service = require('./registration.service');
 const { responses } = require('app/api/common/responses/responses.service');
 const logger = require('app/common/log/logger.service');
 
-async function handleCall(body) {
-  const validation = service.validateCall(body);
+async function handleCall(body, language) {
+  const validation = service.validateCall(body, language);
   if(validation) {
     return validation;
   }
   try {
-    await service.confirmRegistration(body);
+    await service.confirmRegistration(body, language);
 
-    return responses.CONFIRMATION_USER_CONFIRMED;
+    return responses[language].CONFIRMATION_USER_CONFIRMED;
   } catch(error) {
     error.code = Number(error.code);
     if(error.code) {
@@ -18,7 +18,7 @@ async function handleCall(body) {
     }
     logger.log({ level: 'error', message: error });
 
-    return responses.UNKNOWN_SERVER_ERROR;
+    return responses[language].UNKNOWN_SERVER_ERROR;
   }
 }
 

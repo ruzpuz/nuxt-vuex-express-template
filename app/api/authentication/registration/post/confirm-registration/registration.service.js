@@ -1,13 +1,13 @@
 const { responses } = require('app/api/common/responses/responses.service');
 const databaseService = require('app/database/database.service');
 
-function validateCall(body) {
+function validateCall(body, language) {
   if(!body.confirmationToken) {
-    return responses.REGISTRATION_NO_CONFIRMATION_TOKEN;
+    return responses[language].REGISTRATION_NO_CONFIRMATION_TOKEN;
   }
 }
 
-function confirmRegistration({ confirmationToken: token }) {
+function confirmRegistration({ confirmationToken: token }, language) {
   const { persistence: database } = databaseService.get();
 
   async function transaction(t) {
@@ -31,7 +31,7 @@ function confirmRegistration({ confirmationToken: token }) {
     const { rows: found } = await t.raw(findUserSQL, [ token ]);
 
     if(Number(found[0].count) === 0) {
-      throw responses.CONFIRMATION_USER_NOT_FOUND;
+      throw responses[language].CONFIRMATION_USER_NOT_FOUND;
     }
 
     await t.raw(confirmUserSQL, [ token ]);

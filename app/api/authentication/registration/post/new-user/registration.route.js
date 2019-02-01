@@ -2,7 +2,7 @@ const apiPrefix = require('app/api/common/constants/constants.service').constant
 const controller = require('./registration.controller');
 
 async function registrationRoute(req, res) {
-  const response = await controller.handleCall(req.body);
+  const response = await controller.handleCall(req.body, req.headers.language);
 
   res.status(response.code).json(response.payload);
 }

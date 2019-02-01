@@ -2,9 +2,9 @@ const stringValidation = require('app/api/common/validation/string/string-valida
 const { constants } = require('app/api/common/constants/constants.service');
 const { responses } = require('app/api/common/responses/responses.service');
 
-function validate(token) {
+function validate(token, language) {
   if(!stringValidation.isString(token)) {
-    return responses.AUTHORIZATION_BAD_TOKEN;
+    return responses[language].AUTHORIZATION_BAD_TOKEN;
   }
 }
 function createSecurityModel(session) {
