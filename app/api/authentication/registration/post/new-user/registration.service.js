@@ -40,33 +40,33 @@ function sendConfirmationEmail(user) {
     to: `${user.email}`,
     subject: 'Registration successful ✔',
     text: `
-            Hello ${user.firstName} ${user.lastName},
+            Zdravo,
             
-            You or somebody on your behalf registered on Klitstarter.
+            Vi ste se ili neko u Vaše ime registrovali na Klitstarteru.
 
-            If this was not you please disregard or report this email. Otherwise you can proceed to
+            Ako to niste bili Vi slobodno ignorišite ovaj e-mail. Inače možete nastaviti na 
              
             ${baseURL}/confirm/${user.confirmationToken}
             
-            Best regards,
-            Klitstarter concierge service
+            Sve najbolje,
+            Klitstarter servis
             `,
     html: `
             <p>
-             Hello ${user.firstName} ${user.lastName},
+              Zdravo,
             </p>
             <p>
-             You or somebody on your behalf registered on website.
+              Vi ste se ili neko u Vaše ime registrovali na Klitstarteru.
             </p>
             <p>
-              If this was not you please disregard or report this email. Otherwise you can proceed to
-              <a href="${baseURL}/confirm/${user.confirmationToken}"> here </a> to confirm your registration
+              Ako to niste bili Vi slobodno ignorišite ovaj e-mail. Inače možete nastaviti 
+              <a href="${baseURL}/confirm/${user.confirmationToken}"> ovde </a> da biste potvrdili vašu registraciju
             </p>
             <p>
-                Best regards,
+                sve najbolje,
             </p>
             <p>
-                Klitstarter concierge service
+                Klitstarter servis
             </p>`
   };
 }
