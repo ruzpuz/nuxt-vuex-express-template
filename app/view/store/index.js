@@ -3,7 +3,6 @@ import CommonStore from './common/common.store';
 import LoginStore from './login/login.store';
 import RegistrationStore from './registration/registration.store';
 import LanguageStore from './languages/languages.store';
-import { all as merge } from 'deepmerge';
 
 const createStore = () => new Vuex.Store({
   strict: process.env.NODE_ENV !== 'production',

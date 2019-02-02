@@ -7,7 +7,7 @@ case "$type" in
         find ./app/api -name '*\.test.js' | NODE_PATH=. xargs npm run mocha -R spec
         ;;
     "--lint" | "-l")
-        npm run eslint app/**/*.js  && npm run eslint --ext app/**/*.vue && npm run eslint index.js && npm run eslint integration/
+         npm run eslint --ext app/**/**/*.js && npm run eslint --ext app/**/**/*.vue && npm run eslint index.js && npm run eslint integration/
         ;;
     "--integration" | "-i")
         npm run seed initial

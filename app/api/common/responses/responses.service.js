@@ -16,7 +16,7 @@ function successfulCreation(payload) {
   };
 }
 
-const email = {
+const composeEmail = {
   REGISTRATION_CONFIRMATION(language, user)  {
     if(language === 'us') {
       return {
@@ -94,5 +94,6 @@ const email = {
 module.exports = {
   responses,
   validCall,
-  successfulCreation
+  successfulCreation,
+  composeEmail
 };
