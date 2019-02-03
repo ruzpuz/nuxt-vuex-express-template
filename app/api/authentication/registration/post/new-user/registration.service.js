@@ -1,7 +1,7 @@
 const stringValidation = require('app/api/common/validation/string/string-validation.service');
 const emailValidation = require('app/api/common/validation/emails/emails-validation.service');
 
-const { responses } = require('app/api/common/responses/responses.service');
+const { responses, composeEmail } = require('app/api/common/responses/responses.service');
 const { constants } = require('app/api/common/constants/constants.service');
 const databaseService = require('app/database/database.service');
 
@@ -10,7 +10,6 @@ const nodemailer = require('nodemailer');
 const emailConfiguration = require('configuration/email/email-configuration.service');
 const transporter = nodemailer.createTransport(emailConfiguration);
 
-const { baseURL } = require('app/common/environment/environment.service');
 const logger = require('app/common/log/logger.service');
 
 function validateCall(body, language) {
@@ -34,41 +33,8 @@ function createConfirmationToken() {
 function createHashedPassword(password) {
   return keccak('keccak512').update(password).digest('hex');
 }
-function sendConfirmationEmail(user) {
-  return {
-    from: `"Concierge Service" <${emailConfiguration.auth.user}>`,
-    to: `${user.email}`,
-    subject: 'Registration successful ✔',
-    text: `
-            Hello ${user.firstName} ${user.lastName},
-            
-            You or somebody on your behalf registered on Klitstarter.
-
-            If this was not you please disregard or report this email. Otherwise you can proceed to
-             
-            ${baseURL}/confirm/${user.confirmationToken}
-            
-            Best regards,
-            Klitstarter concierge service
-            `,
-    html: `
-            <p>
-             Hello ${user.firstName} ${user.lastName},
-            </p>
-            <p>
-             You or somebody on your behalf registered on website.
-            </p>
-            <p>
-              If this was not you please disregard or report this email. Otherwise you can proceed to
-              <a href="${baseURL}/confirm/${user.confirmationToken}"> here </a> to confirm your registration
-            </p>
-            <p>
-                Best regards,
-            </p>
-            <p>
-                Klitstarter concierge service
-            </p>`
-  };
+function sendConfirmationEmail(user, language) {
+  return transporter.sendMailAsync(composeEmail.REGISTRATION_CONFIRMATION(user, language));
 }
 
 async function saveNewUser(user, language, autoValidate) {
@@ -104,7 +70,7 @@ async function saveNewUser(user, language, autoValidate) {
     Promise.promisifyAll(transporter);
 
     if(!autoValidate) {
-      await transporter.sendMailAsync(sendConfirmationEmail(user));
+      await sendConfirmationEmail(user, language);
     }
 
     return responses[language].REGISTRATION_SUCCESSFUL;

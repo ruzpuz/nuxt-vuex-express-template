@@ -39,7 +39,6 @@
     "chokidar": "^2.0.4",
     "cookie-parser": "^1.4.3",
     "cross-env": "^5.2.0",
-    "deepmerge": "^3.1.0",
     "express": "^4.16.4",
     "fb": "^2.0.0",
     "flag-icon-css": "^3.2.1",
