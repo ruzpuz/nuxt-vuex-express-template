@@ -1,5 +1,8 @@
 const { constants } = require('app/api/common/constants/constants.service');
 const { httpStatus } = constants;
+const { baseURL } = require('app/common/environment/environment.service');
+const emailConfiguration = require('configuration/email/email-configuration.service');
+
 const us = require('./us/en-US');
 const rs = require('./rs/rs-RS');
 
@@ -17,7 +20,7 @@ function successfulCreation(payload) {
 }
 
 const composeEmail = {
-  REGISTRATION_CONFIRMATION(language, user)  {
+  REGISTRATION_CONFIRMATION(user, language) {
     if(language === 'us') {
       return {
         from: `"Concierge Service" <${emailConfiguration.auth.user}>`,
@@ -30,7 +33,7 @@ const composeEmail = {
 
             If this was not you please disregard or report this email. Otherwise you can proceed to
              
-            ${baseURL}/confirm/${user.confirmationToken}
+            ${baseURL}/${language}/confirm/${user.confirmationToken}
             
             Best regards,
             Klitstarter concierge service
@@ -44,7 +47,7 @@ const composeEmail = {
             </p>
             <p>
               If this was not you please disregard or report this email. Otherwise you can proceed to
-              <a href="${baseURL}/confirm/${user.confirmationToken}"> here </a> to confirm your registration
+              <a href="${baseURL}/${language}/confirm/${user.confirmationToken}"> here </a> to confirm your registration
             </p>
             <p>
                 Best regards,
@@ -65,7 +68,7 @@ const composeEmail = {
 
             Ako to niste bili Vi slobodno ignorišite ovaj e-mail. Inače možete nastaviti na 
              
-            ${baseURL}/confirm/${user.confirmationToken}
+            ${baseURL}/${language}/confirm/${user.confirmationToken}
             
             Sve najbolje,
             Klitstarter servis
@@ -79,7 +82,7 @@ const composeEmail = {
             </p>
             <p>
               Ako to niste bili Vi slobodno ignorišite ovaj e-mail. Inače možete nastaviti 
-              <a href="${baseURL}/confirm/${user.confirmationToken}"> ovde </a> da biste potvrdili vašu registraciju
+              <a href="${baseURL}/${language}/confirm/${user.confirmationToken}"> ovde </a> da biste potvrdili vašu registraciju
             </p>
             <p>
                 sve najbolje,

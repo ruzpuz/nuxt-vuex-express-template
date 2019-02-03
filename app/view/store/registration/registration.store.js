@@ -8,8 +8,8 @@ export default {
       return post('/api/registration', user);
     },
     /* eslint-disable-next-line no-unused-vars */
-    DO_CONFIRM_REGISTRATION({ commit }, secret) {
-      return post('/api/confirm', secret);
+    DO_CONFIRM_REGISTRATION({ commit }, { confirmationToken, post }) {
+      return post('/api/confirm', { confirmationToken });
     }
   }
 };
