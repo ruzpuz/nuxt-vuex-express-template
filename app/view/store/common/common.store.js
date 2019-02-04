@@ -5,14 +5,8 @@ export default {
     roles: []
   },
   mutations: {
-    async SET_ROLES(state, get) {
-      const rolesObject = { NOT_LOGGED_IN: -1 };
-
-      const { data } = await get('/api/roles');
-      data.roles.forEach(function (role) {
-        rolesObject[role.name.toUpperCase()] = role.id;
-      });
-      state.roles = data.roles;
+    async SET_ROLES(state, { roles, rolesObject }) {
+      state.roles = roles;
       state.rolesObject = rolesObject;
     }
   },
@@ -24,5 +18,17 @@ export default {
       return state.roles;
     }
   },
-  actions: {}
+  actions: {
+    async DO_SET_ROLES({ commit }) {
+      const { get } = this.$axios;
+      const rolesObject = { NOT_LOGGED_IN: -1 };
+
+      const { data } = await get('/api/roles');
+      data.roles.forEach(function (role) {
+        rolesObject[role.name.toUpperCase()] = role.id;
+      });
+
+      commit('SET_ROLES', { roles: data.roles, rolesObject } );
+    }
+  }
 };

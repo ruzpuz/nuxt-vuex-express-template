@@ -92,6 +92,7 @@
           this.$router.push(this.localePath({ name: 'login' }));
 
         } catch(error) {
+          console.log(error);
           this.loading = false;
           this.message = error.response.data;
           setTimeout(this.reset, 1500);

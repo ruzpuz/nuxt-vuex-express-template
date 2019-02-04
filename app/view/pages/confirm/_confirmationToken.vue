@@ -34,9 +34,9 @@
     layout: 'access',
     name: 'ConfirmId',
 
-    async asyncData({ params, store, $axios }) {
+    async asyncData({ params, store }) {
       try {
-        await store.dispatch('registration/DO_CONFIRM_REGISTRATION', { post: $axios.post, confirmationToken: params.id });
+        await store.dispatch('registration/DO_CONFIRM_REGISTRATION', { confirmationToken: params.confirmationToken });
         return { success: true };
       } catch(error) {
         return { success: false };
