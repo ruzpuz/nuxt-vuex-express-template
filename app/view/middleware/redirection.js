@@ -1,18 +1,17 @@
 export default function({ store, route, req, redirect, app }) {
-  function isAccessRoute() {
+  function isRouteAccess() {
     return (
       route.name && (
         route.name.startsWith('login') ||
         route.name.startsWith('confirm-id') ||
-        route.name.startsWith('registration')
+        route.name.startsWith('registration') ||
+        route.name.startsWith('forgot-password')
       )
     );
   }
   function isRouteSecure() {
     return (
-      route.name && (
-        route.name.startsWith('dashboard')
-      )
+      route.name && route.meta[0].secure
     );
   }
 
@@ -20,10 +19,15 @@ export default function({ store, route, req, redirect, app }) {
     if(route.fullPath === '/') {
       return redirect(app.localePath({ name: 'index' }));
     }
-    if(isAccessRoute(route) && store.getters['login/isLoggedIn']) {
+
+    const isLoggedIn = store.getters['login/isLoggedIn'];
+    const isAccessRoute = isRouteAccess(route);
+    const isSecureRoute = isRouteSecure(route);
+
+    if(isAccessRoute && isLoggedIn) {
       return redirect(app.localePath({ name: 'dashboard' }));
     }
-    if(isRouteSecure(route) && !store.getters['login/isLoggedIn']) {
+    if(isSecureRoute && !isLoggedIn) {
       return redirect(app.localePath({ name: 'login' }));
     }
   }

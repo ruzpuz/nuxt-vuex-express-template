@@ -33,6 +33,7 @@ module.exports = {
       }
     ]
   ],
+  plugins: [ '~/plugins/form-validation/form-validation.plugin.js' ],
   head: {
     script: [
       {
@@ -62,4 +63,3 @@ module.exports = {
     middleware: [ 'security', 'redirection' ]
   }
 };
-

@@ -6,7 +6,8 @@
 
 <script>
   export default {
-    name: 'Dashboard'
+    name: 'Dashboard',
+    meta: { secure: true }
   };
 </script>
 

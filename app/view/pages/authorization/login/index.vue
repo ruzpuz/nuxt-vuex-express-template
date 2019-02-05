@@ -4,8 +4,6 @@
 <script>
   import LanguagePicker from '../../../components/language-picker';
 
-  const emailRegex = new RegExp('^([A-Za-z0-9._%+-]|"|”|“|\\\\| |“.*”){0,64}([A-Za-z0-9_%+-]|"|”|“|\\\\| |“.*”)@[A-Za-z0-9][A-Za-z0-9.-]*\\.[A-Za-z]{2,}$');
-
   export default {
     name: 'Login',
     layout: 'access',
@@ -20,22 +18,22 @@
       return { title: this.$t('login.TITLE') };
     },
     data() {
+      const { emailRules } = this.$formValidators();
+
       return {
         email: '',
         password: '',
-        emailRules: [
-          v => !!v || 'E-mail is required',
-          v => emailRegex.test(v) || 'E-mail must be valid'
-        ],
+        emailRules,
         message: '',
         loading: false
       };
     },
     computed: {
       preventSubmission() {
+        const { isEmailValid } = this.$formValidators();
         return !(
           this.email &&
-          emailRegex.test(this.email) &&
+          isEmailValid(this.email) &&
           this.password
         );
       }
