@@ -10,7 +10,7 @@
     layout: 'access',
     nuxtI18n: {
       paths: {
-        en: '/registration',
+        us: '/registration',
         rs: '/registracija'
       }
     },

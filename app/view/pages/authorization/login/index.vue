@@ -2,7 +2,7 @@
 
 </style>
 <script>
-  import LanguagePicker from '../../components/language-picker';
+  import LanguagePicker from '../../../components/language-picker';
 
   const emailRegex = new RegExp('^([A-Za-z0-9._%+-]|"|”|“|\\\\| |“.*”){0,64}([A-Za-z0-9_%+-]|"|”|“|\\\\| |“.*”)@[A-Za-z0-9][A-Za-z0-9.-]*\\.[A-Za-z]{2,}$');
 
@@ -11,7 +11,7 @@
     layout: 'access',
     nuxtI18n: {
       paths: {
-        en: '/login',
+        us: '/login',
         rs: '/uloguj-se'
       }
     },

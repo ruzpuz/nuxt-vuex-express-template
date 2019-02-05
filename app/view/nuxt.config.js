@@ -52,6 +52,13 @@ module.exports = {
     port: 3010
   },
   router: {
+    extendRoutes(nuxtRoutes) {
+      nuxtRoutes.map(route => {
+        route.path = route.path.replace('/authorization', '');
+        route.name = route.name.replace('authorization-', '');
+        return route;
+      });
+    },
     middleware: [ 'security', 'redirection' ]
   }
 };

@@ -33,7 +33,12 @@
   export default {
     layout: 'access',
     name: 'ConfirmId',
-
+    nuxtI18n: {
+      paths: {
+        us: '/confirm-registration/:confirmationToken',
+        rs: '/potvrda-registracije/:confirmationToken'
+      }
+    },
     async asyncData({ params, store }) {
       try {
         await store.dispatch('registration/DO_CONFIRM_REGISTRATION', { confirmationToken: params.confirmationToken });
@@ -49,7 +54,7 @@
     },
     created() {
       setTimeout(() => {
-        this.$router.push(this.localePath({ name: 'login' }));
+        //this.$router.push(this.localePath({ name: 'login' }));
       }, 1000);
     }
   };
