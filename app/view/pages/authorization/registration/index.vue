@@ -79,10 +79,9 @@
           await this.$store.dispatch('registration/DO_REGISTER', this.USER);
 
           this.loading = false;
-          this.$router.push(this.localePath({ name: 'login' }));
 
+          this.$router.push(this.localePath({ name: 'login' }));
         } catch(error) {
-          console.log(error);
           this.loading = false;
           this.message = error.response.data;
           setTimeout(this.reset, 1500);
