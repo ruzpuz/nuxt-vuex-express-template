@@ -80,8 +80,23 @@
       }
     },
     methods: {
-      forgotPassword() {
+      reset() {
+        this.loading = false;
+        this.message = '';
+      },
+      async forgotPassword() {
+        this.loading = true;
+        try {
+          await this.$store.dispatch('forgotPassword/DO_REQUEST_RESTORATION', { email: this.email });
 
+          this.loading = false;
+
+          this.navigateToLogin();
+        } catch({ response }) {
+          this.loading = false;
+          this.message = response.data;
+          setTimeout(this.reset, 1500);
+        }
       },
       navigateToLogin() {
         this.$router.push(this.localePath({ name: 'login' }));
