@@ -1,14 +1,11 @@
 const stringValidation = require('app/api/common/validation/string/string-validation.service');
 const emailValidation = require('app/api/common/validation/emails/emails-validation.service');
 
-const { responses, composeEmail } = require('app/api/common/responses/responses.service');
+const { responses, composeEmail, sendEmail } = require('app/api/common/responses/responses.service');
 const { constants } = require('app/api/common/constants/constants.service');
 const databaseService = require('app/database/database.service');
 
 const keccak = require('keccak');
-const nodemailer = require('nodemailer');
-const emailConfiguration = require('configuration/email/email-configuration.service');
-const transporter = nodemailer.createTransport(emailConfiguration);
 
 const logger = require('app/common/log/logger.service');
 
@@ -34,7 +31,7 @@ function createHashedPassword(password) {
   return keccak('keccak512').update(password).digest('hex');
 }
 function sendConfirmationEmail(user, language) {
-  return transporter.sendMailAsync(composeEmail.REGISTRATION_CONFIRMATION(user, language));
+  return sendEmail(composeEmail.REGISTRATION_CONFIRMATION(user, language));
 }
 
 async function saveNewUser(user, language, autoValidate) {
@@ -67,7 +64,6 @@ async function saveNewUser(user, language, autoValidate) {
       user.confirmationToken,
       !!autoValidate
     ]);
-    Promise.promisifyAll(transporter);
 
     if(!autoValidate) {
       await sendConfirmationEmail(user, language);

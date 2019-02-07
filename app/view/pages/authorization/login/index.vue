@@ -2,16 +2,14 @@
 
 </style>
 <script>
-  import LanguagePicker from '../../components/language-picker';
-
-  const emailRegex = new RegExp('^([A-Za-z0-9._%+-]|"|”|“|\\\\| |“.*”){0,64}([A-Za-z0-9_%+-]|"|”|“|\\\\| |“.*”)@[A-Za-z0-9][A-Za-z0-9.-]*\\.[A-Za-z]{2,}$');
+  import LanguagePicker from '../../../components/language-picker';
 
   export default {
     name: 'Login',
     layout: 'access',
     nuxtI18n: {
       paths: {
-        en: '/login',
+        us: '/login',
         rs: '/uloguj-se'
       }
     },
@@ -20,22 +18,23 @@
       return { title: this.$t('login.TITLE') };
     },
     data() {
+      const { emailRules } = this.$formValidators();
+
       return {
         email: '',
         password: '',
-        emailRules: [
-          v => !!v || 'E-mail is required',
-          v => emailRegex.test(v) || 'E-mail must be valid'
-        ],
+        emailRules,
         message: '',
-        loading: false
+        loading: false,
+        loginFailed: false
       };
     },
     computed: {
       preventSubmission() {
+        const { isEmailValid } = this.$formValidators();
         return !(
           this.email &&
-          emailRegex.test(this.email) &&
+          isEmailValid(this.email) &&
           this.password
         );
       }
@@ -43,6 +42,9 @@
     methods: {
       navigateToRegistration() {
         this.$router.push(this.localePath({ name: 'registration' }));
+      },
+      navigagteToForgotPassword() {
+        this.$router.push(this.localePath({ name: 'forgot-password' }));
       },
       reset() {
         this.loading = false;
@@ -93,6 +95,7 @@
         } catch(error) {
           this.loading = false;
           this.message = error.response.data;
+          this.loginFailed = true;
           setTimeout(this.reset, 1500);
         }
 
@@ -128,8 +131,16 @@
         </div>
         <div
           v-if="message"
-          class="text-xs-center font-weight-bold title red--text">
+          class="text-xs-center title red--text">
           {{ message }}
+        </div>
+        <div
+          v-show="loginFailed"
+          class="text-xs-center title red--text">
+          {{ $t('login.FORGOT_PASSWORD_MESSAGE') }}
+          <a class="red--text font-weight-bold" @click="navigagteToForgotPassword">
+            {{ $t('login.FORGOT_PASSWORD_BUTTON_LABEL') }}
+          </a>
         </div>
       </v-form>
     </v-card-text>

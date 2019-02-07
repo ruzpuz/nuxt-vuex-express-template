@@ -2,7 +2,6 @@
 
 </style>
 <script>
-  const emailRegex = new RegExp('^([A-Za-z0-9._%+-]|"|”|“|\\\\| |“.*”){0,64}([A-Za-z0-9_%+-]|"|”|“|\\\\| |“.*”)@[A-Za-z0-9][A-Za-z0-9.-]*\\.[A-Za-z]{2,}$');
   import LanguagePicker from '~/components/language-picker';
 
   export default {
@@ -10,7 +9,7 @@
     layout: 'access',
     nuxtI18n: {
       paths: {
-        en: '/registration',
+        us: '/registration',
         rs: '/registracija'
       }
     },
@@ -19,29 +18,19 @@
       return { title: this.$t('registration.TITLE') };
     },
     data() {
-      const roles = this.$store.getters['common/getRoles'].filter(item => item.name !== 'administrator');
+      const { firstNameRules, lastNameRules, emailRules, repeatPasswordRules } = this.$formValidators();
 
+      const roles = this.$store.getters['common/getRoles'].filter(item => item.name !== 'administrator');
       return {
         email: '',
         password: '',
         firstName: '',
         lastName: '',
         repeatPassword: '',
-        firstNameRules: [
-          v => !!v || 'First name is required',
-          v => v.length < 128 || 'First name is too large'
-        ],
-        lastNameRules: [
-          v => !!v || 'Last name is required',
-          v => v.length < 128 || 'Last name is too large'
-        ],
-        emailRules: [
-          v => !!v || 'E-mail is required',
-          v => emailRegex.test(v) || 'E-mail must be valid'
-        ],
-        repeatPasswordRules: [
-          () => this.password === this.repeatPassword || 'Passwords do not match'
-        ],
+        firstNameRules,
+        lastNameRules,
+        emailRules,
+        repeatPasswordRules,
         roles: roles,
         selectedRole: roles[0].id,
         message: '',
@@ -59,13 +48,14 @@
         };
       },
       preventSubmission() {
+        const { isEmailValid } = this.$formValidators();
         return !(
           this.firstName &&
           this.firstName.length < 128 &&
           this.lastName &&
           this.lastName.length < 128 &&
           this.email &&
-          emailRegex.test(this.email) &&
+          isEmailValid(this.email) &&
           this.password &&
           this.password === this.repeatPassword
         );
@@ -89,8 +79,8 @@
           await this.$store.dispatch('registration/DO_REGISTER', this.USER);
 
           this.loading = false;
-          this.$router.push(this.localePath({ name: 'login' }));
 
+          this.$router.push(this.localePath({ name: 'login' }));
         } catch(error) {
           this.loading = false;
           this.message = error.response.data;

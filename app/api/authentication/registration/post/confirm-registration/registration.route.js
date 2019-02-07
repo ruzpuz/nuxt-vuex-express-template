@@ -5,7 +5,6 @@ async function confirmRegistrationRoute(req, res) {
   const response = await controller.handleCall(req.body, req.headers.language);
 
   res.status(response.code).json(response.payload);
-
 }
 
 /**

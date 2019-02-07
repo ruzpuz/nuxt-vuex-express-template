@@ -33,10 +33,15 @@
   export default {
     layout: 'access',
     name: 'ConfirmId',
-
-    async asyncData({ params, store, $axios }) {
+    nuxtI18n: {
+      paths: {
+        us: '/confirm-registration/:confirmationToken',
+        rs: '/potvrda-registracije/:confirmationToken'
+      }
+    },
+    async asyncData({ params, store }) {
       try {
-        await store.dispatch('registration/DO_CONFIRM_REGISTRATION', { post: $axios.post, confirmationToken: params.id });
+        await store.dispatch('registration/DO_CONFIRM_REGISTRATION', { confirmationToken: params.confirmationToken });
         return { success: true };
       } catch(error) {
         return { success: false };

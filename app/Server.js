@@ -65,6 +65,7 @@ class Server {
     require('app/api/authentication/login/post/login.route')(this.app);
     require('app/api/authentication/registration/post/new-user/registration.route')(this.app);
     require('app/api/authentication/registration/post/confirm-registration/registration.route')(this.app);
+    require('app/api/authentication/forgot-password/post/forgot-password.route')(this.app);
     require('app/api/roles/get/all/roles.route')(this.app);
     require('app/api/categories/get/all/categories.route')(this.app);
   }
