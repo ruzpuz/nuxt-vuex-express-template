@@ -25,7 +25,8 @@
         password: '',
         emailRules,
         message: '',
-        loading: false
+        loading: false,
+        loginFailed: false
       };
     },
     computed: {
@@ -41,6 +42,9 @@
     methods: {
       navigateToRegistration() {
         this.$router.push(this.localePath({ name: 'registration' }));
+      },
+      navigagteToForgotPassword() {
+        this.$router.push(this.localePath({ name: 'forgot-password' }));
       },
       reset() {
         this.loading = false;
@@ -91,6 +95,7 @@
         } catch(error) {
           this.loading = false;
           this.message = error.response.data;
+          this.loginFailed = true;
           setTimeout(this.reset, 1500);
         }
 
@@ -126,8 +131,16 @@
         </div>
         <div
           v-if="message"
-          class="text-xs-center font-weight-bold title red--text">
+          class="text-xs-center title red--text">
           {{ message }}
+        </div>
+        <div
+          v-show="loginFailed"
+          class="text-xs-center title red--text">
+          {{ $t('login.FORGOT_PASSWORD_MESSAGE') }}
+          <a class="red--text font-weight-bold" @click="navigagteToForgotPassword">
+            {{ $t('login.FORGOT_PASSWORD_BUTTON_LABEL') }}
+          </a>
         </div>
       </v-form>
     </v-card-text>

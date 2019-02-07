@@ -46,6 +46,7 @@
 
 <script>
   import LanguagePicker from '../../../components/language-picker.vue';
+
   export default {
     name: 'ForgotPassword',
     meta: { secure: false },
