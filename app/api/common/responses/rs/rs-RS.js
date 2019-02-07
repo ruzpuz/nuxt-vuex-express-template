@@ -25,5 +25,8 @@ module.exports = {
   REGISTRATION_NO_PASSWORD: { code: httpStatus.BAD_REQUEST, payload: 'Lozinka nije uneta' },
   REGISTRATION_FAILED_USER_ALREADY_REGISTERED: { code: httpStatus.CONFLICT, payload: 'Korisnik je već registrovan' },
   REGISTRATION_FAILED_NO_SUCH_ROLE: { code: httpStatus.BAD_REQUEST, payload: 'Ne postoji ta rola' },
-  REGISTRATION_SUCCESSFUL: { code: httpStatus.CREATED, payload: 'Uspešna registracija' }
+  REGISTRATION_SUCCESSFUL: { code: httpStatus.CREATED, payload: 'Uspešna registracija' },
+  FORGOT_PASSWORD_INVALID_DETAILS: { code: httpStatus.BAD_REQUEST, payload: 'Neispravan zahtev' },
+  FORGOT_PASSWORD_INVALID_EMAIL: { code: httpStatus.BAD_REQUEST, payload: 'Neispravna e-mail adresa' },
+  FORGOT_PASSWORD_CALL_SUCCESSFUL: { code: httpStatus.OK, payload: 'Zahtev uspešan! Molimo proverite Vaš e-mail' }
 };

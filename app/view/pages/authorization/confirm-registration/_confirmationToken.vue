@@ -54,7 +54,7 @@
     },
     created() {
       setTimeout(() => {
-        //this.$router.push(this.localePath({ name: 'login' }));
+        this.$router.push(this.localePath({ name: 'login' }));
       }, 1000);
     }
   };

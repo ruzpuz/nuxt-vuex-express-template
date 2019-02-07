@@ -25,5 +25,8 @@ module.exports = {
   REGISTRATION_NO_PASSWORD: { code: httpStatus.BAD_REQUEST, payload: 'No password provided' },
   REGISTRATION_FAILED_USER_ALREADY_REGISTERED: { code: httpStatus.CONFLICT, payload: 'User already registered' },
   REGISTRATION_FAILED_NO_SUCH_ROLE: { code: httpStatus.BAD_REQUEST, payload: 'No such role' },
-  REGISTRATION_SUCCESSFUL: { code: httpStatus.CREATED, payload: 'Registration is successful' }
+  REGISTRATION_SUCCESSFUL: { code: httpStatus.CREATED, payload: 'Registration is successful' },
+  FORGOT_PASSWORD_INVALID_DETAILS: { code: httpStatus.BAD_REQUEST, payload: 'Invalid request details' },
+  FORGOT_PASSWORD_INVALID_EMAIL: { code: httpStatus.BAD_REQUEST, payload: 'Invalid email' },
+  FORGOT_PASSWORD_CALL_SUCCESSFUL: { code: httpStatus.OK, payload: 'Success! Please check your email' }
 };
