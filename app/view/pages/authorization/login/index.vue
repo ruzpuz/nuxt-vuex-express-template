@@ -138,7 +138,9 @@
           v-show="loginFailed"
           class="text-xs-center title red--text">
           {{ $t('login.FORGOT_PASSWORD_MESSAGE') }}
-          <a class="red--text font-weight-bold" @click="navigagteToForgotPassword">
+          <a
+            class="red--text font-weight-bold"
+            @click="navigagteToForgotPassword">
             {{ $t('login.FORGOT_PASSWORD_BUTTON_LABEL') }}
           </a>
         </div>

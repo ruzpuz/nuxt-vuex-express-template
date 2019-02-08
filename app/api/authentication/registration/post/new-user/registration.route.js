@@ -8,7 +8,7 @@ async function registrationRoute(req, res) {
 }
 
 /**
- * @api {post} /api/registration 01 - Registration
+ * @api {post} /api/registration 02 - Registration
  * @apiName Registration
  * @apiGroup Authentication
  * @apiDescription Api endpoint that registers new user
