@@ -28,5 +28,10 @@ module.exports = {
   REGISTRATION_SUCCESSFUL: { code: httpStatus.CREATED, payload: 'Uspešna registracija' },
   FORGOT_PASSWORD_INVALID_DETAILS: { code: httpStatus.BAD_REQUEST, payload: 'Neispravan zahtev' },
   FORGOT_PASSWORD_INVALID_EMAIL: { code: httpStatus.BAD_REQUEST, payload: 'Neispravna e-mail adresa' },
-  FORGOT_PASSWORD_CALL_SUCCESSFUL: { code: httpStatus.OK, payload: 'Zahtev uspešan! Molimo proverite Vaš e-mail' }
+  FORGOT_PASSWORD_CALL_SUCCESSFUL: { code: httpStatus.OK, payload: 'Zahtev uspešan! Molimo proverite Vaš e-mail' },
+  RESTORE_PASSWORD_INVALID_DETAILS: { code: httpStatus.BAD_REQUEST, payload: 'Neispravan zahtev' },
+  RESTORE_PASSWORD_NO_PASSWORD: { code: httpStatus.BAD_REQUEST, payload: 'Neispravna lozinka' },
+  RESTORE_PASSWORD_INVALID_RESTORATION_TOKEN: { code: httpStatus.BAD_REQUEST, payload: 'Neispravan token za resetovanje' },
+  RESTORE_PASSWORD_NO_USER_FOUND: { code: httpStatus.NOT_FOUND, payload: 'Nije pronađen korisnik' },
+  RESTORE_PASSWORD_SUCCESS: { code: httpStatus.OK, payload: 'Uspešno promenjena lozinka' }
 };

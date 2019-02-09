@@ -28,5 +28,10 @@ module.exports = {
   REGISTRATION_SUCCESSFUL: { code: httpStatus.CREATED, payload: 'Registration is successful' },
   FORGOT_PASSWORD_INVALID_DETAILS: { code: httpStatus.BAD_REQUEST, payload: 'Invalid request details' },
   FORGOT_PASSWORD_INVALID_EMAIL: { code: httpStatus.BAD_REQUEST, payload: 'Invalid email' },
-  FORGOT_PASSWORD_CALL_SUCCESSFUL: { code: httpStatus.OK, payload: 'Success! Please check your email' }
+  FORGOT_PASSWORD_CALL_SUCCESSFUL: { code: httpStatus.OK, payload: 'Success! Please check your email' },
+  RESTORE_PASSWORD_INVALID_DETAILS: { code: httpStatus.BAD_REQUEST, payload: 'Invalid restoration token' },
+  RESTORE_PASSWORD_NO_PASSWORD: { code: httpStatus.BAD_REQUEST, payload: 'No password provided' },
+  RESTORE_PASSWORD_INVALID_RESTORATION_TOKEN: { code: httpStatus.BAD_REQUEST, payload: 'Invalid restoration token' },
+  RESTORE_PASSWORD_NO_USER_FOUND: { code: httpStatus.NOT_FOUND, payload: 'No user found' },
+  RESTORE_PASSWORD_SUCCESS: { code: httpStatus.OK, payload: 'Password updated successfully' }
 };
