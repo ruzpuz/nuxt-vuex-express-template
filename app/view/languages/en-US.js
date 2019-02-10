@@ -4,6 +4,7 @@ import languagePicker from './en/language-picker/language-picker';
 import confirmationPage from './en/confirmation-page/confirmation-page';
 import formValidation from './en/form-validation/form-validation.js';
 import forgotPassword from './en/forgot-password-page/forgot-password';
+import restorePassword from './en/restore-password-page/restore-password';
 
 export default {
   login,
@@ -11,5 +12,6 @@ export default {
   languagePicker,
   confirmationPage,
   formValidation,
-  forgotPassword
+  forgotPassword,
+  restorePassword
 };

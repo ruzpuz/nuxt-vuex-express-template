@@ -17,7 +17,7 @@ function createRestorationToken() {
   return keccak('keccak512').update(`User requested a restoration token at ${new Date()}. Random ${Math.random()}`).digest('hex');
 }
 async function requestPasswordRestore({ email }) {
-  const { persistence: database } = databaseService.get();
+  const { persistence, memory } = databaseService.get();
 
   let user = null;
 
@@ -35,6 +35,10 @@ async function requestPasswordRestore({ email }) {
     WHERE 
       user_id = ?;
   `;
+  const addREstorationTokenToMemory = `
+    INSERT INTO restoration 
+    VALUES (?);
+  `;
 
   async function transaction(t) {
     const { rows, rowCount } = await t.raw(findUserSQL, [ email ]);
@@ -48,9 +52,11 @@ async function requestPasswordRestore({ email }) {
 
     user = rows[0];
     user.restorationToken = restorationToken;
+
+    await memory.raw(addREstorationTokenToMemory, [ restorationToken ]);
   }
 
-  await database.transaction(transaction);
+  await persistence.transaction(transaction);
 
   return user ? transform(user) : false;
 }

@@ -33,5 +33,7 @@ module.exports = {
   RESTORE_PASSWORD_NO_PASSWORD: { code: httpStatus.BAD_REQUEST, payload: 'Neispravna lozinka' },
   RESTORE_PASSWORD_INVALID_RESTORATION_TOKEN: { code: httpStatus.BAD_REQUEST, payload: 'Neispravan token za resetovanje' },
   RESTORE_PASSWORD_NO_USER_FOUND: { code: httpStatus.NOT_FOUND, payload: 'Nije pronađen korisnik' },
+  RESTORE_PASSWORD_POSSIBLE: { code: httpStatus.OK, payload: 'Nastavite na vraćanje lozinke' },
+  RESTORE_PASSWORD_IMPOSSIBLE: { code: httpStatus.NOT_FOUND, payload: 'Token za vraćanje lozinke nije pronađen. Pokušajte ponovo' },
   RESTORE_PASSWORD_SUCCESS: { code: httpStatus.OK, payload: 'Uspešno promenjena lozinka' }
 };

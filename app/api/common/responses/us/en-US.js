@@ -33,5 +33,7 @@ module.exports = {
   RESTORE_PASSWORD_NO_PASSWORD: { code: httpStatus.BAD_REQUEST, payload: 'No password provided' },
   RESTORE_PASSWORD_INVALID_RESTORATION_TOKEN: { code: httpStatus.BAD_REQUEST, payload: 'Invalid restoration token' },
   RESTORE_PASSWORD_NO_USER_FOUND: { code: httpStatus.NOT_FOUND, payload: 'No user found' },
+  RESTORE_PASSWORD_POSSIBLE: { code: httpStatus.OK, payload: 'Proceed to restoring password' },
+  RESTORE_PASSWORD_IMPOSSIBLE: { code: httpStatus.NOT_FOUND, payload: 'Cannot find restoration token. Try again' },
   RESTORE_PASSWORD_SUCCESS: { code: httpStatus.OK, payload: 'Password updated successfully' }
 };
