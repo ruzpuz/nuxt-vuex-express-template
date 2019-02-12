@@ -7,7 +7,7 @@ async function restorePasswordRoute(req, res) {
   res.status(response.code).json(response.payload);
 }
 /**
- * @api {post} /api/restore-password 05 - Restore password
+ * @api {post} /api/restore-password 06 - Restore password
  * @apiName Restore password
  * @apiGroup Authentication
  * @apiDescription Api endpoint that finishes forgot password procedure. Note that it will finish successfully even

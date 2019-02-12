@@ -7,7 +7,7 @@ async function checkRestorePasswordRoute(req, res) {
   res.status(response.code).json(response.payload);
 }
 /**
- * @api {get} /api/restore-password 06 - Check if you can restore password
+ * @api {get} /api/restore-password 05 - Check if you can restore password
  * @apiName Check password restoration
  * @apiGroup Authentication
  * @apiDescription Api endpoint that checks whether restoration is possible
