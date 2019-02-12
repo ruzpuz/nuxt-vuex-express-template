@@ -4,8 +4,8 @@
       <h3 class="headline mb-0">
         {{ $t('restorePassword.HEAD') }}
       </h3>
-      <v-spacer />
-      <language-picker />
+      <v-spacer/>
+      <language-picker/>
     </v-card-title>
     <v-card-text>
       <v-form @keyup.enter.native="restorePassword">
@@ -13,17 +13,17 @@
           v-model="password"
           type="password"
           :label="$t('restorePassword.PASSWORD_LABEL')"
-          required />
+          required/>
         <v-text-field
           v-model="repeatPassword"
           type="password"
           :rules="repeatPasswordRules"
           :label="$t('restorePassword.REPEAT_PASSWORD_LABEL')"
-          required />
+          required/>
         <div
           v-if="loading"
           class="text-xs-center">
-          <v-progress-circular :indeterminate="true" />
+          <v-progress-circular :indeterminate="true"/>
         </div>
         <div
           v-if="message"
@@ -33,7 +33,7 @@
       </v-form>
     </v-card-text>
     <v-card-actions>
-      <v-spacer />
+      <v-spacer/>
       <v-btn
         color="blue"
         flat
@@ -66,6 +66,20 @@
     components: { LanguagePicker },
     head() {
       return { title: this.$t('restorePassword.TITLE') };
+    },
+    async asyncData({ app, store, redirect, params }) {
+      try {
+        await store.dispatch('restorePassword/SHOULD_REDIRECT', params.restorationToken);
+      } catch(error) {
+        redirect(app.localePath({ name: 'login' }));
+      }
+      return {
+        password: '',
+        repeatPassword: '',
+        repeatPasswordRules: [],
+        loading: false,
+        message: ''
+      };
     },
     data() {
       const { repeatPasswordRules } = this.$formValidators();
