@@ -19,7 +19,7 @@ function createHashedPassword(password) {
 }
 
 async function restorePassword({ password, restorationToken }) {
-  const { persistence: database } = databaseService.get();
+  const { persistence, memory } = databaseService.get();
 
   const setPasswordByRecoveryToken = `
     UPDATE 
@@ -30,9 +30,23 @@ async function restorePassword({ password, restorationToken }) {
     WHERE 
       restoration_token = ?;
   `;
+  const deleteRecoveryTokenFromMemory = `
+    DELETE FROM 
+      restoration 
+    WHERE 
+      restoration_token = ?;
+  `;
 
-  const { rowCount } = await database.raw(setPasswordByRecoveryToken, [ password, restorationToken ]);
-  return !(rowCount === 0);
+  let retVal = false;
+
+  async function transaction(t) {
+    await memory.raw(deleteRecoveryTokenFromMemory, [ restorationToken ]);
+    const { rowCount } = await t.raw(setPasswordByRecoveryToken, [ password, restorationToken ]);
+    retVal = !(rowCount === 0);
+  }
+
+  await persistence.transaction(transaction);
+  return retVal;
 }
 
 

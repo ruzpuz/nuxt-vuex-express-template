@@ -4,8 +4,8 @@
       <h3 class="headline mb-0">
         {{ $t('restorePassword.HEAD') }}
       </h3>
-      <v-spacer/>
-      <language-picker/>
+      <v-spacer />
+      <language-picker />
     </v-card-title>
     <v-card-text>
       <v-form @keyup.enter.native="restorePassword">
@@ -13,27 +13,27 @@
           v-model="password"
           type="password"
           :label="$t('restorePassword.PASSWORD_LABEL')"
-          required/>
+          required />
         <v-text-field
           v-model="repeatPassword"
           type="password"
           :rules="repeatPasswordRules"
           :label="$t('restorePassword.REPEAT_PASSWORD_LABEL')"
-          required/>
+          required />
         <div
           v-if="loading"
           class="text-xs-center">
-          <v-progress-circular :indeterminate="true"/>
+          <v-progress-circular :indeterminate="true" />
         </div>
         <div
           v-if="message"
-          class="text-xs-center font-weight-bold title red--text">
+          :class="messageClass">
           {{ message }}
         </div>
       </v-form>
     </v-card-text>
     <v-card-actions>
-      <v-spacer/>
+      <v-spacer />
       <v-btn
         color="blue"
         flat
@@ -74,6 +74,7 @@
         redirect(app.localePath({ name: 'login' }));
       }
       return {
+        error: false,
         password: '',
         repeatPassword: '',
         repeatPasswordRules: [],
@@ -85,6 +86,7 @@
       const { repeatPasswordRules } = this.$formValidators();
 
       return {
+        error: false,
         password: '',
         repeatPassword: '',
         repeatPasswordRules,
@@ -98,14 +100,46 @@
           this.password &&
           this.password === this.repeatPassword
         );
+      },
+      messageClass() {
+        const classes = [ 'text-xs-center', 'font-weight-bold', 'title' ];
+
+        if(this.error) {
+          classes.push('red--text');
+        } else {
+          classes.push('info--text');
+        }
+        return classes.join(' ');
       }
     },
     methods: {
       navigateToLogin() {
         this.$router.push(this.localePath({ name: 'login' }));
       },
-      restorePassword() {
+      reset() {
+        this.error = false;
+        this.loading = false;
+        this.message = '';
+      },
+      async restorePassword() {
+        this.loading = true;
+        let response;
 
+        try {
+          response = await this.$store.dispatch('restorePassword/DO_RESTORE_PASSWORD', {
+            password: this.password,
+            restorationToken: this.$route.params.restorationToken
+          });
+          setTimeout(this.navigateToLogin, 1500);
+        } catch(error) {
+          this.error = true;
+          response = error.response;
+        }
+
+        this.loading = false;
+        this.message = response.data;
+
+        setTimeout(this.reset, 1500);
       }
     }
   };

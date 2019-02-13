@@ -35,7 +35,7 @@ async function requestPasswordRestore({ email }) {
     WHERE 
       user_id = ?;
   `;
-  const addREstorationTokenToMemory = `
+  const addRestorationTokenToMemory = `
     INSERT INTO restoration 
     VALUES (?);
   `;
@@ -53,7 +53,7 @@ async function requestPasswordRestore({ email }) {
     user = rows[0];
     user.restorationToken = restorationToken;
 
-    await memory.raw(addREstorationTokenToMemory, [ restorationToken ]);
+    await memory.raw(addRestorationTokenToMemory, [ restorationToken ]);
   }
 
   await persistence.transaction(transaction);
