@@ -48,6 +48,7 @@
     "material-design-icons-iconfont": "^4.0.4",
     "node-sass": "^4.11.0",
     "nodemailer": "^5.1.1",
+    "npm": "^6.7.0",
     "nuxt": "^2.2.0",
     "nuxt-i18n": "^5.8.0",
     "nuxt-material-design-icons": "^1.0.4",

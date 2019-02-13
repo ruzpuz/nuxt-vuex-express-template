@@ -4,6 +4,7 @@ import languagePicker from './rs/language-picker/language-picker';
 import confirmationPage from './rs/confirmation-page/confirmation-page';
 import formValidation from './rs/form-validation/form-validation.js';
 import forgotPassword from './rs/forgot-password-page/forgot-password';
+import restorePassword from './rs/restore-password-page/restore-password';
 
 export default {
   login,
@@ -11,5 +12,6 @@ export default {
   languagePicker,
   confirmationPage,
   formValidation,
-  forgotPassword
+  forgotPassword,
+  restorePassword
 };

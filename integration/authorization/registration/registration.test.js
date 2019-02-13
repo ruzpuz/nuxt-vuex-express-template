@@ -106,6 +106,7 @@ async function confirmUser() {
 
   const sql = `
     SELECT
+      user_id,
       confirmation_token 
     FROM
       "public"."security" 
@@ -115,6 +116,8 @@ async function confirmUser() {
   `;
   const { rows } = await database.raw(sql, USER.email);
   const confirmationToken = rows[0].confirmation_token;
+
+  USER.id = rows[0].user_id;
 
   try {
     const { status } = await http.post('http://localhost:3010/api/confirm', { confirmationToken });

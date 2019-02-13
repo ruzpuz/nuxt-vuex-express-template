@@ -3,6 +3,7 @@ import CommonStore from './common/common.store';
 import LoginStore from './authorization/login/login.store';
 import RegistrationStore from './authorization/registration/registration.store';
 import ForgotPasswordStore from './authorization/forgot-password/forgot-password.store';
+import RestorePasswordStore from './authorization/restore-password/restore-password.store';
 import LanguageStore from './languages/languages.store';
 
 const createStore = () => new Vuex.Store({
@@ -12,6 +13,7 @@ const createStore = () => new Vuex.Store({
     login: LoginStore,
     registration: RegistrationStore,
     forgotPassword: ForgotPasswordStore,
+    restorePassword: RestorePasswordStore,
     languages: LanguageStore
   },
   actions: {
