@@ -63,7 +63,6 @@ async function loginFacebookRoute(req, res) {
  *
  * @apiError (Internal server error 500) {String} UNKNOWN_DATABASE_ERROR Happens when the operation failed for unknown reasons on the database. Should not happen in normal circumstances
  *
-
  */
 module.exports = function (app) {
   app.post(apiPrefix + '/login', loginRoute);

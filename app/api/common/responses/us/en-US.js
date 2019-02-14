@@ -35,5 +35,6 @@ module.exports = {
   RESTORE_PASSWORD_NO_USER_FOUND: { code: httpStatus.NOT_FOUND, payload: 'No user found' },
   RESTORE_PASSWORD_POSSIBLE: { code: httpStatus.OK, payload: 'Proceed to restoring password' },
   RESTORE_PASSWORD_IMPOSSIBLE: { code: httpStatus.NOT_FOUND, payload: 'Cannot find restoration token. Try again' },
-  RESTORE_PASSWORD_SUCCESS: { code: httpStatus.OK, payload: 'Password updated successfully' }
+  RESTORE_PASSWORD_SUCCESS: { code: httpStatus.OK, payload: 'Password updated successfully' },
+  ROLES_UNAUTHORIZED: { code: httpStatus.UNAUTHORIZED, payload: 'You are not authorized to see this' }
 };

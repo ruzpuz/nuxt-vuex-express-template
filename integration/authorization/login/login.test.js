@@ -4,7 +4,7 @@ const http = require('axios');
 const { constants } = require('app/api/common/constants/constants.service');
 const { httpStatus } = constants;
 
-const { INVALID_LOGIN_DETAILS, LOGIN_DETAILS } = require('integration/common/data');
+const { USER, INVALID_LOGIN_DETAILS, LOGIN_DETAILS } = require('integration/common/data');
 
 async function unsuccessfullLogin() {
   try {
@@ -19,8 +19,9 @@ async function unsuccessfullLogin() {
 }
 async function successfullLogin() {
   try {
-    const { status } = await http.post('http://localhost:3010/api/login', LOGIN_DETAILS);
+    const { status, data } = await http.post('http://localhost:3010/api/login', LOGIN_DETAILS);
     assert.strictEqual(status, httpStatus.OK);
+    USER['ks-security'] = data['ks-security'];
   } catch(error) {
     if(error.code === 'ECONNREFUSED') {
       throw new Error('The application is not running. Cannot continue with tests');
