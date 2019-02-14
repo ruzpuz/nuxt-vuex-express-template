@@ -14,7 +14,7 @@ async function resolve(token, request) {
     return validation;
   }
 
-  request.headers.security = service.createSecurityModel(await memoryService.getSession(token));
+  request.headers.security = service.createSecurityModel(token, await memoryService.getSession(token));
 }
 
 module.exports = {

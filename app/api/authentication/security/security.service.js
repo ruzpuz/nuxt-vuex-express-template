@@ -7,13 +7,15 @@ function validate(token, language) {
     return responses[language].AUTHORIZATION_BAD_TOKEN;
   }
 }
-function createSecurityModel(session) {
+function createSecurityModel(token, session) {
   if(!session) {
     return {
+      token,
       roleId: constants.users.roles.NOT_LOGGED_IN
     };
   }
   return {
+    token,
     id: session.user_id,
     roleId: session.role_id,
     roleName: session.role_name,

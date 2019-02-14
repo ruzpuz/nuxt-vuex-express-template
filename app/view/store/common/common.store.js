@@ -22,8 +22,9 @@ export default {
     async DO_SET_ROLES({ commit }) {
       const { get } = this.$axios;
       const rolesObject = { NOT_LOGGED_IN: -1 };
+      const { RANDOM_SECURITY } = process.env;
 
-      const { data } = await get('/api/roles');
+      const { data } = await get('/api/roles', { headers: { 'ks-security': RANDOM_SECURITY } });
       data.roles.forEach(function (role) {
         rolesObject[role.name.toUpperCase()] = role.id;
       });
